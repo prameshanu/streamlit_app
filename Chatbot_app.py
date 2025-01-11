@@ -96,10 +96,28 @@ def preprocess_text(text):
 
 
 
+@st.cache_data
+def load_documents(directory_path):
+    from concurrent.futures import ThreadPoolExecutor
+
+    def load_file(file_path):
+        loader = TextLoader(file_path)
+        return loader.load()
+
+    with ThreadPoolExecutor() as executor:
+        file_paths = [
+            os.path.join(directory_path, filename)
+            for filename in os.listdir(directory_path)
+            if os.path.isfile(os.path.join(directory_path, filename))
+        ]
+        docs = []
+        for result in executor.map(load_file, file_paths):
+            docs.extend(result)
+    return docs
+    
+
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
-
-st.write(langchain_api_key)
 
 # # State Initialization
 if "done" not in st.session_state:
