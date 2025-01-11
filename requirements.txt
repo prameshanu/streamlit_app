@@ -2,8 +2,6 @@ langchain
 langchain-community
 langchain-core
 langchain-huggingface
-langchain-text-splitters
-langsmith
 sentence-transformers
 pinecone
 pinecone-client
