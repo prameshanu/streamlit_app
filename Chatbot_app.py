@@ -121,11 +121,10 @@ file_path = [
 download_dir = "./temp_downloads"
 os.makedirs(download_dir, exist_ok=True)
 
-# Create an empty list to store documents and Loop through each file, download it, and load using TextLoader
-
-
+# Create an empty list to store documents
 documents = []
 
+# Loop through each file, download it, and load using TextLoader
 for file in file_path:
     file_url = raw_url_base + file  # Construct the full URL
     local_path = os.path.join(download_dir, file)  # Local path for the downloaded file
@@ -142,6 +141,7 @@ for file in file_path:
     
     # Optionally, remove the file after processing
     os.remove(local_path)
+
 
 
 def preprocess_documents(docs):
