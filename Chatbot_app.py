@@ -63,7 +63,7 @@ except LookupError:
 
 import os
 
-# langchain_api_key = os.environ("LANGCHAIN_API_KEY")
+langchain_api_key = os.environ("LANGCHAIN_API_KEY")
 
 
 # Streamlit Framework
