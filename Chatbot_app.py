@@ -116,9 +116,14 @@ def load_documents(directory_path):
     return docs
     
 
+directory_path = 'https://github.com/prameshanu/streamlit_app/tree/main/processed_data'
+docs = load_documents(directory_path)
+a = docs[:1]
+
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 
+st.write(a)
 # # State Initialization
 if "done" not in st.session_state:
     st.session_state.done = False  # To track if the user clicked "I am done, Thanks."
