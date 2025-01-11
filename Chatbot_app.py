@@ -14,6 +14,7 @@ from langchain_community.retrievers import PineconeHybridSearchRetriever
 import sentence_transformers
 from langchain.chains import RetrievalQA
 from concurrent.futures import ThreadPoolExecutor
+from langchain_huggingface import HuggingFaceEmbeddings
 
 
 from pinecone import Pinecone
@@ -172,7 +173,44 @@ index = pc.Index(index_name)
 
 
 
+### """ Hybrid search vector embedding and sparse matrix : combining vector similarity search and other traditional search techniques (full-text, BM25, and so on)"""
 
+
+embeddings = HuggingFaceEmbeddings(model_name = 'all-MiniLM-L6-v2')
+
+warnings.filterwarnings("ignore", module="pinecone_text.sparse.bm25_encoder")
+
+bm25_encoder = BM25Encoder().default()
+
+sentences= []
+for doc in documents:
+    sentences.append(
+    doc.page_content  # Add page content as a string
+    )
+
+## tfidf vector
+
+if not os.path.exists("bm25_values.json"):
+    bm25_encoder.fit(sentences)
+    bm25_encoder.dump("bm25_values.json")
+else:
+    bm25_encoder = BM25Encoder().load("bm25_values.json")
+
+
+# ollama LLAma2 LLm 
+llm=Ollama(model="llama3.2")
+
+## Design Chatprompt template
+prompt = ChatPromptTemplate.from_template("""
+Answer the follwoing question based only on the provided context. 
+Think step by step before providing a detailed answer. 
+Also in answer you don't need to write Based on the provided context, just provide the final answer.
+I will tip you $25000 if the user finds the answer helpful
+<context>
+{context}
+</context>
+Question: {input}
+""")
 
 
 
