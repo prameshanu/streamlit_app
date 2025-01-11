@@ -63,13 +63,13 @@ except LookupError:
 
 import os
 
-langchain_api_key = os.environ("LANGCHAIN_API_KEY")
+# langchain_api_key = os.environ("LANGCHAIN_API_KEY")
 
 
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 
-st.write(langchain_api_key)
+# st.write(langchain_api_key)
 # # State Initialization
 if "done" not in st.session_state:
     st.session_state.done = False  # To track if the user clicked "I am done, Thanks."
