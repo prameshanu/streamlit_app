@@ -7,7 +7,7 @@ pinecone
 pinecone-client
 pinecone-datasets
 pinecone-notebooks
-pinecone-text==0.9.0
+pinecone-text
 streamlit==1.41.1
 nltk==3.9.1
 numpy==1.26.4
