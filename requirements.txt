@@ -1,4 +1,6 @@
 langchain
+langchain-community
+langchain-core
 streamlit==1.41.1
 nltk==3.9.1
 numpy==1.26.4
