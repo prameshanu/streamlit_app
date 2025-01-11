@@ -9,7 +9,6 @@ pinecone
 pinecone-client
 pinecone-datasets
 pinecone-notebooks
-pinecone-plugin-inference
 pinecone-text==0.9.0
 streamlit==1.41.1
 nltk==3.9.1
