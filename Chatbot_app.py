@@ -68,11 +68,30 @@ os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_API_KEY"] = langchain_api_key
 
 
-## Preprocessing for original files was done separately and saved separately to reduce processing every time the code is being executed
+import requests
 @st.cache_data
+def fetch_file_from_github(raw_url):
+    response = requests.get(raw_url)
+    response.raise_for_status()  # Ensure we handle HTTP errors
+    return response.text
 
-loader = TextLoader('https://raw.githubusercontent.com/prameshanu/streamlit_app/tree/main/processed_data/processed_1.txt')
-a = loader
+# Raw GitHub URL
+raw_url = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/processed_1.txt"
+
+# Fetch the file content
+file_content = fetch_file_from_github(raw_url)
+
+
+
+# ## Preprocessing for original files was done separately and saved separately to reduce processing every time the code is being executed
+
+# raw_file_url = 'https://raw.githubusercontent.com/prameshanu/streamlit_app/tree/main/processed_data/processed_1.txt'
+# response = requests.get(raw_file_url)
+# response.raise_for_status()  # Raise an exception for HTTP errors
+# return response.text
+
+
+a = file_content
 # def load_documents_from_github(repo_url):
 #     from urllib.parse import urljoin
 
