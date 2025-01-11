@@ -116,7 +116,7 @@ def load_documents(directory_path):
     return docs
     
 
-directory_path = 'https://github.com/prameshanu/streamlit_app/tree/main/processed_data'
+directory_path = 'https://raw.githubusercontent.com/prameshanu/streamlit_app/tree/main/processed_data'
 docs = load_documents(directory_path)
 a = docs[:1]
 
