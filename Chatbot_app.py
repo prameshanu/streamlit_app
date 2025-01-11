@@ -28,7 +28,6 @@ import streamlit as st
 
 import numpy as np
 from dotenv import load_dotenv
-import os
 
 import os
 import re
@@ -37,6 +36,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.data import find
+import requests
 ## Data Ingestion 
 
 # Download required resources for NLTK
@@ -63,12 +63,12 @@ try:
 except LookupError:
     nltk.download('wordnet')
 
-import os
+
 
 langchain_api_key  = st.secrets["LANGCHAIN_API_KEY"]
 pine_cone_api_key = st.secrets("PINE_CONE_API_KEY")
 
-import requests
+
 
 
 ### Preprocessing function for input text, for input data: preprocessing was done separately to avoid repeat code execution on every run.
