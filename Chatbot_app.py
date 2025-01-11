@@ -15,6 +15,7 @@ import sentence_transformers
 from langchain.chains import RetrievalQA
 from concurrent.futures import ThreadPoolExecutor
 
+
 from pinecone import Pinecone
 from pinecone import ServerlessSpec
 from pinecone_text.sparse import BM25Encoder
@@ -65,122 +66,12 @@ except LookupError:
 import os
 
 langchain_api_key  = st.secrets["LANGCHAIN_API_KEY"]
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_API_KEY"] = langchain_api_key
-
+pine_cone_api_key = st.secrets("PINE_CONE_API_KEY")
 
 import requests
 
-# Base URL for the files
-raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/"
 
-# List of file names
-file_path = [
-    "processed_1.txt", "processed_2.txt", "processed_3.txt", "processed_4.txt", "processed_5.txt", "processed_6.txt", 
-    "processed_7.txt", "processed_8.txt", "processed_9.txt", "processed_10.txt", "processed_11.txt", "processed_12.txt", 
-    "processed_13.txt", "processed_14.txt", "processed_15.txt", "processed_16.txt", "processed_17.txt", "processed_18.txt", 
-    "processed_19.txt", "processed_20.txt", "processed_21.txt", "processed_22.txt", "processed_23.txt", "processed_24.txt", 
-    "processed_25.txt", "processed_26.txt", "processed_27.txt", "processed_28.txt", "processed_29.txt", "processed_30.txt", 
-    "processed_31.txt", "processed_32.txt", "processed_33.txt", "processed_34.txt", "processed_35.txt", "processed_36.txt", 
-    "processed_37.txt", "processed_38.txt", "processed_39.txt", "processed_40.txt", "processed_41.txt", "processed_42.txt", 
-    "processed_43.txt", "processed_44.txt", "processed_45.txt", "processed_46.txt", "processed_47.txt", "processed_48.txt", 
-    "processed_49.txt", "processed_50.txt", "processed_51.txt", "processed_52.txt", "processed_53.txt", "processed_54.txt", 
-    "processed_55.txt", "processed_56.txt", "processed_57.txt", "processed_58.txt", "processed_59.txt", "processed_60.txt"
-]
-
-# Directory to temporarily store the downloaded files
-download_dir = "./temp_downloads"
-os.makedirs(download_dir, exist_ok=True)
-
-# Create an empty list to store documents
-documents = []
-
-# Loop through each file, download it, and load using TextLoader
-for file in file_path:
-    file_url = raw_url_base + file  # Construct the full URL
-    local_path = os.path.join(download_dir, file)  # Local path for the downloaded file
-    
-    # Download the file
-    response = requests.get(file_url)
-    with open(local_path, 'wb') as f:
-        f.write(response.content)
-    
-    # Use TextLoader to load the file
-    loader = TextLoader(local_path)
-    docs = loader.load()
-    documents.extend(docs)  # Add to the list of documents
-    
-    # Optionally, remove the file after processing
-    os.remove(local_path)
-
-a = documents[:1]
-# Now 'documents' contains all the loaded documents
-
-# import requests
-# @st.cache_data
-# def fetch_file_from_github(raw_url):
-#     response = requests.get(raw_url)
-#     response.raise_for_status()  # Ensure we handle HTTP errors
-#     return response.text
-
-# # Raw GitHub URL
-# raw_url = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/processed_1.txt"
-
-# # Fetch the file content
-# file_content = fetch_file_from_github(raw_url)
-
-
-
-# ## Preprocessing for original files was done separately and saved separately to reduce processing every time the code is being executed
-
-# raw_file_url = 'https://raw.githubusercontent.com/prameshanu/streamlit_app/tree/main/processed_data/processed_1.txt'
-# response = requests.get(raw_file_url)
-# response.raise_for_status()  # Raise an exception for HTTP errors
-# return response.text
-
-
-# a = file_content
-# def load_documents_from_github(raw_url_base):
-#     from urllib.parse import urljoin
-
-#     # Convert GitHub URL to raw content URL
-#     # List of files to process (You might need to dynamically fetch this)
-#     file_path = [
-#         "processed_1.txt",	"processed_2.txt",	"processed_3.txt",	"processed_4.txt",	"processed_5.txt",	"processed_6.txt",	
-#         "processed_7.txt",	"processed_8.txt",	"processed_9.txt",	"processed_10.txt",	"processed_11.txt",	"processed_12.txt",	
-#         "processed_13.txt",	"processed_14.txt",	"processed_15.txt",	"processed_16.txt",	"processed_17.txt",	"processed_18.txt",	
-#         "processed_19.txt",	"processed_20.txt",	"processed_21.txt",	"processed_22.txt",	"processed_23.txt",	"processed_24.txt",	
-#         "processed_25.txt",	"processed_26.txt",	"processed_27.txt",	"processed_28.txt",	"processed_29.txt",	"processed_30.txt",	
-#         "processed_31.txt",	"processed_32.txt",	"processed_33.txt",	"processed_34.txt",	"processed_35.txt",	"processed_36.txt",	
-#         "processed_37.txt",	"processed_38.txt",	"processed_39.txt",	"processed_40.txt",	"processed_41.txt",	"processed_42.txt",	
-#         "processed_43.txt",	"processed_44.txt",	"processed_45.txt",	"processed_46.txt",	"processed_47.txt",	"processed_48.txt",	
-#         "processed_49.txt",	"processed_50.txt",	"processed_51.txt",	"processed_52.txt",	"processed_53.txt",	"processed_54.txt",	
-#         "processed_55.txt",	"processed_56.txt",	"processed_57.txt",	"processed_58.txt",	"processed_59.txt",	"processed_60.txt"
-#     ]
-
-
-#     docs = []
-
-#     def load_file_from_github(file_path):
-#         raw_file_url = urljoin(raw_url_base, file_path)
-#         response = requests.get(raw_file_url)
-#         response.raise_for_status()  # Raise an exception for HTTP errors
-#         return response.text
-
-#     with ThreadPoolExecutor() as executor:
-#         for result in executor.map(load_file_from_github, file_path):
-#             loader = TextLoader.from_string(result)
-#             docs.extend(loader.load())
-
-#     return docs
-
-# # GitHub repo URL containing your files
-# raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/"
-# # repo_url = "https://github.com/prameshanu/streamlit_app/tree/main/processed_data"
-# docs = load_documents_from_github(raw_url_base)
-
-
-
+### Preprocessing function for input text, for input data: preprocessing was done separately to avoid repeat code execution on every run.
 
 def preprocess_text(text):
     # Step 1: Lowercase the text
@@ -207,35 +98,92 @@ def preprocess_text(text):
     return processed_text
 
 
+### Input 60 processed files
 
-# @st.cache_data
-# def load_documents(directory_path):
-#     from concurrent.futures import ThreadPoolExecutor
+# Base URL for the files
+raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/"
 
-#     def load_file(file_path):
-#         loader = TextLoader(file_path)
-#         return loader.load()
+# List of file names
+file_path = [
+    "processed_1.txt", "processed_2.txt", "processed_3.txt", "processed_4.txt", "processed_5.txt", "processed_6.txt", 
+    "processed_7.txt", "processed_8.txt", "processed_9.txt", "processed_10.txt", "processed_11.txt", "processed_12.txt", 
+    "processed_13.txt", "processed_14.txt", "processed_15.txt", "processed_16.txt", "processed_17.txt", "processed_18.txt", 
+    "processed_19.txt", "processed_20.txt", "processed_21.txt", "processed_22.txt", "processed_23.txt", "processed_24.txt", 
+    "processed_25.txt", "processed_26.txt", "processed_27.txt", "processed_28.txt", "processed_29.txt", "processed_30.txt", 
+    "processed_31.txt", "processed_32.txt", "processed_33.txt", "processed_34.txt", "processed_35.txt", "processed_36.txt", 
+    "processed_37.txt", "processed_38.txt", "processed_39.txt", "processed_40.txt", "processed_41.txt", "processed_42.txt", 
+    "processed_43.txt", "processed_44.txt", "processed_45.txt", "processed_46.txt", "processed_47.txt", "processed_48.txt", 
+    "processed_49.txt", "processed_50.txt", "processed_51.txt", "processed_52.txt", "processed_53.txt", "processed_54.txt", 
+    "processed_55.txt", "processed_56.txt", "processed_57.txt", "processed_58.txt", "processed_59.txt", "processed_60.txt"
+]
 
-#     with ThreadPoolExecutor() as executor:
-#         file_paths = [
-#             os.path.join(directory_path, filename)
-#             for filename in os.listdir(directory_path)
-#             if os.path.isfile(os.path.join(directory_path, filename))
-#         ]
-#         docs = []
-#         for result in executor.map(load_file, file_paths):
-#             docs.extend(result)
-#     return docs
+# Directory to temporarily store the downloaded files
+download_dir = "./temp_downloads"
+os.makedirs(download_dir, exist_ok=True)
+
+# Create an empty list to store documents and Loop through each file, download it, and load using TextLoader
+
+@st.cache_data
+
+documents = []
+
+for file in file_path:
+    file_url = raw_url_base + file  # Construct the full URL
+    local_path = os.path.join(download_dir, file)  # Local path for the downloaded file
     
+    # Download the file
+    response = requests.get(file_url)
+    with open(local_path, 'wb') as f:
+        f.write(response.content)
+    
+    # Use TextLoader to load the file
+    loader = TextLoader(local_path)
+    docs = loader.load()
+    documents.extend(docs)  # Add to the list of documents
+    
+    # Optionally, remove the file after processing
+    os.remove(local_path)
 
-# directory_path = 'https://raw.githubusercontent.com/prameshanu/streamlit_app/tree/main/processed_data'
-# docs = load_documents(directory_path)
+
+def preprocess_documents(docs):
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=250, chunk_overlap=10)
+    return text_splitter.split_documents(docs)
+
+documents = preprocess_documents(docs)
+
+
+
+index_name = "hybrid-search-langchain-pinecone"
+
+
+## initialize the pinecone client
+pc = Pinecone(api_key = pine_cone_api_key)
+
+#create the index
+if index_name not in pc.list_indexes().names():
+    pc.create_index(
+        name = index_name,
+        dimension = 384, ##dimension of dense vector
+        metric = 'dotproduct',  #sparse values supportered only for dotproduct
+        spec = ServerlessSpec(cloud='aws', region='us-east-1') ,
+    
+    )
+
+index = pc.Index(index_name)
+
+
+
+
+
+
+
+
 
 
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 
-st.write(a)
+
 # # State Initialization
 if "done" not in st.session_state:
     st.session_state.done = False  # To track if the user clicked "I am done, Thanks."
