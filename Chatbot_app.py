@@ -1,7 +1,7 @@
 import streamlit as st
 ## Data Ingestion 
-# from langchain_community.document_loaders import TextLoader
-# from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import TextLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 # from langchain_community.embeddings import OllamaEmbeddings  # Replace with appropriate embedding
 # from langchain_community.vectorstores import Chroma
 # from langchain_community.vectorstores import FAISS
