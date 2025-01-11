@@ -19,6 +19,49 @@ from pinecone import ServerlessSpec
 from pinecone_text.sparse import BM25Encoder
 
 
+import warnings
+
+
+import streamlit as st
+
+import numpy as np
+from dotenv import load_dotenv
+import os
+
+import os
+import re
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from nltk.data import find
+## Data Ingestion 
+
+# Download required resources for NLTK
+# nltk.download('punkt')
+# nltk.download('stopwords')
+# nltk.download('wordnet')
+
+## lazy loading
+try:
+    # Check if 'punkt' is available; download if not
+    find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
+
+try:
+    # Check if 'stopwords' is available; download if not
+    find('corpora/stopwords.zip')
+except LookupError:
+    nltk.download('stopwords')
+
+try:
+    # Check if 'wordnet' is available; download if not
+    find('corpora/wordnet.zip')
+except LookupError:
+    nltk.download('wordnet')
+
+
 
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
