@@ -13,6 +13,7 @@ from langchain.chains import create_retrieval_chain
 from langchain_community.retrievers import PineconeHybridSearchRetriever
 import sentence_transformers
 from langchain.chains import RetrievalQA
+from concurrent.futures import ThreadPoolExecutor
 
 from pinecone import Pinecone
 from pinecone import ServerlessSpec
@@ -69,17 +70,64 @@ os.environ["LANGCHAIN_API_KEY"] = langchain_api_key
 
 
 import requests
-@st.cache_data
-def fetch_file_from_github(raw_url):
-    response = requests.get(raw_url)
-    response.raise_for_status()  # Ensure we handle HTTP errors
-    return response.text
 
-# Raw GitHub URL
-raw_url = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/processed_1.txt"
+# Base URL for the files
+raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/"
 
-# Fetch the file content
-file_content = fetch_file_from_github(raw_url)
+# List of file names
+file_path = [
+    "processed_1.txt", "processed_2.txt", "processed_3.txt", "processed_4.txt", "processed_5.txt", "processed_6.txt", 
+    "processed_7.txt", "processed_8.txt", "processed_9.txt", "processed_10.txt", "processed_11.txt", "processed_12.txt", 
+    "processed_13.txt", "processed_14.txt", "processed_15.txt", "processed_16.txt", "processed_17.txt", "processed_18.txt", 
+    "processed_19.txt", "processed_20.txt", "processed_21.txt", "processed_22.txt", "processed_23.txt", "processed_24.txt", 
+    "processed_25.txt", "processed_26.txt", "processed_27.txt", "processed_28.txt", "processed_29.txt", "processed_30.txt", 
+    "processed_31.txt", "processed_32.txt", "processed_33.txt", "processed_34.txt", "processed_35.txt", "processed_36.txt", 
+    "processed_37.txt", "processed_38.txt", "processed_39.txt", "processed_40.txt", "processed_41.txt", "processed_42.txt", 
+    "processed_43.txt", "processed_44.txt", "processed_45.txt", "processed_46.txt", "processed_47.txt", "processed_48.txt", 
+    "processed_49.txt", "processed_50.txt", "processed_51.txt", "processed_52.txt", "processed_53.txt", "processed_54.txt", 
+    "processed_55.txt", "processed_56.txt", "processed_57.txt", "processed_58.txt", "processed_59.txt", "processed_60.txt"
+]
+
+# Directory to temporarily store the downloaded files
+download_dir = "./temp_downloads"
+os.makedirs(download_dir, exist_ok=True)
+
+# Create an empty list to store documents
+documents = []
+
+# Loop through each file, download it, and load using TextLoader
+for file in file_path:
+    file_url = raw_url_base + file  # Construct the full URL
+    local_path = os.path.join(download_dir, file)  # Local path for the downloaded file
+    
+    # Download the file
+    response = requests.get(file_url)
+    with open(local_path, 'wb') as f:
+        f.write(response.content)
+    
+    # Use TextLoader to load the file
+    loader = TextLoader(local_path)
+    docs = loader.load()
+    documents.extend(docs)  # Add to the list of documents
+    
+    # Optionally, remove the file after processing
+    os.remove(local_path)
+
+a = documents[:1]
+# Now 'documents' contains all the loaded documents
+
+# import requests
+# @st.cache_data
+# def fetch_file_from_github(raw_url):
+#     response = requests.get(raw_url)
+#     response.raise_for_status()  # Ensure we handle HTTP errors
+#     return response.text
+
+# # Raw GitHub URL
+# raw_url = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/processed_1.txt"
+
+# # Fetch the file content
+# file_content = fetch_file_from_github(raw_url)
 
 
 
@@ -91,13 +139,11 @@ file_content = fetch_file_from_github(raw_url)
 # return response.text
 
 
-a = file_content
-# def load_documents_from_github(repo_url):
+# a = file_content
+# def load_documents_from_github(raw_url_base):
 #     from urllib.parse import urljoin
 
 #     # Convert GitHub URL to raw content URL
-#     raw_url_base = repo_url.replace("github.com", "raw.githubusercontent.com").replace("/tree/", "/")
-
 #     # List of files to process (You might need to dynamically fetch this)
 #     file_path = [
 #         "processed_1.txt",	"processed_2.txt",	"processed_3.txt",	"processed_4.txt",	"processed_5.txt",	"processed_6.txt",	
@@ -122,16 +168,17 @@ a = file_content
 #         return response.text
 
 #     with ThreadPoolExecutor() as executor:
-#         for result in executor.map(load_file_from_github, file_paths):
+#         for result in executor.map(load_file_from_github, file_path):
 #             loader = TextLoader.from_string(result)
 #             docs.extend(loader.load())
 
 #     return docs
 
 # # GitHub repo URL containing your files
-# repo_url = "https://github.com/prameshanu/streamlit_app/tree/main/processed_data"
-# docs = load_documents_from_github(repo_url)
-# a = docs[:1]
+# raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/"
+# # repo_url = "https://github.com/prameshanu/streamlit_app/tree/main/processed_data"
+# docs = load_documents_from_github(raw_url_base)
+
 
 
 
