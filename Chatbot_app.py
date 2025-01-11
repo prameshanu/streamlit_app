@@ -64,6 +64,37 @@ except LookupError:
 import os
 
 langchain_api_key  = st.secrets["LANGCHAIN_API_KEY"]
+os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_API_KEY"] = langchain_api_key
+
+
+## Preprocessing for original files was done separately and saved separately to reduce processing every time the code is being executed
+
+def preprocess_text(text):
+    # Step 1: Lowercase the text
+    text = text.lower()
+    
+    # Step 2: Remove special characters, numbers, and extra whitespace
+    text = re.sub(r'[^a-z\s]', '', text)  # Keep only letters and spaces
+    text = re.sub(r'\s+', ' ', text).strip()  # Remove extra spaces
+    
+    # Step 3: Tokenize the text
+    tokens = word_tokenize(text)
+    
+    # Step 4: Remove stopwords
+    stop_words = set(stopwords.words('english'))
+    tokens = [word for word in tokens if word not in stop_words]
+    
+    # Step 5: Lemmatize tokens
+    lemmatizer = WordNetLemmatizer()
+    tokens = [lemmatizer.lemmatize(word) for word in tokens]
+    
+    # Join tokens back into a single string (optional)
+    processed_text = ' '.join(tokens)
+    
+    return processed_text
+
+
 
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
