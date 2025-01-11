@@ -141,7 +141,7 @@ for file in file_path:
     documents.extend(docs)  # Add to the list of documents
     
     # Optionally, remove the file after processing
-    os.remove(local_path)
+    # os.remove(local_path)
 
 
 
