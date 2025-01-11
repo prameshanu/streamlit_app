@@ -64,6 +64,8 @@ try:
 except LookupError:
     nltk.download('wordnet')
 
+nltk.download('punkt_tab')
+
 
 
 langchain_api_key  = st.secrets["LANGCHAIN_API_KEY"]
