@@ -213,13 +213,37 @@ Question: {input}
 """)
 
 
+# Define your threshold: Threshold was decided basis multiple tests
+threshold = 0.2
 
+def rag(query):
+    # Retrieve documents
+    retrieved_docs = st.session_state['retriever'].get_relevant_documents(query)
+
+    # Filter documents based on the threshold score
+    filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
+
+    # Pass the filtered documents to the chain (if needed)
+    if filtered_docs:
+        # Create your chain using the filtered documents
+        retrieval_chain = RetrievalQA.from_chain_type(
+            llm=llm,
+            retriever=st.session_state['retriever'],
+            chain_type="stuff",
+            return_source_documents=True
+        )
+        response = retrieval_chain.invoke(query)
+        a = response['result']
+
+    else:
+        a = "I don't have enough information to answer this question."
+    
+    return a
 
 
 
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
-st.write('test')
 
 # # State Initialization
 if "done" not in st.session_state:
@@ -228,4 +252,70 @@ if "history" not in st.session_state:
     st.session_state.history = []  # To store the chat history
 if "current_question" not in st.session_state:
     st.session_state.current_question = ""  # To store the current input text
+
+
+# input_text=st.text_input("Search the topic u want")
+# if input_text:
+
+#     if 'retriever' not in st.session_state:
+#         retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
+#         retriever.add_texts(
+#             [doc.page_content for doc in documents]
+#         )
+#         st.session_state['retriever'] = retriever
+#     response = rag(input_text)
+
+#     # Search the index for the two most similar vectors
+#     response = rag(input_text)
+#     st.write(response)
+
+if not st.session_state.done:
+     # Display Chat History
+    if st.session_state.history == []:
+        st.write(f" ## Welcome to Chatbot ")
+
+    # Input Field
+
+    # input_text = st.text_input("Ask your question here:", value=st.session_state.current_question, key="input_box")
+    input_text = st.text_input("Ask your question here:", value=st.session_state.current_question, key="input_box")
+    # input_text = st.text_input("Search the topic you want")
+    if input_text and st.session_state.current_question != input_text:
+        # Store the input text in session state
+        st.session_state.current_question = input_text
+        
+        # Generate response
+        if 'retriever' not in st.session_state:
+            retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
+            retriever.add_texts(
+                [doc.page_content for doc in documents]
+            )
+            st.session_state['retriever'] = retriever
+        response = rag(input_text)
+
+        # Search the index for the two most similar vectors
+        answer = rag(input_text)
+        st.write(answer)   
+        
+        # Add question and response to chat history
+        st.session_state.history.append({"question": input_text, "answer": answer})
+
+        
+        # Clear the input box
+        st.session_state.current_question = ""
+    
+    st.write("### Chat History:")
+    for chat in st.session_state.history:
+        st.write(f"**You:** {chat['question']}")
+        st.write(f"**Bot:** {chat['answer']}")
+
+   
+    # End Interaction
+    if st.button("I am done, Thanks"):
+        st.session_state.done = True
+else:
+    st.write("### Final Chat History:")
+    for chat in st.session_state.history:
+        st.write(f"**You:** {chat['question']}")
+        st.write(f"**Bot:** {chat['answer']}")
+    st.write("Thank you for using the chatbot! Have a great day!")
 
