@@ -126,7 +126,6 @@ os.makedirs(download_dir, exist_ok=True)
 
 documents = []
 
-@st.cache_data
 for file in file_path:
     file_url = raw_url_base + file  # Construct the full URL
     local_path = os.path.join(download_dir, file)  # Local path for the downloaded file
