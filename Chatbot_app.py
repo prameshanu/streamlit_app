@@ -19,7 +19,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 from pinecone import Pinecone
 from pinecone import ServerlessSpec
-from pinecone_text.sparse import BM25Encoder
+from pinecone_text.sparse.bm25_encoder import BM25Encoder
 
 
 import warnings
@@ -177,8 +177,6 @@ index = pc.Index(index_name)
 
 
 embeddings = HuggingFaceEmbeddings(model_name = 'all-MiniLM-L6-v2')
-
-warnings.filterwarnings("ignore", module="pinecone_text.sparse.bm25_encoder")
 
 bm25_encoder = BM25Encoder().default()
 
