@@ -270,7 +270,7 @@ def rag(query):
         #     return_source_documents=True
         # )
         # response = retrieval_chain.invoke(query)
-        a = filtered_docs
+        a = "I have enough information"
 
     else:
         a = "I don't have enough information to answer this question."
