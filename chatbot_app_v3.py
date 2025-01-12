@@ -39,11 +39,11 @@ import requests
 
 
 # ## lazy loading
-# try:
-#     # Check if 'punkt' is available; download if not
-#     find('tokenizers/punkt')
-# except LookupError:
-#     nltk.download('punkt')
+try:
+    # Check if 'punkt' is available; download if not
+    find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
 
 try:
     # Check if 'stopwords' is available; download if not
