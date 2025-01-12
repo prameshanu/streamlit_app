@@ -193,9 +193,15 @@ if not os.path.exists("bm25_values.json"):
 else:
     bm25_encoder = BM25Encoder().load("bm25_values.json")
 
+
+retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
+retriever.add_texts(
+    [doc.page_content for doc in documents]
+)
+
 # Define your threshold: Threshold was decided basis multiple tests
 threshold = 0.2
-retrieved_docs = st.session_state['retriever'].get_relevant_documents(query)
+retrieved_docs = retriever.get_relevant_documents(query)
     
 filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
 a = retrieved_docs[0]
