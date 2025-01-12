@@ -15,7 +15,7 @@ import sentence_transformers
 from langchain.chains import RetrievalQA
 from concurrent.futures import ThreadPoolExecutor
 from langchain_huggingface import HuggingFaceEmbeddings
-
+import anthropic
 
 from pinecone import Pinecone
 from pinecone import ServerlessSpec
@@ -210,8 +210,14 @@ class ClaudeLLM:
                 "Content-Type": "application/json",
                 "anthropic-version": "2023-06-01",
             }
+            
 
         def query(self, prompt, max_tokens=1024):
+            
+            client = anthropic.Anthropic(
+                # defaults to os.environ.get("ANTHROPIC_API_KEY")
+                api_key=self.api_key,
+            )
             # Ensure the prompt starts with the correct conversational structure
             message = client.messages.create(
             model="claude-3-5-sonnet-20241022",
