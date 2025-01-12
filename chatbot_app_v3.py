@@ -244,7 +244,7 @@ if input_text:
 	output = query({
 		"input": prompt,
 	})
-	st.write(output)
+	# st.write(output)
 	if isinstance(output, list) and 'generated_text' in output[0]:
 		# Extract the answer
 		if "Answer:" in generated_text:
