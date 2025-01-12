@@ -13,4 +13,4 @@ nltk
 numpy
 python-dotenv
 pandas
-
+anthropic
