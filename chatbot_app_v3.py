@@ -204,10 +204,6 @@ if 'retriever' not in st.session_state:
 query = "What is olympic games"
 # Define your threshold: Threshold was decided basis multiple tests
 threshold = 0.2
-retrieved_docs = st.session_state['retriever'].get_relevant_documents(query)
-    
-filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
-a = retrieved_docs[0]
 
 # def rag(query):
 #     # Retrieve documents
@@ -236,4 +232,17 @@ a = retrieved_docs[0]
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 
-st.write(retrieved_docs)
+
+
+input_text=st.text_input("Search the topic u want")
+
+if input_text:
+    
+    # Search the index for the two most similar vectors
+    retrieved_docs = st.session_state['retriever'].get_relevant_documents(query)
+    filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
+    a = retrieved_docs[0]
+    response = rag(input_text)
+    st.write(a)
+    st.write("Filtered Docs")
+    st.write(b)
