@@ -277,7 +277,10 @@ def rag(query):
     
     return a
 
-
+retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
+retriever.add_texts(
+    [doc.page_content for doc in documents]
+)
 
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
@@ -294,12 +297,12 @@ if "current_question" not in st.session_state:
 input_text=st.text_input("Search the topic u want")
 if input_text:
 
-    if 'retriever' not in st.session_state:
-        retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
-        retriever.add_texts(
-            [doc.page_content for doc in documents]
-        )
-        st.session_state['retriever'] = retriever
+    # if 'retriever' not in st.session_state:
+    #     retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
+    #     retriever.add_texts(
+    #         [doc.page_content for doc in documents]
+    #     )
+    #     st.session_state['retriever'] = retriever
     response = rag(input_text)
     st.write(response)
 
