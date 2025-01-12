@@ -242,7 +242,7 @@ if input_text:
     retrieved_docs = st.session_state['retriever'].get_relevant_documents(query)
     filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
     a = retrieved_docs[0]
-    response = rag(input_text)
+    b = filtered_docs
     st.write(a)
     st.write("Filtered Docs")
     st.write(b)
