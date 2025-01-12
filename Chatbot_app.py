@@ -285,68 +285,68 @@ if "current_question" not in st.session_state:
     st.session_state.current_question = ""  # To store the current input text
 
 
-# input_text=st.text_input("Search the topic u want")
-# if input_text:
+input_text=st.text_input("Search the topic u want")
+if input_text:
 
-#     if 'retriever' not in st.session_state:
-#         retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
-#         retriever.add_texts(
-#             [doc.page_content for doc in documents]
-#         )
-#         st.session_state['retriever'] = retriever
-#     response = rag(input_text)
+    if 'retriever' not in st.session_state:
+        retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
+        retriever.add_texts(
+            [doc.page_content for doc in documents]
+        )
+        st.session_state['retriever'] = retriever
+    response = rag(input_text)
 
-#     # Search the index for the two most similar vectors
-#     response = rag(input_text)
-#     st.write(response)
+    # Search the index for the two most similar vectors
+    response = rag(input_text)
+    st.write(response)
 
-if not st.session_state.done:
-     # Display Chat History
-    if st.session_state.history == []:
-        st.write(f" ## Welcome to Chatbot ")
+# if not st.session_state.done:
+#      # Display Chat History
+#     if st.session_state.history == []:
+#         st.write(f" ## Welcome to Chatbot ")
 
-    # Input Field
+#     # Input Field
 
-    # input_text = st.text_input("Ask your question here:", value=st.session_state.current_question, key="input_box")
-    input_text = st.text_input("Ask your question here:", value=st.session_state.current_question, key="input_box")
-    # input_text = st.text_input("Search the topic you want")
-    if input_text and st.session_state.current_question != input_text:
-        # Store the input text in session state
-        st.session_state.current_question = input_text
+#     # input_text = st.text_input("Ask your question here:", value=st.session_state.current_question, key="input_box")
+#     input_text = st.text_input("Ask your question here:", value=st.session_state.current_question, key="input_box")
+#     # input_text = st.text_input("Search the topic you want")
+#     if input_text and st.session_state.current_question != input_text:
+#         # Store the input text in session state
+#         st.session_state.current_question = input_text
         
-        # Generate response
-        if 'retriever' not in st.session_state:
-            retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
-            retriever.add_texts(
-                [doc.page_content for doc in documents]
-            )
-            st.session_state['retriever'] = retriever
-        response = rag(input_text)
+#         # Generate response
+#         if 'retriever' not in st.session_state:
+#             retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
+#             retriever.add_texts(
+#                 [doc.page_content for doc in documents]
+#             )
+#             st.session_state['retriever'] = retriever
+#         response = rag(input_text)
 
-        # Search the index for the two most similar vectors
-        answer = rag(input_text)
-        st.write(answer)   
+#         # Search the index for the two most similar vectors
+#         answer = rag(input_text)
+#         st.write(answer)   
         
-        # Add question and response to chat history
-        st.session_state.history.append({"question": input_text, "answer": answer})
+#         # Add question and response to chat history
+#         st.session_state.history.append({"question": input_text, "answer": answer})
 
         
-        # Clear the input box
-        st.session_state.current_question = ""
+#         # Clear the input box
+#         st.session_state.current_question = ""
     
-    st.write("### Chat History:")
-    for chat in st.session_state.history:
-        st.write(f"**You:** {chat['question']}")
-        st.write(f"**Bot:** {chat['answer']}")
+#     st.write("### Chat History:")
+#     for chat in st.session_state.history:
+#         st.write(f"**You:** {chat['question']}")
+#         st.write(f"**Bot:** {chat['answer']}")
 
    
-    # End Interaction
-    if st.button("I am done, Thanks"):
-        st.session_state.done = True
-else:
-    st.write("### Final Chat History:")
-    for chat in st.session_state.history:
-        st.write(f"**You:** {chat['question']}")
-        st.write(f"**Bot:** {chat['answer']}")
-    st.write("Thank you for using the chatbot! Have a great day!")
+#     # End Interaction
+#     if st.button("I am done, Thanks"):
+#         st.session_state.done = True
+# else:
+#     st.write("### Final Chat History:")
+#     for chat in st.session_state.history:
+#         st.write(f"**You:** {chat['question']}")
+#         st.write(f"**Bot:** {chat['answer']}")
+#     st.write("Thank you for using the chatbot! Have a great day!")
 
