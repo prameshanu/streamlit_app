@@ -72,7 +72,7 @@ except LookupError:
 
 langchain_api_key  = st.secrets["LANGCHAIN_API_KEY"]
 pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
-claude_api_key = st.secrets["CLAUDE_API_KEY"]
+# claude_api_key = st.secrets["CLAUDE_API_KEY"]
 
 
 
