@@ -67,7 +67,7 @@ pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
 claude_api_key = st.secrets["CLAUDE_API_KEY"]
 
 langchain_api_key = st.secrets["LANGCHAIN_API_KEY"]
-hugging_face_api_key = st.secrets["hugging_face_api_key"]
+hugging_face_api_key = st.secrets["HUGGING_FACE_API_KEY"]
 
 
 
