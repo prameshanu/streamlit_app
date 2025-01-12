@@ -235,21 +235,20 @@ st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 input_text=st.text_input("Search the topic u want")
 
 if input_text:
-    retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
-    filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
-    context = " ".join(doc.page_content for doc in filtered_docs)
-    # Search the index for the two most similar vectors
-    prompt = prompt_template.format(context=context, input=input_text)
-    output = query({
-	"input": prompt,
-    })
-    if isinstance(output, list) and 'generated_text' in output[0]:
-    # Extract the answer
-        if "Answer:" in generated_text:
-            answer = generated_text.split("Answer:")[1].strip()
-            
-            st.write(answer)
-        else:
-            st.write("No 'Answer:' found in the generated text.")
-    else:
-        st.write("Unexpected response format:", output)
+	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
+	filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
+	context = " ".join(doc.page_content for doc in filtered_docs)
+	# Search the index for the two most similar vectors
+	prompt = prompt_template.format(context=context, input=input_text)
+	output = query({
+		"input": prompt,
+	})
+	if isinstance(output, list) and 'generated_text' in output[0]:
+		# Extract the answer
+		if "Answer:" in generated_text:
+			answer = generated_text.split("Answer:")[1].strip()
+			st.write(answer)
+		else:
+			st.write("No 'Answer:' found in the generated text.")
+	else:
+		st.write("Unexpected response format:", output)
