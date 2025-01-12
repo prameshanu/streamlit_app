@@ -193,19 +193,45 @@ if not os.path.exists("bm25_values.json"):
 else:
     bm25_encoder = BM25Encoder().load("bm25_values.json")
 
+if 'retriever' not in st.session_state:
+    retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
+    retriever.add_texts(
+        [doc.page_content for doc in documents]
+    )
+    st.session_state['retriever'] = retriever
 
-retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
-retriever.add_texts(
-    [doc.page_content for doc in documents]
-)
 
 query = "What is olympic games"
 # Define your threshold: Threshold was decided basis multiple tests
 threshold = 0.2
-retrieved_docs = retriever.get_relevant_documents(query)
+retrieved_docs = st.session_state['retriever'].get_relevant_documents(query)
     
 filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
 a = retrieved_docs[0]
+
+# def rag(query):
+#     # Retrieve documents
+#     retrieved_docs = st.session_state['retriever'].get_relevant_documents(query)
+#     st.write(retrieved_docs)
+#     # Filter documents based on the threshold score
+#     filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
+
+#     # Pass the filtered documents to the chain (if needed)
+#     if filtered_docs:
+#         # Create your chain using the filtered documents
+#         # retrieval_chain = RetrievalQA.from_chain_type(
+#         #     llm=llm,
+#         #     retriever=st.session_state['retriever'],
+#         #     chain_type="stuff",
+#         #     return_source_documents=True
+#         # )
+#         # response = retrieval_chain.invoke(query)
+#         a = "I have enough information"
+
+#     else:
+#         a = "I don't have enough information to answer this question."
+    
+#     return a
 
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
