@@ -199,6 +199,7 @@ retriever.add_texts(
     [doc.page_content for doc in documents]
 )
 
+query = "What is olympic games"
 # Define your threshold: Threshold was decided basis multiple tests
 threshold = 0.2
 retrieved_docs = retriever.get_relevant_documents(query)
