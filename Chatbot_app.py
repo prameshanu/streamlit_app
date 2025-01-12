@@ -227,7 +227,7 @@ class ClaudeLLM:
 
         
 # Initialize Claude LLM
-
+claude_api_key = "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" 
 llm = ClaudeLLM(claude_api_key)
 
 
