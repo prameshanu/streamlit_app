@@ -7,3 +7,4 @@ langchain-huggingface
 sentence-transformers
 pinecone
 pinecone-client
+pinecone-datasets
