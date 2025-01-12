@@ -23,8 +23,6 @@ from pinecone_text.sparse.bm25_encoder import BM25Encoder
 
 
 import warnings
-
-
 import streamlit as st
 
 import numpy as np
