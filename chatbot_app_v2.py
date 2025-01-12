@@ -63,6 +63,9 @@ try:
 except LookupError:
     nltk.download('punkt_tab')
 
+langchain_api_key  = st.secrets["LANGCHAIN_API_KEY"]
+pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
+claude_api_key = st.secrets["CLAUDE_API_KEY"]
 
 
 ### Preprocessing function for input text, for input data: preprocessing was done separately to avoid repeat code execution on every run.
@@ -143,6 +146,27 @@ def preprocess_documents(docs):
     return text_splitter.split_documents(docs)
 
 documents = preprocess_documents(docs)
+
+
+
+index_name = "hybrid-search-langchain-pinecone"
+
+
+## initialize the pinecone client
+pc = Pinecone(api_key = pine_cone_api_key)
+
+#create the index
+if index_name not in pc.list_indexes().names():
+    pc.create_index(
+        name = index_name,
+        dimension = 384, ##dimension of dense vector
+        metric = 'dotproduct',  #sparse values supportered only for dotproduct
+        spec = ServerlessSpec(cloud='aws', region='us-east-1') ,
+    
+    )
+
+index = pc.Index(index_name)
+
 a = documents[:1]
 
 
