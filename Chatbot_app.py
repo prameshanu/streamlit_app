@@ -295,9 +295,6 @@ if input_text:
         )
         st.session_state['retriever'] = retriever
     response = rag(input_text)
-
-    # Search the index for the two most similar vectors
-    response = rag(input_text)
     st.write(response)
 
 # if not st.session_state.done:
