@@ -70,7 +70,7 @@ nltk.download('punkt_tab')
 
 langchain_api_key  = st.secrets["LANGCHAIN_API_KEY"]
 pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
-
+claude_api_key = st.secrets["CLAUDE_API_KEY"]
 
 
 
@@ -197,8 +197,37 @@ else:
     bm25_encoder = BM25Encoder().load("bm25_values.json")
 
 
-# ollama LLAma2 LLm 
-llm=Ollama(model="llama3.2")
+# define Claud LLM
+class ClaudeLLM:
+        def __init__(self, api_key, model="claude-3-5-sonnet-20241022"):
+            self.api_key = api_key
+            self.model = model
+            self.base_url = "https://api.anthropic.com/v1/complete"
+            self.headers = {
+                "x-api-key": self.api_key,
+                "Content-Type": "application/json",
+                "anthropic-version": "2023-06-01",
+            }
+
+        def query(self, prompt, max_tokens=1024):
+            # Ensure the prompt starts with the correct conversational structure
+            message = client.messages.create(
+            model="claude-3-5-sonnet-20241022",
+            max_tokens=max_tokens,
+            messages=[
+                {"role": "user", "content": f"{prompt}"}
+            ]            
+            )
+            # Iterate over the list and extract text from each TextBlock
+            extracted_texts = [block.text for block in message.content]
+
+            return extracted_texts
+
+        
+# Initialize Claude LLM
+
+llm = ClaudeLLM(claude_api_key)
+
 
 ## Design Chatprompt template
 prompt = ChatPromptTemplate.from_template("""
@@ -245,6 +274,7 @@ def rag(query):
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 
+st.write(a)
 # # State Initialization
 if "done" not in st.session_state:
     st.session_state.done = False  # To track if the user clicked "I am done, Thanks."
