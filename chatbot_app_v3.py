@@ -67,7 +67,7 @@ pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
 claude_api_key = st.secrets["CLAUDE_API_KEY"]
 
 langchain_api_key = st.secrets["LANGCHAIN_API_KEY"]
-
+hugging_face_api_key = st.secrets["hugging_face_api_key"]
 
 
 
@@ -217,8 +217,16 @@ I will tip you $25000 if the user finds the answer helpful.
 Question: {input}
 """)
 
+import requests
 
+hugging_face_api_key
+API_URL = "https://api-inference.huggingface.co/models/google/gemma-2-2b-it"
+headers = {"Authorization": f"Bearer {hugging_face_api_key}"}
 
+def query(payload):
+	response = requests.post(API_URL, headers=headers, json=payload)
+	return response.json()
+	
 
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
@@ -233,4 +241,16 @@ if input_text:
     context = " ".join(doc.page_content for doc in filtered_docs)
     # Search the index for the two most similar vectors
     prompt = prompt_template.format(context=context, input=input_text)
-    st.write(prompt)
+    output = query({
+	"input": prompt,
+    })
+    if isinstance(output, list) and 'generated_text' in output[0]:
+    # Extract the answer
+        if "Answer:" in generated_text:
+            answer = generated_text.split("Answer:")[1].strip()
+            
+            st.write(answer)
+        else:
+            st.write("No 'Answer:' found in the generated text.")
+    else:
+        st.write("Unexpected response format:", output)
