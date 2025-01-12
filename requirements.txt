@@ -1,16 +1,1 @@
-langchain
-langchain-community
-langchain-core
-langchain-huggingface
-sentence-transformers
-pinecone
-pinecone-client
-pinecone-datasets
-pinecone-notebooks
-pinecone-text
 streamlit==1.41.1
-nltk
-numpy
-python-dotenv
-pandas
-anthropic
