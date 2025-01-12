@@ -63,15 +63,16 @@ try:
 except LookupError:
     nltk.download('punkt_tab')
 
-langchain_api_key  = st.secrets["LANGCHAIN_API_KEY"]
 pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
 claude_api_key = st.secrets["CLAUDE_API_KEY"]
+
+langchain_api_key = st.secrets["LANGCHAIN_API_KEY"]
 
 
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 
 st.write(a)
-st.write (langchain_api_key)
+# st.write (langchain_api_key)
 st.write (pine_cone_api_key)
-st.write (claude_api_key)
+# st.write (claude_api_key)
