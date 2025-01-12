@@ -193,14 +193,14 @@ if not os.path.exists("bm25_values.json"):
 else:
     bm25_encoder = BM25Encoder().load("bm25_values.json")
 
-
-a = sentences[2]
-
+# Define your threshold: Threshold was decided basis multiple tests
+threshold = 0.2
+retrieved_docs = st.session_state['retriever'].get_relevant_documents(query)
+    
+filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
+a = retrieved_docs[0]
 
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 
-st.write(a)
-st.write (langchain_api_key)
-st.write (pine_cone_api_key)
-st.write (claude_api_key)
+st.write(retrieved_docs)
