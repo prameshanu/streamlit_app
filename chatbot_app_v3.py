@@ -202,32 +202,9 @@ if 'retriever' not in st.session_state:
 
 
 query = "What is olympic games"
+
 # Define your threshold: Threshold was decided basis multiple tests
 threshold = 0.2
-
-# def rag(query):
-#     # Retrieve documents
-#     retrieved_docs = st.session_state['retriever'].get_relevant_documents(query)
-#     st.write(retrieved_docs)
-#     # Filter documents based on the threshold score
-#     filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
-
-#     # Pass the filtered documents to the chain (if needed)
-#     if filtered_docs:
-#         # Create your chain using the filtered documents
-#         # retrieval_chain = RetrievalQA.from_chain_type(
-#         #     llm=llm,
-#         #     retriever=st.session_state['retriever'],
-#         #     chain_type="stuff",
-#         #     return_source_documents=True
-#         # )
-#         # response = retrieval_chain.invoke(query)
-#         a = "I have enough information"
-
-#     else:
-#         a = "I don't have enough information to answer this question."
-    
-#     return a
 
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
