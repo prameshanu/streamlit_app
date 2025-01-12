@@ -263,14 +263,14 @@ def rag(query):
     # Pass the filtered documents to the chain (if needed)
     if filtered_docs:
         # Create your chain using the filtered documents
-        retrieval_chain = RetrievalQA.from_chain_type(
-            llm=llm,
-            retriever=st.session_state['retriever'],
-            chain_type="stuff",
-            return_source_documents=True
-        )
-        response = retrieval_chain.invoke(query)
-        a = response['result']
+        # retrieval_chain = RetrievalQA.from_chain_type(
+        #     llm=llm,
+        #     retriever=st.session_state['retriever'],
+        #     chain_type="stuff",
+        #     return_source_documents=True
+        # )
+        # response = retrieval_chain.invoke(query)
+        a = filtered_docs
 
     else:
         a = "I don't have enough information to answer this question."
