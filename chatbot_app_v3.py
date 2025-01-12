@@ -240,6 +240,7 @@ if input_text:
 	context = " ".join(doc.page_content for doc in filtered_docs)
 	# Search the index for the two most similar vectors
 	prompt = prompt_template.format(context=context, input=input_text)
+	st.write(prompt)
 	output = query({
 		"input": prompt,
 	})
