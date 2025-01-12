@@ -205,6 +205,21 @@ if 'retriever' not in st.session_state:
 # Threshold is defined to avoid the hallucination : Threshold was decided basis multiple tests
 threshold = 0.2
 
+
+prompt_template = ChatPromptTemplate.from_template("""
+Answer the following question based only on the provided context. 
+Think step by step before providing a detailed answer. 
+Also, in the answer, you don't need to write "Based on the provided context," just provide the final answer.
+I will tip you $25000 if the user finds the answer helpful.
+<context>
+{context}
+</context>
+Question: {input}
+""")
+
+
+
+
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 
@@ -213,12 +228,11 @@ st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 input_text=st.text_input("Search the topic u want")
 
 if input_text:
-    
-    # Search the index for the two most similar vectors
     retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
     filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
+    context = " ".join(doc.page_content for doc in filtered_docs)
+    # Search the index for the two most similar vectors
+    prompt = prompt_template.format(context=context, input=input_text)
     a = retrieved_docs[0]
     b = filtered_docs
-    st.write(a)
-    st.write("Filtered Docs")
-    st.write(b)
+    st.write(prompt)
