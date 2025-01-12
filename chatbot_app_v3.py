@@ -201,9 +201,8 @@ if 'retriever' not in st.session_state:
     st.session_state['retriever'] = retriever
 
 
-query = "What is olympic games"
 
-# Define your threshold: Threshold was decided basis multiple tests
+# Threshold is defined to avoid the hallucination : Threshold was decided basis multiple tests
 threshold = 0.2
 
 # Streamlit Framework
