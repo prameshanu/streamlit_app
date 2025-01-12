@@ -276,7 +276,6 @@ def rag(query):
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 
-st.write(a)
 # # State Initialization
 if "done" not in st.session_state:
     st.session_state.done = False  # To track if the user clicked "I am done, Thanks."
