@@ -216,7 +216,7 @@ input_text=st.text_input("Search the topic u want")
 if input_text:
     
     # Search the index for the two most similar vectors
-    retrieved_docs = st.session_state['retriever'].get_relevant_documents(query)
+    retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
     filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
     a = retrieved_docs[0]
     b = filtered_docs
