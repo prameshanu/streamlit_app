@@ -185,7 +185,7 @@ for doc in documents:
     )
 
 
-a = sentences[:1]
+a = sentences[2]
 
 
 # Streamlit Framework
