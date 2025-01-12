@@ -6,5 +6,3 @@ langchain-core
 langchain-huggingface
 sentence-transformers
 pinecone
-pinecone-client
-
