@@ -198,154 +198,15 @@ if not os.path.exists("bm25_values.json"):
 else:
     bm25_encoder = BM25Encoder().load("bm25_values.json")
 
+retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)
 
-# define Claud LLM
-class ClaudeLLM:
-        def __init__(self, api_key, model="claude-3-5-sonnet-20241022"):
-            self.api_key = api_key
-            self.model = model
-            self.base_url = "https://api.anthropic.com/v1/complete"
-            self.headers = {
-                "x-api-key": self.api_key,
-                "Content-Type": "application/json",
-                "anthropic-version": "2023-06-01",
-            }
-            
-
-        def query(self, prompt, max_tokens=1024):
-            
-            client = anthropic.Anthropic(
-                # defaults to os.environ.get("ANTHROPIC_API_KEY")
-                api_key=self.api_key,
-            )
-            # Ensure the prompt starts with the correct conversational structure
-            message = client.messages.create(
-            model="claude-3-5-sonnet-20241022",
-            max_tokens=max_tokens,
-            messages=[
-                {"role": "user", "content": f"{prompt}"}
-            ]            
-            )
-            # Iterate over the list and extract text from each TextBlock
-            extracted_texts = [block.text for block in message.content]
-
-            return extracted_texts
-
-        
-# Initialize Claude LLM
-claude_api_key = "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" 
-llm = ClaudeLLM(claude_api_key)
-
-
-## Design Chatprompt template
-prompt = ChatPromptTemplate.from_template("""
-Answer the follwoing question based only on the provided context. 
-Think step by step before providing a detailed answer. 
-Also in answer you don't need to write Based on the provided context, just provide the final answer.
-I will tip you $25000 if the user finds the answer helpful
-<context>
-{context}
-</context>
-Question: {input}
-""")
-
-
-# Define your threshold: Threshold was decided basis multiple tests
-threshold = 0.2
-
-def rag(query):
-    # Retrieve documents
-    retrieved_docs = st.session_state['retriever'].get_relevant_documents(query)
-    st.write(retrieved_docs)
-    # Filter documents based on the threshold score
-    filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
-
-    # Pass the filtered documents to the chain (if needed)
-    if filtered_docs:
-        # Create your chain using the filtered documents
-        # retrieval_chain = RetrievalQA.from_chain_type(
-        #     llm=llm,
-        #     retriever=st.session_state['retriever'],
-        #     chain_type="stuff",
-        #     return_source_documents=True
-        # )
-        # response = retrieval_chain.invoke(query)
-        a = "I have enough information"
-
-    else:
-        a = "I don't have enough information to answer this question."
-    
-    return a
-
-retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
-retriever.add_texts(
-    [doc.page_content for doc in documents]
-)
+a = retriever.invoke("slaying gorgon")
 
 # Streamlit Framework
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 
-# # State Initialization
-if "done" not in st.session_state:
-    st.session_state.done = False  # To track if the user clicked "I am done, Thanks."
-if "history" not in st.session_state:
-    st.session_state.history = []  # To store the chat history
-if "current_question" not in st.session_state:
-    st.session_state.current_question = ""  # To store the current input text
+st.write(a)
 
-
-input_text=st.text_input("Search the topic u want")
-if input_text:
-
-    # if 'retriever' not in st.session_state:
-    #     retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
-    #     retriever.add_texts(
-    #         [doc.page_content for doc in documents]
-    #     )
-    #     st.session_state['retriever'] = retriever
-    response = rag(input_text)
-    st.write(response)
-
-# if not st.session_state.done:
-#      # Display Chat History
-#     if st.session_state.history == []:
-#         st.write(f" ## Welcome to Chatbot ")
-
-#     # Input Field
-
-#     # input_text = st.text_input("Ask your question here:", value=st.session_state.current_question, key="input_box")
-#     input_text = st.text_input("Ask your question here:", value=st.session_state.current_question, key="input_box")
-#     # input_text = st.text_input("Search the topic you want")
-#     if input_text and st.session_state.current_question != input_text:
-#         # Store the input text in session state
-#         st.session_state.current_question = input_text
-        
-#         # Generate response
-#         if 'retriever' not in st.session_state:
-#             retriever = PineconeHybridSearchRetriever(embeddings = embeddings, sparse_encoder = bm25_encoder, index = index)    
-#             retriever.add_texts(
-#                 [doc.page_content for doc in documents]
-#             )
-#             st.session_state['retriever'] = retriever
-#         response = rag(input_text)
-
-#         # Search the index for the two most similar vectors
-#         answer = rag(input_text)
-#         st.write(answer)   
-        
-#         # Add question and response to chat history
-#         st.session_state.history.append({"question": input_text, "answer": answer})
-
-        
-#         # Clear the input box
-#         st.session_state.current_question = ""
-    
-#     st.write("### Chat History:")
-#     for chat in st.session_state.history:
-#         st.write(f"**You:** {chat['question']}")
-#         st.write(f"**Bot:** {chat['answer']}")
-
-   
 #     # End Interaction
 #     if st.button("I am done, Thanks"):
 #         st.session_state.done = True
