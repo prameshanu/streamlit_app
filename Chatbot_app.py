@@ -206,14 +206,3 @@ a = retriever.invoke("slaying gorgon")
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 
 st.write(a)
-
-#     # End Interaction
-#     if st.button("I am done, Thanks"):
-#         st.session_state.done = True
-# else:
-#     st.write("### Final Chat History:")
-#     for chat in st.session_state.history:
-#         st.write(f"**You:** {chat['question']}")
-#         st.write(f"**Bot:** {chat['answer']}")
-#     st.write("Thank you for using the chatbot! Have a great day!")
-
