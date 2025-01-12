@@ -150,7 +150,42 @@ def preprocess_documents(docs):
 
 documents = preprocess_documents(docs)
 
-a = documents[:1]
+
+index_name = "hybrid-search-langchain-pinecone"
+
+
+## initialize the pinecone client
+pc = Pinecone(api_key = pine_cone_api_key)
+
+#create the index
+if index_name not in pc.list_indexes().names():
+    pc.create_index(
+        name = index_name,
+        dimension = 384, ##dimension of dense vector
+        metric = 'dotproduct',  #sparse values supportered only for dotproduct
+        spec = ServerlessSpec(cloud='aws', region='us-east-1') ,
+    
+    )
+
+index = pc.Index(index_name)
+
+
+
+### """ Hybrid search vector embedding and sparse matrix : combining vector similarity search and other traditional search techniques (full-text, BM25, and so on)"""
+
+
+embeddings = HuggingFaceEmbeddings(model_name = 'all-MiniLM-L6-v2')
+
+bm25_encoder = BM25Encoder().default()
+
+sentences= []
+for doc in documents:
+    sentences.append(
+    doc.page_content  # Add page content as a string
+    )
+
+
+a = sentences[:1]
 
 
 # Streamlit Framework
