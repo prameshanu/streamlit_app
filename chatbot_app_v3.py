@@ -219,7 +219,6 @@ Question: {input}
 
 import requests
 
-hugging_face_api_key
 API_URL = "https://api-inference.huggingface.co/models/google/gemma-2-2b-it"
 headers = {"Authorization": f"Bearer {claude_api_key}"}
 
