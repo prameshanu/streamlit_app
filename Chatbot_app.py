@@ -256,7 +256,7 @@ threshold = 0.2
 def rag(query):
     # Retrieve documents
     retrieved_docs = st.session_state['retriever'].get_relevant_documents(query)
-
+    st.write(retrieved_docs)
     # Filter documents based on the threshold score
     filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
 
