@@ -175,3 +175,6 @@ a = documents[:1]
 st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
 
 st.write(a)
+st.write (langchain_api_key)
+st.write (pine_cone_api_key)
+st.write (claude_api_key)
