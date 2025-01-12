@@ -185,6 +185,15 @@ for doc in documents:
     )
 
 
+## tfidf vector
+
+if not os.path.exists("bm25_values.json"):
+    bm25_encoder.fit(sentences)
+    bm25_encoder.dump("bm25_values.json")
+else:
+    bm25_encoder = BM25Encoder().load("bm25_values.json")
+
+
 a = sentences[2]
 
 
