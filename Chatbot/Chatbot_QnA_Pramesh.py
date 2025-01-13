@@ -276,8 +276,7 @@ def rag(input_text):
 		# 	max_tokens=500
 		# )
 		completion = client.chat.completions.create(
-			messages=messages
-		    ],
+			messages=messages,
 		    model="llama-3.3-70b-versatile",
 		)
 		answer = completion.choices[0].message.content
