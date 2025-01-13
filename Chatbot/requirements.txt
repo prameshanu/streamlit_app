@@ -13,5 +13,5 @@ python-dotenv
 pandas
 anthropic
 huggingface_hub
-
+groq
 streamlit
