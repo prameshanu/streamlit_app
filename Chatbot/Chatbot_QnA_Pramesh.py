@@ -277,7 +277,8 @@ def rag(input_text):
 		# )
 		completion = client.chat.completions.create(
 			messages=messages,
-		    model="llama-3.3-70b-versatile",
+			model="mistralai/Mistral-7B-Instruct-v0.2",
+		    # model="llama-3.3-70b-versatile",
 		)
 		answer = completion.choices[0].message.content
 		st.write("**BOT :** ", answer)
