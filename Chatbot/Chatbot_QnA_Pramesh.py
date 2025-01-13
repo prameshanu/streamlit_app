@@ -238,9 +238,9 @@ Question: {input}
 
 client = Groq(api_key=groq_api_key)
 
-client = InferenceClient(api_key=hugging_face_api_key)
+# client = InferenceClient(api_key=hugging_face_api_key)
 
-headers = {"Authorization": f"Bearer {hugging_face_api_key}"}
+# headers = {"Authorization": f"Bearer {hugging_face_api_key}"}
 
 st.title('Ancient Greek Q & A Chatbot ')
 input_text=st.text_input("Search the topic u want")
