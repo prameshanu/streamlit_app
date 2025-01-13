@@ -1,20 +1,20 @@
 import streamlit as st
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import OllamaEmbeddings  # Replace with appropriate embedding
-from langchain_community.vectorstores import Chroma
-from langchain_community.vectorstores import FAISS
+# from langchain_community.embeddings import OllamaEmbeddings  # Replace with appropriate embedding
+# from langchain_community.vectorstores import Chroma
+# from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
-from langchain_community.llms import Ollama
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain.chains import create_retrieval_chain
+# from langchain_core.output_parsers import StrOutputParser
+# from langchain_community.llms import Ollama
+# from langchain.chains.combine_documents import create_stuff_documents_chain
+# from langchain.chains import create_retrieval_chain
 from langchain_community.retrievers import PineconeHybridSearchRetriever
-import sentence_transformers
-from langchain.chains import RetrievalQA
-from concurrent.futures import ThreadPoolExecutor
+# import sentence_transformers
+# from langchain.chains import RetrievalQA
+# from concurrent.futures import ThreadPoolExecutor
 from langchain_huggingface import HuggingFaceEmbeddings
-import anthropic
+# import anthropic
 
 from pinecone import Pinecone
 from pinecone import ServerlessSpec
@@ -36,7 +36,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.data import find
 import requests
-
+from groq import Groq
 
 # ## lazy loading
 try:
@@ -236,6 +236,7 @@ Question: {input}
 # API_URL = "https://api-inference.huggingface.co/models/gpt2"
 
 
+client = Groq(api_key=groq_api_key)
 
 client = InferenceClient(api_key=hugging_face_api_key)
 
@@ -273,6 +274,11 @@ def rag(input_text):
 			model="mistralai/Mistral-7B-Instruct-v0.2",  # LLM Model: https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2
 			messages=messages, 
 			max_tokens=500
+		)
+		completion = client.chat.completions.create(
+			messages=messages
+		    ],
+		    model="llama-3.3-70b-versatile",
 		)
 		answer = completion.choices[0].message.content
 		st.write("**BOT :** ", answer)
