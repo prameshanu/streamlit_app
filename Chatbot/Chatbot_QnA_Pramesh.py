@@ -70,6 +70,7 @@ claude_api_key = st.secrets["CLAUDE_API_KEY"]
 
 langchain_api_key = st.secrets["LANGCHAIN_API_KEY"]
 hugging_face_api_key = st.secrets["HUGGING_FACE_API_KEY"]
+groq_api_key = st.secrets["GROC_API_KEY"]
 
 
 ### Preprocessing function for input text, for input data: preprocessing was done separately to avoid repeat code execution on every run.
