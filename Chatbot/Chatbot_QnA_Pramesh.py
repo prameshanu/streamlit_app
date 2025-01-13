@@ -1,20 +1,9 @@
 import streamlit as st
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-# from langchain_community.embeddings import OllamaEmbeddings  # Replace with appropriate embedding
-# from langchain_community.vectorstores import Chroma
-# from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import ChatPromptTemplate
-# from langchain_core.output_parsers import StrOutputParser
-# from langchain_community.llms import Ollama
-# from langchain.chains.combine_documents import create_stuff_documents_chain
-# from langchain.chains import create_retrieval_chain
 from langchain_community.retrievers import PineconeHybridSearchRetriever
-# import sentence_transformers
-# from langchain.chains import RetrievalQA
-# from concurrent.futures import ThreadPoolExecutor
 from langchain_huggingface import HuggingFaceEmbeddings
-# import anthropic
 
 from pinecone import Pinecone
 from pinecone import ServerlessSpec
