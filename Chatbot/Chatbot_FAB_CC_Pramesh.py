@@ -264,7 +264,7 @@ def rag(input_text):
 		)
 		answer = completion.choices[0].message.content
 		st.write("**BOT :** ", answer)
-		st.write("**Source citation :** ",source_info)
+		# st.write("**Source citation :** ",source_info)
 		# st.write("Prompt : ", prompt)
 	else:
 	        st.write("I don't have enough information to answer this question.")
