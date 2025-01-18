@@ -69,7 +69,7 @@ def preprocess_text(text):
     text = text.lower()
     
     # Step 2: Remove special characters, numbers, and extra whitespace
-    text = re.sub(r'[^a-z\s]', '', text)  # Keep only letters and spaces
+    text = re.sub(r'[^a-z0-9\s]', '', text)  # Keep only letters and spaces
     text = re.sub(r'\s+', ' ', text).strip()  # Remove extra spaces
     
     # Step 3: Tokenize the text
@@ -92,20 +92,15 @@ def preprocess_text(text):
 ### Input 60 processed files
 
 # Base URL for the files
-raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/"
+raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/CC_Processed_data/"
 
 # List of file names
 file_path = [
-    "processed_1.txt", "processed_2.txt", "processed_3.txt", "processed_4.txt", "processed_5.txt", "processed_6.txt", 
-    "processed_7.txt", "processed_8.txt", "processed_9.txt", "processed_10.txt", "processed_11.txt", "processed_12.txt", 
-    "processed_13.txt", "processed_14.txt", "processed_15.txt", "processed_16.txt", "processed_17.txt", "processed_18.txt", 
-    "processed_19.txt", "processed_20.txt", "processed_21.txt", "processed_22.txt", "processed_23.txt", "processed_24.txt", 
-    "processed_25.txt", "processed_26.txt", "processed_27.txt", "processed_28.txt", "processed_29.txt", "processed_30.txt", 
-    "processed_31.txt", "processed_32.txt", "processed_33.txt", "processed_34.txt", "processed_35.txt", "processed_36.txt", 
-    "processed_37.txt", "processed_38.txt", "processed_39.txt", "processed_40.txt", "processed_41.txt", "processed_42.txt", 
-    "processed_43.txt", "processed_44.txt", "processed_45.txt", "processed_46.txt", "processed_47.txt", "processed_48.txt", 
-    "processed_49.txt", "processed_50.txt", "processed_51.txt", "processed_52.txt", "processed_53.txt", "processed_54.txt", 
-    "processed_55.txt", "processed_56.txt", "processed_57.txt", "processed_58.txt", "processed_59.txt", "processed_60.txt"
+"processed_fab_doc_2.txt", "processed_fab_doc_3.txt", "processed_fab_doc_4.txt", "processed_fab_doc_5.txt", "processed_fab_doc_6.txt", 
+"processed_fab_doc_7.txt", "processed_fab_doc_8.txt", "processed_fab_doc_9.txt", "processed_fab_doc_10.txt", "processed_fab_doc_11.txt", "processed_fab_doc_12.txt", 
+"processed_fab_doc_13.txt", "processed_fab_doc_14.txt", "processed_fab_doc_15.txt", "processed_fab_doc_16.txt", "processed_fab_doc_17.txt", "processed_fab_doc_18.txt", 
+"processed_fab_doc_19.txt", "processed_fab_doc_20.txt", "processed_fab_doc_21.txt", "processed_fab_doc_22.txt", "processed_fab_doc_23.txt", "processed_fab_doc_24.txt", 
+"processed_fab_doc_25.txt", "processed_fab_doc_26.txt", "processed_fab_doc_27.txt", "processed_fab_doc_28.txt", "processed_fab_doc_29.txt", "processed_fab_doc_30.txt"
 ]
 
 # Directory to temporarily store the downloaded files
@@ -135,7 +130,7 @@ for file in file_path:
 
 
 def preprocess_documents(docs):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=250, chunk_overlap=10)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
     return text_splitter.split_documents(docs)
 
 documents = preprocess_documents(documents)
@@ -201,11 +196,10 @@ threshold = 0.2
 
 prompt_template = ChatPromptTemplate.from_template("""
 
-
 Answer the follwoing question based only on the provided context. 
-Think step by step before providing a detailed answer. 
-Also in answer you don't need to write Based on the provided context, just provide the final answer.
-I will tip you $25000 if the user finds the answer helpful
+You need to provide these details to customer so it must be accurate
+If there is only name of the card, then you need to provide all the details like eligibility, annual charges, benefits etc all pointers must be bullet by bullet. 
+Directly provide the answer, don't mention anything related to context.
 
 <context>
 {context}
