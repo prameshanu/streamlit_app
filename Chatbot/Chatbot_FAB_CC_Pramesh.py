@@ -200,7 +200,8 @@ Answer the follwoing question based only on the provided context.
 You need to provide these details to customer so it must be accurate
 If there is only name of the card, then you need to provide all the details like eligibility, annual charges, benefits etc all pointers must be bullet by bullet. 
 Directly provide the answer, don't mention anything related to context.
-Make sure to start with next line. First line should be like i.e., the details of XX credit card is summarized below.
+If there are multiple bullet points then make sure to start with next line. First line should be like i.e., the details of XX credit card is summarized below.
+If query is on the comparison on credit cards, then create a table to highlight key differences. 
 <context>
 {context}
 </context>
