@@ -1,6 +1,4 @@
-json
 pyaudio
-os
 pathlib
 streamlit==1.41.1
 websockets==14.2
