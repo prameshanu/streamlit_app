@@ -1,71 +1,148 @@
 import streamlit as st
-from streamlit_webrtc import webrtc_streamer, AudioProcessorBase
-import speech_recognition as sr
-import tempfile
-from pydub import AudioSegment
+import websockets
+import asyncio
+import base64
+import json
+import pyaudio
 import os
+from pathlib import Path
 
-class AudioProcessor(AudioProcessorBase):
-    def __init__(self):
-        self.frames = []
+# Session state
+if 'text' not in st.session_state:
+	st.session_state['text'] = 'Listening...'
+	st.session_state['run'] = False
 
-    def recv_audio(self, frames):
-        self.frames.extend(frames)
-        return frames
+# Audio parameters 
+st.sidebar.header('Audio Parameters')
 
-def process_audio_to_text(audio_file_path):
-    """Convert the recorded audio file to text."""
-    recognizer = sr.Recognizer()
-    with sr.AudioFile(audio_file_path) as source:
-        audio_data = recognizer.record(source)
-        try:
-            return recognizer.recognize_google(audio_data)
-        except sr.UnknownValueError:
-            return "Speech not recognized."
-        except sr.RequestError:
-            return "Error with the speech recognition service."
+FRAMES_PER_BUFFER = int(st.sidebar.text_input('Frames per buffer', 3200))
+FORMAT = pyaudio.paInt16
+CHANNELS = 1
+RATE = int(st.sidebar.text_input('Rate', 16000))
+p = pyaudio.PyAudio()
 
-def main():
-    st.title("Streamlit Voice to Text App")
+# Open an audio stream with above parameter settings
+stream = p.open(
+   format=FORMAT,
+   channels=CHANNELS,
+   rate=RATE,
+   input=True,
+   frames_per_buffer=FRAMES_PER_BUFFER
+)
 
-    # Record audio
-    st.header("Step 1: Record Your Audio")
-    with st.expander("Click to Record"):
-        webrtc_ctx = webrtc_streamer(
-            key="voice-recording",
-            audio_processor_factory=AudioProcessor,
-            rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
-            media_stream_constraints={"audio": True, "video": False},
-        )
+# Start/stop audio transmission
+def start_listening():
+	st.session_state['run'] = True
 
-        if webrtc_ctx and webrtc_ctx.state.playing:
-            st.info("Recording... Stop when you're done.")
+def download_transcription():
+	read_txt = open('transcription.txt', 'r')
+	st.download_button(
+		label="Download transcription",
+		data=read_txt,
+		file_name='transcription_output.txt',
+		mime='text/plain')
 
-    # Save the recorded audio
-    if webrtc_ctx and not webrtc_ctx.state.playing and webrtc_ctx.audio_processor:
-        audio_frames = webrtc_ctx.audio_processor.frames
+def stop_listening():
+	st.session_state['run'] = False
 
-        if audio_frames:
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as audio_file:
-                AudioSegment(
-                    data=b"".join(audio_frames),
-                    sample_width=2,
-                    frame_rate=16000,
-                    channels=1,
-                ).export(audio_file.name, format="wav")
-                st.success("Audio recorded successfully.")
-                audio_path = audio_file.name
-        else:
-            st.warning("No audio recorded yet. Please record and stop to save.")
+# Web user interface
+st.title('🎙️ Real-Time Transcription App')
 
-    # Convert audio to text
-    st.header("Step 2: Convert Audio to Text")
-    if "audio_path" in locals():
-        with st.spinner("Converting audio to text..."):
-            transcript = process_audio_to_text(audio_path)
-            st.success("Conversion Completed")
-            st.text_area("Transcript", transcript)
-            os.remove(audio_path)  # Clean up temporary audio file
+with st.expander('About this App'):
+	st.markdown('''
+	This Streamlit app uses the AssemblyAI API to perform real-time transcription.
+	
+	Libraries used:
+	- `streamlit` - web framework
+	- `pyaudio` - a Python library providing bindings to [PortAudio](http://www.portaudio.com/) (cross-platform audio processing library)
+	- `websockets` - allows interaction with the API
+	- `asyncio` - allows concurrent input/output processing
+	- `base64` - encode/decode audio data
+	- `json` - allows reading of AssemblyAI audio output in JSON format
+	''')
 
-if __name__ == "__main__":
-    main()
+col1, col2 = st.columns(2)
+
+col1.button('Start', on_click=start_listening)
+col2.button('Stop', on_click=stop_listening)
+
+# Send audio (Input) / Receive transcription (Output)
+async def send_receive():
+	URL = f"wss://api.assemblyai.com/v2/realtime/ws?sample_rate={RATE}"
+
+	print(f'Connecting websocket to url ${URL}')
+
+	async with websockets.connect(
+		URL,
+		extra_headers=(("Authorization", st.secrets['api_key']),),
+		ping_interval=5,
+		ping_timeout=20
+	) as _ws:
+
+		r = await asyncio.sleep(0.1)
+		print("Receiving messages ...")
+
+		session_begins = await _ws.recv()
+		print(session_begins)
+		print("Sending messages ...")
+
+
+		async def send():
+			while st.session_state['run']:
+				try:
+					data = stream.read(FRAMES_PER_BUFFER)
+					data = base64.b64encode(data).decode("utf-8")
+					json_data = json.dumps({"audio_data":str(data)})
+					r = await _ws.send(json_data)
+
+				except websockets.exceptions.ConnectionClosedError as e:
+					print(e)
+					assert e.code == 4008
+					break
+
+				except Exception as e:
+					print(e)
+					assert False, "Not a websocket 4008 error"
+
+				r = await asyncio.sleep(0.01)
+
+
+		async def receive():
+			while st.session_state['run']:
+				try:
+					result_str = await _ws.recv()
+					result = json.loads(result_str)['text']
+
+					if json.loads(result_str)['message_type']=='FinalTranscript':
+						print(result)
+						st.session_state['text'] = result
+						st.write(st.session_state['text'])
+
+						transcription_txt = open('transcription.txt', 'a')
+						transcription_txt.write(st.session_state['text'])
+						transcription_txt.write(' ')
+						transcription_txt.close()
+
+
+				except websockets.exceptions.ConnectionClosedError as e:
+					print(e)
+					assert e.code == 4008
+					break
+
+				except Exception as e:
+					print(e)
+					assert False, "Not a websocket 4008 error"
+			
+		send_result, receive_result = await asyncio.gather(send(), receive())
+
+
+asyncio.run(send_receive())
+
+if Path('transcription.txt').is_file():
+	st.markdown('### Download')
+	download_transcription()
+	os.remove('transcription.txt')
+
+# References (Code modified and adapted from the following)
+# 1. https://github.com/misraturp/Real-time-transcription-from-microphone
+# 2. https://medium.com/towards-data-science/real-time-speech-recognition-python-assemblyai-13d35eeed226
