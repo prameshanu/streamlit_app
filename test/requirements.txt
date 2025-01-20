@@ -1,7 +1,7 @@
-streamlit 
-websockets
-asyncio
 json
 pyaudio
 os
 pathlib
+streamlit==1.41.1
+websockets==14.2
+asyncio==3.4.3
