@@ -279,14 +279,14 @@ def audio_recording():
 			f.write(recorded_audio)
 		with open(audio_file, "rb") as file:
 		# Create a transcription of the audio file
-		transcription = client.audio.transcriptions.create(
-		file=(audio_file, file.read()), # Required audio file
-		model="whisper-large-v3-turbo", # Required model to use for transcription
-		prompt="Specify context or spelling",  # Optional
-		response_format="json",  # Optional
-		language="en",  # Optional
-		temperature=0.0  # Optional
-		)
+			transcription = client.audio.transcriptions.create(
+			file=(audio_file, file.read()), # Required audio file
+			model="whisper-large-v3-turbo", # Required model to use for transcription
+			prompt="Specify context or spelling",  # Optional
+			response_format="json",  # Optional
+			language="en",  # Optional
+			temperature=0.0  # Optional
+			)
 		return transcription
 
 def main():
