@@ -33,6 +33,6 @@ if __name__ == "__main__" :
 #       prompt="Specify context or spelling",  # Optional
 #       response_format="json",  # Optional
 #       temperature=0.0  # Optional
-    )
+    # )
     # Print the translation text
     # print(translation.text)
