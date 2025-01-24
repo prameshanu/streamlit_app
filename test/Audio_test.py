@@ -23,8 +23,6 @@ def audio_to_text(audio_file):
 	    )
 	    return transcription
 	    
-
-
 def audio_recording():
 	recorded_audio = audio_recorder()
 	if recorded_audio:
@@ -32,9 +30,7 @@ def audio_recording():
 		with open(audio_file , "wb") as f:
 			f.write(recorded_audio)
 
-	
-
-def main():
+def page_layout():
 	st.sidebar.title("Select the Modality")
 	option = st.sidebar.selectbox(
 	    "How would you like to be interact?",
@@ -43,6 +39,9 @@ def main():
 	     placeholder="Select mode of communication..."
 	)
 	st.title (":blue[ANCIENT GREEK Q&A CHATBOT] ")
+
+def main():
+	page_layout()
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
 		audio_recording()
