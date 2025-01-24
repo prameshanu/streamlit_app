@@ -301,8 +301,8 @@ def main():
 		st.write("Wecome to text chatbot")
 		query=st.text_input("Search the topic u want", placeholder="Enter your query here...")
 		st.write("User:",query)
-	else:
-		st.write("Select your mode of interaction Chat/Audio")
+	# else:
+	# 	st.write("Select your mode of interaction Chat/Audio")
 	if query:
 		rag(query)
 
