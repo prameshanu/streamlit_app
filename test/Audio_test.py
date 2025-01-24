@@ -11,8 +11,12 @@ client = Groq(api_key=groq_api_key)
 
 
 def main():
-	st.sidebar.title("ANCIENT GREEK Q&A CHATBOT")
-	st.title ("Audio Test")
+	st.sidebar.title("Select the Modality")
+	option = st.selectbox(
+	    "How would you like to be interact?",
+	    ("Chat", "Audio"),
+	)
+	st.title ("ANCIENT GREEK Q&A blue[CHATBOT] :sunglasses:")
 	st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
 	recorded_audio = audio_recorder()
 	if recorded_audio:
