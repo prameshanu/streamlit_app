@@ -273,30 +273,56 @@ def audio_processing():
 			)
 		return transcription
 
+
 def create_text_card(text, title = "Response"):
 	card_html = f"""
-	<style>
-  		.card {{
-    	   		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-     			transition: 0.3s;
-       			border-radius: 5px;
-	 		padding: 15px;
-   		}}
-    		.card:hover {{
-     			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-       		}}
-       		.container  {{
-       			padding: 2px 16px;
-	 	}}
-  	</style>
-   	<div class = "card">
-    		<div class = "container">
-      			<h4><b>{title}</b></h4>
-	 		<p>{text}</p>
-    		</div>
-	</div>
- 		"""
-	st.markdown(card_html, unsafe_allow_html= True)
+    <style>
+        .card {{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 5px;
+            padding: 15px;
+        }}
+        .card:hover {{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }}
+        .container {{
+            padding: 2px 16px;
+        }}
+    </style>
+    <div class="card">
+        <div class="container">
+            <h4><b>{title}</b></h4>
+            <p>{text}</p>
+        </div>
+    </div>
+    """
+    st.markdown(card_html, unsafe_allow_html=True)
+
+# def create_text_card(text, title = "Response"):
+# 	card_html = f"""
+# 	<style>
+#   		.card {{
+#     	   		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+#      			transition: 0.3s;
+#        			border-radius: 5px;
+# 	 		padding: 15px;
+#    		}}
+#     		.card:hover {{
+#      			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+#        		}}
+#        		.container  {{
+#        			padding: 2px 16px;
+# 	 	}}
+#   	</style>
+#    	<div class = "card">
+#     		<div class = "container">
+#       			<h4><b>{title}</b></h4>
+# 	 		<p>{text}</p>
+#     		</div>
+# 	</div>
+#  		"""
+# 	st.markdown(card_html, unsafe_allow_html= True)
 
 def main():
 	st.sidebar.title("Select the Modality")
