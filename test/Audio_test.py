@@ -288,9 +288,11 @@ def rag(input_text):
 		)
 		answer = completion.choices[0].message.content
 		# st.write("**BOT :** ", answer)
-		create_text_card(answer, "BOT :")
-		st.write("**Source citation :** ",source_info)
-		create_text_card("test", "test2")
+		create_text_card(input_text, "USER:")
+		create_text_card(answer, "BOT:")
+		create_text_card(source_info, "Source Citation:")
+		# st.write("**Source citation :** ",source_info)
+		# create_text_card("test", "test2")
 		# st.write("Prompt : ", prompt)
 	else:
 	        st.write("I don't have enough information to answer this question.")
@@ -319,30 +321,6 @@ def audio_processing():
 		return transcription
 
 
-# def create_text_card(text, title = "Response"):
-# 	card_html = f"""
-# 	<style>
-#   		.card {{
-#     	   		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-#      			transition: 0.3s;
-#        			border-radius: 5px;
-# 	 		padding: 15px;
-#    		}}
-#     		.card:hover {{
-#      			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-#        		}}
-#        		.container  {{
-#        			padding: 2px 16px;
-# 	 	}}
-#   	</style>
-#    	<div class = "card">
-#     		<div class = "container">
-#       			<h4><b>{title}</b></h4>
-# 	 		<p>{text}</p>
-#     		</div>
-# 	</div>
-#  		"""
-# 	st.markdown(card_html, unsafe_allow_html= True)
 
 def main():
 	st.sidebar.title("Select the Modality")
@@ -359,13 +337,13 @@ def main():
 		transcription = audio_processing()
 		# transcription= audio_to_text("audio.mp3")
 		query = transcription.text
-		st.write("User:",query)
+		# st.write("User:",query)
 		if query:
 			rag(query)
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
 		query=st.text_input("Search the topic u want", placeholder="Enter your query here...")
-		st.write("User:",query)
+		# st.write("User:",query)
 		if query:
 			rag(query)
 	else:
