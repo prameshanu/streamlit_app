@@ -259,17 +259,17 @@ client = Groq(api_key=groq_api_key)
 
 def audio_to_text(audio_file):
 	# Open the audio file
-	with open(audio_file, "rb") as file:
-	    # Create a transcription of the audio file
-	    transcription = client.audio.transcriptions.create(
-	      file=(audio_file, file.read()), # Required audio file
-	      model="whisper-large-v3-turbo", # Required model to use for transcription
-	      prompt="Specify context or spelling",  # Optional
-	      response_format="json",  # Optional
-	      language="en",  # Optional
-	      temperature=0.0  # Optional
-	    )
-	    return transcription
+	# with open(audio_file, "rb") as file:
+	#     # Create a transcription of the audio file
+	#     transcription = client.audio.transcriptions.create(
+	#       file=(audio_file, file.read()), # Required audio file
+	#       model="whisper-large-v3-turbo", # Required model to use for transcription
+	#       prompt="Specify context or spelling",  # Optional
+	#       response_format="json",  # Optional
+	#       language="en",  # Optional
+	#       temperature=0.0  # Optional
+	#     )
+	#     return transcription
 	    
 def audio_recording():
 	recorded_audio = audio_recorder()
@@ -277,6 +277,17 @@ def audio_recording():
 		audio_file = "audio.mp3"
 		with open(audio_file , "wb") as f:
 			f.write(recorded_audio)
+		with open(audio_file, "rb") as file:
+		# Create a transcription of the audio file
+		transcription = client.audio.transcriptions.create(
+		file=(audio_file, file.read()), # Required audio file
+		model="whisper-large-v3-turbo", # Required model to use for transcription
+		prompt="Specify context or spelling",  # Optional
+		response_format="json",  # Optional
+		language="en",  # Optional
+		temperature=0.0  # Optional
+		)
+		return transcription
 
 def main():
 	st.sidebar.title("Select the Modality")
@@ -287,14 +298,11 @@ def main():
 	     placeholder="Select mode of communication..."
 	)
 	st.title (":blue[ANCIENT GREEK Q&A CHATBOT] ")
-	# tts = gTTS('hello')
-	# tts.save('hello.mp3')
-	# st.audio('hello.mp3')
-	# st.write("API_Key_check",langchain_api_key)
+
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
-		audio_recording()
-		transcription= audio_to_text("audio.mp3")
+		transcription = audio_recording()
+		# transcription= audio_to_text("audio.mp3")
 		query = transcription.text
 		st.write("User:",query)
 	elif option == "Chat":
