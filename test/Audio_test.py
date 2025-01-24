@@ -11,7 +11,7 @@ client = Groq(api_key=groq_api_key)
 
 
 def main():
-	st.sidebar.title("API KEY CONFIGURATION")
+	st.sidebar.title("ANCIENT GREEK Q&A CHATBOT")
 	st.title ("Audio Test")
 	st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
 	recorded_audio = audio_recorder()
