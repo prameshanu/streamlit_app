@@ -31,7 +31,7 @@ def main():
 		      temperature=0.0  # Optional
 		    )
 		    # Print the transcription text
-		    st.write(transcription.text)
+		    st.write("User:",transcription.text)
 
 #Function to transcribe audio to text 
 
