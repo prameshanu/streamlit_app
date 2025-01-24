@@ -2,9 +2,36 @@ import streamlit as st
 from audio_recorder_streamlit import audio_recorder
 import os
 from groq import Groq
+from langchain_community.document_loaders import TextLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_community.retrievers import PineconeHybridSearchRetriever
+from langchain_huggingface import HuggingFaceEmbeddings
+
+from pinecone import Pinecone
+from pinecone import ServerlessSpec
+from pinecone_text.sparse.bm25_encoder import BM25Encoder
+from huggingface_hub import InferenceClient
+
+
+import warnings
+import streamlit as st
+
+import numpy as np
+from dotenv import load_dotenv
+
+import os
+import re
+
+import requests
+from groq import Groq
 
 groq_api_key = st.secrets["GROC_API_KEY"]
+pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
+claude_api_key = st.secrets["CLAUDE_API_KEY"]
 
+langchain_api_key = st.secrets["LANGCHAIN_API_KEY"]
+hugging_face_api_key = st.secrets["HUGGING_FACE_API_KEY"]
 
 # Initialize the Groq client
 client = Groq(api_key=groq_api_key)
@@ -41,6 +68,7 @@ def main():
 	     placeholder="Select mode of communication..."
 	)
 	st.title (":blue[ANCIENT GREEK Q&A CHATBOT] ")
+	st.write("API_Key_check",langchain_api_key)
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
 		audio_recording()
