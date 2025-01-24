@@ -246,6 +246,7 @@ def rag(input_text):
 		# st.write("**BOT :** ", answer)
 		create_text_card(answer, "BOT :")
 		st.write("**Source citation :** ",source_info)
+		create_text_card("test", "test2")
 		# st.write("Prompt : ", prompt)
 	else:
 	        st.write("I don't have enough information to answer this question.")
