@@ -40,7 +40,7 @@ def main():
 			audio_file = "audio.mp3"
 			with open(audio_file , "wb") as f:
 				f.write(recorded_audio)
-		audio_to_text(audio_file)
+		audio_to_text("audio.mp3")
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
 	else:
