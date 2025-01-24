@@ -257,7 +257,7 @@ def rag(input_text):
 # Initialize the Groq client
 client = Groq(api_key=groq_api_key)
 
-def audio_to_text(audio_file):
+# def audio_to_text(audio_file):
 	# Open the audio file
 	# with open(audio_file, "rb") as file:
 	#     # Create a transcription of the audio file
