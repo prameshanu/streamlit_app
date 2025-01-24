@@ -28,7 +28,9 @@ def main():
 	st.sidebar.title("Select the Modality")
 	option = st.sidebar.selectbox(
 	    "How would you like to be interact?",
-	    ("Select","Chat", "Audio"),
+	    ("Chat", "Audio"),
+		index=None,
+	     placeholder="Select mode of communication..."
 	)
 	st.title (":blue[ANCIENT GREEK Q&A CHATBOT] ")
 	if option == "Audio":
