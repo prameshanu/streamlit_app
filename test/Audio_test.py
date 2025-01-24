@@ -24,11 +24,6 @@ def audio_to_text(audio_file):
 	    return transcription
 	    
 def audio_recording():
-	recorded_audio = audio_recorder()
-	if recorded_audio:
-		audio_file = "audio.mp3"
-		with open(audio_file , "wb") as f:
-			f.write(recorded_audio)
 	return audio_file
 
 
@@ -43,8 +38,12 @@ def main():
 	st.title (":blue[ANCIENT GREEK Q&A CHATBOT] ")
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
-		audio_file =audio_recording()
-		transcription= audio_to_text(audio_file)
+		recorded_audio = audio_recorder()
+		if recorded_audio:
+			audio_file = "audio.mp3"
+			with open(audio_file , "wb") as f:
+				f.write(recorded_audio)
+		transcription= audio_to_text("audio.mp3")
 		query = transcription.text
 		st.write("User:",query)
 		
