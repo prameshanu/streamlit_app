@@ -30,7 +30,8 @@ def audio_recording():
 		with open(audio_file , "wb") as f:
 			f.write(recorded_audio)
 
-def page_layout():
+
+def main():
 	st.sidebar.title("Select the Modality")
 	option = st.sidebar.selectbox(
 	    "How would you like to be interact?",
@@ -39,10 +40,6 @@ def page_layout():
 	     placeholder="Select mode of communication..."
 	)
 	st.title (":blue[ANCIENT GREEK Q&A CHATBOT] ")
-	return option
-
-def main():
-	option = page_layout()
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
 		audio_recording()
