@@ -40,7 +40,7 @@ def main():
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
 	else:
-		st.write("You have not selected any option")
+		st.write("Select your mode of interaction Chat/Audio")
 
 #Function to transcribe audio to text 
 
