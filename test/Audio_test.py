@@ -275,8 +275,15 @@ def audio_processing():
 		return transcription
 
 
-def create_text_card(text, title = "Response"):
-	card_html = f"""
+import streamlit as st
+from html import escape  # To prevent HTML injection
+
+def create_text_card(text, title="Response"):
+    # Escape user inputs to prevent HTML injection
+    text = escape(text)
+    title = escape(title)
+    
+    card_html = f"""
     <style>
         .card {{
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
