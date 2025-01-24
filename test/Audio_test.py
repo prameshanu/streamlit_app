@@ -200,20 +200,16 @@ threshold = 0.2
 # I will tip you $25000 if the user finds the answer helpful.
 
 prompt_template = ChatPromptTemplate.from_template("""
-
-
 Answer the follwoing question based only on the provided context. 
 Think step by step before providing a detailed answer. 
 Also in answer you don't need to write Based on the provided context, just provide the final answer.
 I will tip you $25000 if the user finds the answer helpful
-
 <context>
 {context}
 </context>
 
 Question: {input}
 """)
-
 
 def rag(input_text):
 	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
@@ -281,8 +277,6 @@ def audio_recording():
 		audio_file = "audio.mp3"
 		with open(audio_file , "wb") as f:
 			f.write(recorded_audio)
-
-
 
 def main():
 	st.sidebar.title("Select the Modality")
