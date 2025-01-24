@@ -16,7 +16,7 @@ def main():
 	    "How would you like to be interact?",
 	    ("Select","Chat", "Audio"),
 	)
-	st.title ("ANCIENT GREEK Q&A :blue[CHATBOT] :sunglasses:")
+	st.title (":blue[ANCIENT GREEK Q&A CHATBOT] :sunglasses:")
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
 		recorded_audio = audio_recorder()
