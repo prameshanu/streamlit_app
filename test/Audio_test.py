@@ -12,7 +12,7 @@ client = Groq(api_key=groq_api_key)
 
 def main():
 	st.sidebar.title("Select the Modality")
-	option = st.selectbox(
+	option = st.sidebar.selectbox(
 	    "How would you like to be interact?",
 	    ("Chat", "Audio"),
 	)
