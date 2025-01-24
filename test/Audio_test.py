@@ -337,9 +337,9 @@ def main():
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
 		transcription = audio_processing()
 		# transcription= audio_to_text("audio.mp3")
-		query = transcription.text
 		# st.write("User:",query)
-		if query:
+		if transcription:
+			query = transcription.text
 			rag(query)
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
