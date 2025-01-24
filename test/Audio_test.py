@@ -140,6 +140,50 @@ def preprocess_documents(docs):
 
 documents = preprocess_documents(documents)
 
+
+
+
+
+from html import escape  # To prevent HTML injection
+
+def create_text_card(text, title="Response"):
+    # Escape user inputs
+    text = escape(text)
+    title = escape(title)
+
+    card_html = f"""
+    <style>
+        .card {{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }}
+        .card:hover {{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }}
+        .container {{
+            padding: 2px 16px;
+        }}
+    </style>
+    <div class="card">
+        <div class="container">
+            <h4><b>{title}</b></h4>
+            <p>{text}</p>
+        </div>
+    </div>
+    """
+    # Use st.components.v1.html to render HTML directly
+    st.components.v1.html(card_html, height=300, scrolling=True)
+
+
+
+
+
+
+
+
 index_name = "hybrid-search-langchain-pinecone"
 
 
@@ -274,38 +318,6 @@ def audio_processing():
 			)
 		return transcription
 
-
-import streamlit as st
-from html import escape  # To prevent HTML injection
-
-def create_text_card(text, title="Response"):
-    # Escape user inputs to prevent HTML injection
-    text = escape(text)
-    title = escape(title)
-    
-    card_html = f"""
-    <style>
-        .card {{
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            transition: 0.3s;
-            border-radius: 5px;
-            padding: 15px;
-        }}
-        .card:hover {{
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-        }}
-        .container {{
-            padding: 2px 16px;
-        }}
-    </style>
-    <div class="card">
-        <div class="container">
-            <h4><b>{title}</b></h4>
-            <p>{text}</p>
-        </div>
-    </div>
-    """
-    st.markdown(card_html, unsafe_allow_html=True)
 
 # def create_text_card(text, title = "Response"):
 # 	card_html = f"""
