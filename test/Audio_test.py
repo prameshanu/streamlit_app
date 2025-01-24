@@ -312,11 +312,8 @@ def main():
 		rag(query)
 	else:
 		st.write("Select your mode of interaction Chat/Audio")
-	
-
 
 #Function to transcribe audio to text 
-
 if __name__ == "__main__" :
 	main()
 
