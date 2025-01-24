@@ -39,9 +39,10 @@ def page_layout():
 	     placeholder="Select mode of communication..."
 	)
 	st.title (":blue[ANCIENT GREEK Q&A CHATBOT] ")
+	return option
 
 def main():
-	page_layout()
+	option = page_layout()
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
 		audio_recording()
