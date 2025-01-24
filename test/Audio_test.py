@@ -303,7 +303,7 @@ def main():
 		st.write("User:",query)
 	else:
 		st.write("Select your mode of interaction Chat/Audio")
-	if query is not null:
+	if query:
 		rag(query)
 
 #Function to transcribe audio to text 
