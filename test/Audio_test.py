@@ -312,6 +312,8 @@ def main():
 		st.write("Select your mode of interaction Chat/Audio")
 	if query:
 		rag(query)
+	else:
+		continue
 
 #Function to transcribe audio to text 
 
