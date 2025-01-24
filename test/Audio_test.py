@@ -237,17 +237,14 @@ def rag(input_text):
 				"content": prompt
 			}
 		]
-		# completion = client.chat.completions.create(
-		# 	model="mistralai/Mistral-7B-Instruct-v0.2",  # LLM Model: https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2
-		# 	messages=messages, 
-		# 	max_tokens=500
-		# )
+	
 		completion = client.chat.completions.create(
 			messages=messages,
 			model="llama-3.3-70b-versatile",
 		)
 		answer = completion.choices[0].message.content
-		st.write("**BOT :** ", answer)
+		# st.write("**BOT :** ", answer)
+		create_text_card(answer, "**BOT :** ")
 		st.write("**Source citation :** ",source_info)
 		# st.write("Prompt : ", prompt)
 	else:
@@ -257,21 +254,8 @@ def rag(input_text):
 # Initialize the Groq client
 client = Groq(api_key=groq_api_key)
 
-# def audio_to_text(audio_file):
-	# Open the audio file
-	# with open(audio_file, "rb") as file:
-	#     # Create a transcription of the audio file
-	#     transcription = client.audio.transcriptions.create(
-	#       file=(audio_file, file.read()), # Required audio file
-	#       model="whisper-large-v3-turbo", # Required model to use for transcription
-	#       prompt="Specify context or spelling",  # Optional
-	#       response_format="json",  # Optional
-	#       language="en",  # Optional
-	#       temperature=0.0  # Optional
-	#     )
-	#     return transcription
 	    
-def audio_recording():
+def audio_processing():
 	recorded_audio = audio_recorder()
 	if recorded_audio:
 		audio_file = "audio.mp3"
@@ -289,6 +273,30 @@ def audio_recording():
 			)
 		return transcription
 
+def create_text_card(text, title = "Response"):
+	card_html = f"""
+ 	<style>
+  	.card{{
+   		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+     		transition: 0.3s;
+       		border-radius: 5px;
+	 	padding: 15px;
+   	}}
+    	.card:hover {{
+     		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+       }}
+       .container  {{
+       		padding: 2px 16px;
+	 }}
+  	</style>
+   	<div class = "card">
+    		<div class = "container">
+      			<h4><b>{title}</b></h4>
+	 		<p>{text}</p>
+    		</div>
+      """
+	st.markdown(card_html, unsafe_allow_html= True)
+
 def main():
 	st.sidebar.title("Select the Modality")
 	option = st.sidebar.selectbox(
@@ -301,7 +309,7 @@ def main():
 
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
-		transcription = audio_recording()
+		transcription = audio_processing()
 		# transcription= audio_to_text("audio.mp3")
 		query = transcription.text
 		st.write("User:",query)
