@@ -1,4 +1,8 @@
 streamlit
 audio_recorder_streamlit
 groq
-
+langchain
+langchain-community
+langchain-core
+langchain-huggingface
+sentence-transformers
