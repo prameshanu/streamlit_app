@@ -295,7 +295,7 @@ def create_text_card(text, title = "Response"):
 	 		<p>{text}</p>
     		</div>
 	</div>
-      """
+ 		"""
 	st.markdown(card_html, unsafe_allow_html= True)
 
 def main():
