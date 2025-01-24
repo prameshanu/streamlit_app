@@ -244,7 +244,7 @@ def rag(input_text):
 		)
 		answer = completion.choices[0].message.content
 		# st.write("**BOT :** ", answer)
-		create_text_card(answer, "**BOT :** ")
+		create_text_card(answer, "BOT :")
 		st.write("**Source citation :** ",source_info)
 		# st.write("Prompt : ", prompt)
 	else:
