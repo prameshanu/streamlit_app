@@ -146,10 +146,10 @@ documents = preprocess_documents(documents)
 
 from html import escape  # To prevent HTML injection
 
-def create_text_card(text, title="Response"):
+def create_text_card(text1, title1, text2, title2):
     # Escape user inputs
-    text = escape(text)
-    title = escape(title)
+    text1 = escape(text1)
+    title1 = escape(title1)
 
     card_html = f"""
     <style>
@@ -169,8 +169,10 @@ def create_text_card(text, title="Response"):
     </style>
     <div class="card">
         <div class="container">
-            <h4><b>{title}</b></h4>
-            <p>{text}</p>
+            <h4><b>{title1}</b></h4>
+            <p>{text1}</p>
+	    <h4><b>{title2}</b></h4>
+            <p>{text2}</p>
         </div>
     </div>
     """
@@ -288,10 +290,9 @@ def rag(input_text):
 		)
 		answer = completion.choices[0].message.content
 		# st.write("**BOT :** ", answer)
-		create_text_card(input_text, "USER:")
-		create_text_card(answer, "BOT:")
-		create_text_card(source_info, "Source Citation:")
-		# st.write("**Source citation :** ",source_info)
+		create_text_card(input_text, "USER:",answer, "BOT:")
+		# create_text_card(source_info, "Source Citation:")
+		st.write("**Source citation :** ",source_info)
 		# create_text_card("test", "test2")
 		# st.write("Prompt : ", prompt)
 	else:
