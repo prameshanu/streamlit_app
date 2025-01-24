@@ -297,15 +297,14 @@ def main():
 		transcription= audio_to_text("audio.mp3")
 		query = transcription.text
 		st.write("User:",query)
-		rag(query)
-		
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
 		query=st.text_input("Search the topic u want", placeholder="Enter your query here...")
 		st.write("User:",query)
-		rag(query)
 	else:
 		st.write("Select your mode of interaction Chat/Audio")
+	if query is not null:
+		rag(query)
 
 #Function to transcribe audio to text 
 if __name__ == "__main__" :
