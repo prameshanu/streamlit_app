@@ -24,6 +24,16 @@ def audio_to_text(audio_file):
 	    # Print the transcription text
 	    st.write("User:",transcription.text)
 
+
+def audio_recording():
+	recorded_audio = audio_recorder()
+	if recorded_audio:
+		audio_file = "audio.mp3"
+		with open(audio_file , "wb") as f:
+			f.write(recorded_audio)
+
+	
+
 def main():
 	st.sidebar.title("Select the Modality")
 	option = st.sidebar.selectbox(
@@ -35,11 +45,7 @@ def main():
 	st.title (":blue[ANCIENT GREEK Q&A CHATBOT] ")
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
-		recorded_audio = audio_recorder()
-		if recorded_audio:
-			audio_file = "audio.mp3"
-			with open(audio_file , "wb") as f:
-				f.write(recorded_audio)
+		audio_recording()
 		audio_to_text("audio.mp3")
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
