@@ -7,7 +7,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.retrievers import PineconeHybridSearchRetriever
 from langchain_huggingface import HuggingFaceEmbeddings
-
+# from gtts import gTTS
 from pinecone import Pinecone
 from pinecone import ServerlessSpec
 from pinecone_text.sparse.bm25_encoder import BM25Encoder
@@ -293,6 +293,9 @@ def main():
 	     placeholder="Select mode of communication..."
 	)
 	st.title (":blue[ANCIENT GREEK Q&A CHATBOT] ")
+	# tts = gTTS('hello')
+	# tts.save('hello.mp3')
+	# st.audio('hello.mp3')
 	# st.write("API_Key_check",langchain_api_key)
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
