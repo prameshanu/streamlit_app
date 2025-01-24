@@ -215,6 +215,49 @@ Question: {input}
 """)
 
 
+def rag(input_text):
+	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
+	filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
+	source = set()  # Initialize a set to store unique items
+	for doc in filtered_docs:
+		for doc1 in documents:
+			if doc.page_content == doc1.page_content :
+				source.add(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
+		
+
+	if source != set():
+		source_info = f"This answer is based on information from the files :  {list(source)}" 
+	else:
+		source_info = "Source information not available."
+	
+	if filtered_docs:
+		# Create your chain using the filtered documents
+		context = " ".join(doc.page_content for doc in filtered_docs)
+		# Search the index for the two most similar vectors
+		prompt = prompt_template.format(context=context, input=input_text)
+		messages = [
+			{
+				"role": "user",
+				"content": prompt
+			}
+		]
+		# completion = client.chat.completions.create(
+		# 	model="mistralai/Mistral-7B-Instruct-v0.2",  # LLM Model: https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2
+		# 	messages=messages, 
+		# 	max_tokens=500
+		# )
+		completion = client.chat.completions.create(
+			messages=messages,
+			model="llama-3.3-70b-versatile",
+		)
+		answer = completion.choices[0].message.content
+		st.write("**BOT :** ", answer)
+		st.write("**Source citation :** ",source_info)
+		# st.write("Prompt : ", prompt)
+	else:
+	        st.write("I don't have enough information to answer this question.")
+	
+
 # Initialize the Groq client
 client = Groq(api_key=groq_api_key)
 
@@ -264,6 +307,8 @@ def main():
 		st.write("User:",query)
 	else:
 		st.write("Select your mode of interaction Chat/Audio")
+	if query:
+		rag(query)
 
 #Function to transcribe audio to text 
 
