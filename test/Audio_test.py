@@ -21,8 +21,8 @@ def audio_to_text(audio_file):
 	      language="en",  # Optional
 	      temperature=0.0  # Optional
 	    )
-	    # Print the transcription text
-	    st.write("User:",transcription.text)
+	    return transcription
+	    
 
 
 def audio_recording():
@@ -46,9 +46,14 @@ def main():
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
 		audio_recording()
-		audio_to_text("audio.mp3")
+		transcription= audio_to_text("audio.mp3")
+		query = transcription.text
+		st.write("User:",query)
+		
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
+		query=st.text_input("Search the topic u want")
+		st.write("User:",query)
 	else:
 		st.write("Select your mode of interaction Chat/Audio")
 
