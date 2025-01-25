@@ -29,11 +29,13 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.data import find
+from pathlib import Path
+from openai import OpenAI
 
 groq_api_key = st.secrets["GROC_API_KEY"]
 pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
 langchain_api_key = st.secrets["LANGCHAIN_API_KEY"]
-
+openai_api_key = st.secrets["OPENAI_API_KEY"]
 
 # ## lazy loading
 try:
@@ -301,7 +303,7 @@ def rag(input_text):
 
 # Initialize the Groq client
 client = Groq(api_key=groq_api_key)
-
+client_openai = OpenAI(api_key = openai_api_key)
 	    
 def audio_processing():
 	recorded_audio = audio_recorder()
@@ -322,7 +324,17 @@ def audio_processing():
 		return transcription
 
 
-
+def generate_speech(text_input, output_path):
+	response = client_openai.audio.speech.create(
+		model = "tts-1",
+		voice = "alloy",
+		input = text_input
+	)
+	with open(output_path, wb) as file:
+		for chunk in response.iter_bytes():
+			file.write(chunk)
+	
+tts_audio_file_path = 'answer.mp3'
 def main():
 	st.sidebar.title("Select the Modality")
 	option = st.sidebar.selectbox(
@@ -331,7 +343,10 @@ def main():
 		index=None,
 	     placeholder="Select mode of communication..."
 	)
-	st.title (":blue[ANCIENT GREEK Q&A CHATBOT] ")
+	title = "ANCIENT GREEK Q&A CHATBOT"
+	st.title (f""":blue[{title}] """)
+	generate_speech(title, tts_audio_file_path)
+	st.audio (tts_audio_file_path, format = "audio/mp3", autoplay = True)
 
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
