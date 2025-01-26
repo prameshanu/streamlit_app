@@ -35,23 +35,38 @@ def example():
                 z-index: 100;
             	}
         	""",
-    	):
-		
+	):
+			
         # Apply custom CSS for full-width input
-	        st.markdown(
+	
+		st.markdown(
 			"""
-	  		<style>
-	    		.full-width-input .stTextInput > div > div {
-	      			width: 100%; /* Slightly smaller width */
-		 		margin: 0 auto; /* Center it with equal margins on both sides */
-	            		}
-	            	</style>
-	            	""",
-	            	unsafe_allow_html=True,
+			<style>
+			.full-width-input .stTextInput > div > div {
+			width: 100%; /* Slightly smaller width */
+			margin: 0 auto; /* Center it with equal margins on both sides */                
+			}
+			</style>
+			""",
+			unsafe_allow_html=True,
 		)
+    
+        # Wrap the text input in a class to target it
+	
+		with st.container():
+			if option == "Audio":
+				st.write("Audio testing") 
+			elif option == "Chat":
+				st.text_input(
+					"Type your message here:",
+					key="user_input",
+					label_visibility="collapsed",
+					placeholder="Type your message...",
+				)
 		
     
         # Wrap the text input in a class to target it
+		# w
 	  #       with st.container():
 			# st.write(f""":blue{title}""")
 			# # st.title(f""":blue[{title}] """)
