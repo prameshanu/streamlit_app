@@ -189,9 +189,9 @@ values = example()
 st.write("Test")
 st.write("Test")
 st.write(values)
-if values == None:
-	st.write("test successful")
-elif values[0]:
+if len(values) == 0:
+	st.write("test0 successful")
+elif len(values) == 1:
 	st.write("test2 success")
 else:
 	st.write("non success")
