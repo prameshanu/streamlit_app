@@ -210,8 +210,7 @@ values = np.array([])
 values = example()
 # st.write("\n.........................................Dummy.........................................\n")
 if values is None:
-	st.write("Kindly select the mode of communication from above drop-down button")
-	write_function(text)
+	write_function("Kindly select the mode of communication from above drop-down button")
 elif len(values) > 0 and values[1] == "":
 	st.write("Please write below your query")
 else:
