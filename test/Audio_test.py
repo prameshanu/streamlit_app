@@ -338,14 +338,14 @@ def audio_processing():
 
 # tts_audio_file_path = 'answer.mp3'
 
-text_to_read = "My name is Pramesh Anuragi and I am testing Text to speech"
-aud_file = gTTS(text=text_to_read, lang="en", slow=False)
+# text_to_read = "My name is Pramesh Anuragi and I am testing Text to speech"
+# aud_file = gTTS(text=text_to_read, lang="en", slow=False)
 text_to_read = "المحطة التالية هي الحديقة"
 aud_file = gTTS(text=text_to_read, lang="ar", slow=False)
 aud_file.save("lang.mp3")
 audio_file_read = open('lang.mp3', 'rb')
 audio_bytes = audio_file_read.read()
-st.audio(audio_bytes, format='audio/mp3')
+st.audio(audio_bytes, format='audio/mp3',autoplay=False)
 
 # output = translate(text_to_read,'ar')
 # st.text_area("TRANSLATED TEXT",output,height=200)
