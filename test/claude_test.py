@@ -45,7 +45,12 @@ def example():
     #         }
     #         """,
     # ):
-        st.markdown("This is a container with a border.")
+        st.text_input(
+        "Type your message here:",  # Placeholder text for the input box
+        key="user_input",          # Unique key to reference the input
+        label_visibility="collapsed",  # Hides the label for a cleaner look
+        )
+        # st.markdown("This is a container with a border.")
 
 
 example()
