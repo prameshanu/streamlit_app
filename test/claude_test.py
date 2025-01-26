@@ -91,6 +91,12 @@ def example():
         with st.container():
             title = "ANCIENT GREEK Q&A CHATBOT"
             st.title (f""":blue[{title}] """)
+            option = st.selectbox(
+                "How would you like to be interact?",
+                ("Chat", "Audio"),
+            	index=None,
+                 placeholder="Select mode of communication..."
+            )
 
 
 
