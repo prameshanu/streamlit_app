@@ -511,6 +511,7 @@ else:
 		add_to_history(query, answer)
 		tts(answer,'en')
 	else:
+		query = value[1]
 		answer= rag(query)
 		add_to_history(query, answer)
 	
