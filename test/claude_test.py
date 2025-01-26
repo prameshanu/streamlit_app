@@ -188,3 +188,5 @@ if values[1]:
 	st.write("Test")
 	st.write(f"**User:** {query}")
 	st.write(values[0])
+else:
+	st.write("Test")
