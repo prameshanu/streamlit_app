@@ -46,7 +46,8 @@ st.markdown(
 )
 
 # Read user input from the URL query parameter (if needed)
-user_query = st.experimental_get_query_params().get("user_input", [""])[0]
+# user_query = st.experimental_get_query_params().get("user_input", [""])[0]
+user_query = st.query_params().get("user)input",[""])[0]
 
 # Display the query if submitted
 if user_query:
