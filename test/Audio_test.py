@@ -33,6 +33,7 @@ from pathlib import Path
 from openai import OpenAI
 from gtts import gTTS
 import base64
+from mtranslate import translate
 
 groq_api_key = st.secrets["GROC_API_KEY"]
 pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
