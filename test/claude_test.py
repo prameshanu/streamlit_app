@@ -181,7 +181,10 @@ def example():
 				# return query,option
 
 
+
+
 # values = []
+values = []
 values = example()
 st.write(values)
 # st.write(isnull(values))
