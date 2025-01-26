@@ -337,19 +337,6 @@ def tts(text_to_read, language):
 	audio_bytes = audio_file_read.read()
 	st.audio(audio_bytes, format='audio/mp3',autoplay=True)
 
-# filename = "lang.mp3"
-# # Open the audio file
-# with open(filename, "rb") as file:
-#     # Create a translation of the audio file
-#     translation = client.audio.translations.create(
-#       file=(filename, file.read()), # Required audio file
-#       model="whisper-large-v3", # Required model to use for translation
-#       prompt="Specify context or spelling",  # Optional
-#       response_format="json",  # Optional
-#       temperature=0.0  # Optional
-#     )
-#     # Print the translation text
-#     st.write(translation.text)
 
 def main():
 	st.sidebar.title("Select the Modality")
