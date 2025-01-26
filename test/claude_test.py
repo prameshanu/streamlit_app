@@ -184,7 +184,7 @@ def example():
 
 
 # values = []
-values = []
+values = np.array([])
 values = example()
 st.write(values)
 # st.write(isnull(values))
