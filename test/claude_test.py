@@ -189,6 +189,10 @@ values = example()
 st.write("Test")
 st.write("Test")
 st.write(values)
+if values == None:
+	st.write("test successful")
+else:
+	st.write("non success")
 # st.write(len(values))
 # if len(values) == 0:
 # 	st.write("Enter modality")
