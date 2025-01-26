@@ -152,7 +152,7 @@ def example():
 		)
     
         # Wrap the text input in a class to target it
-	
+		values = []
 		with st.container():
 			if option == "Audio": 
 				welcome_text = "Hi There, click on the voice recorder to interact with me, How can I assist you today?"
@@ -166,7 +166,9 @@ def example():
 					query = transcription.text
 				else:
 					query = 'No recorded voice'
-				return query,option
+				values = option
+				values.append = query
+				return values
 			elif option == "Chat":
 				query = st.text_input(
 					"Type your message here:",
@@ -174,8 +176,10 @@ def example():
 					label_visibility="collapsed",
 					placeholder="Type your message...",
 				)
-				
-				return query,option
+				values = option
+				values.append = query
+				return values
+				# return query,option
 
 
 query,option = example()
