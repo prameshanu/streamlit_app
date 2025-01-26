@@ -2,52 +2,52 @@
 
 import streamlit as st
 
+# Add custom CSS to make the input field sticky
+st.markdown(
+    """
+    <style>
+    /* Make the footer container sticky */
+    .footer-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white; /* Adjust background to match your app */
+        padding: 10px 20px;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+        z-index: 1000; /* Ensure it stays above other elements */
+    }
+    .footer-container input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
-# Streamlit Framework
-st.title('Claude TEST API')
+# Main content
+st.title("Ask Me Anything")
+st.write("This is your interactive assistant. Type your query below!")
 
-import anthropic
+# Sticky footer container for input
+st.markdown(
+    """
+    <div class="footer-container">
+        <form action="" method="GET">
+            <input type="text" id="user_input" name="user_input" placeholder="Ask me anything...">
+        </form>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
+# Read user input from the URL query parameter (if needed)
+user_query = st.experimental_get_query_params().get("user_input", [""])[0]
 
-# Define the API URL and key
-# api_url = "https://api.anthropic.com/v1/completions"  # Confirm with Anthropic if this is the latest endpoint
-api_url = "https://api.anthropic.com/v1/messages"
-my_api_key = "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"  # Replace with your API key
-
-class ClaudeLLM:
-        def __init__(self, api_key, model="claude-3-5-sonnet-20241022"):
-            self.api_key = api_key
-            self.model = model
-            self.base_url = "https://api.anthropic.com/v1/complete"
-            self.headers = {
-                "x-api-key": self.api_key,
-                "Content-Type": "application/json",
-                "anthropic-version": "2023-06-01",
-            }
-
-        def query(self, prompt, max_tokens=1024):
-            # Ensure the prompt starts with the correct conversational structure
-            message = client.messages.create(
-            model="claude-3-5-sonnet-20241022",
-            max_tokens=max_tokens,
-            messages=[
-                {"role": "user", "content": f"{prompt}"}
-            ]            
-            )
-            # Iterate over the list and extract text from each TextBlock
-            extracted_texts = [block.text for block in message.content]
-
-            return extracted_texts
-
-        
-# Initialize Claude LLM
-api_key = my_api_key
-llm = ClaudeLLM(api_key)
-
-prompt = """
-what is olympic games
-"""
-
-a = llm.query(prompt)
-a
-st.write(a)
+# Display the query if submitted
+if user_query:
+    st.write(f"You asked: {user_query}")
