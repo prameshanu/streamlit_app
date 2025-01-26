@@ -8,7 +8,7 @@ st.markdown(
     .footer-container {
         position: fixed;
         bottom: 0;
-        left: 350px;
+        left: 100px;
         width: 200%; 
         /* background-color: white; */
         padding: 10px 20px;
@@ -20,7 +20,7 @@ st.markdown(
     
     /* Center-aligned flexible input box */
     .footer-container input {
-        width: 800%; /* Flexible width */
+        width: 100%; /* Flexible width */
         max-width: 800px; /*  Optional: cap the max width */
         padding: 10px;
         border: 1px solid #ddd;
