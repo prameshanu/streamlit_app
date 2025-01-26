@@ -300,7 +300,7 @@ def rag(input_text):
 	else:
 		answer = "I don't have enough information to answer this question."
 		st.write(f"**User:** {input_text}")
-        	st.write(f"**Bot:** {answer}")
+		st.write(f"**Bot:** {answer}")
 		# create_text_card(input_text, "USER:",answer, "BOT:")
 	return answer
 
