@@ -166,7 +166,7 @@ def example():
 					query = transcription.text
 				else:
 					query = 'No recorded voice'
-				# return query
+				return query,option
 			elif option == "Chat":
 				query = st.text_input(
 					"Type your message here:",
@@ -175,10 +175,10 @@ def example():
 					placeholder="Type your message...",
 				)
 				
-			return query
+				return query,option
 
 
-query = example()
+query,option = example()
 st.write("Test")
 st.write(f"**User:** {query}")
-st.write(query)
+st.write(option)
