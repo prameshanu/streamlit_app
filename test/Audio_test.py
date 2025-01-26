@@ -354,8 +354,7 @@ if "chat_history" not in st.session_state:
 def render_chat_history():
 	for chat in st.session_state["chat_history"]:
 		user_query, bot_response = chat
-		write_function(f"<strong><u>User:</strong></u> {user_query}")
-		write_function(f"<strong><u>Bot:</strong></u> {bot_response}")
+		write_function(f"""<strong><u>User:</strong></u> {user_query}"<br><strong><u>Bot:</strong></u> {bot_response}<br>""")
 		# st.write(f"**User:** {user_query}")
 		# st.write(f"**Bot:** {bot_response}")
 
