@@ -112,6 +112,7 @@ def example():
 		with st.container():
 			if option == "Audio":
 				st.write("Audio testing") 
+				recorded_audio = audio_recorder()
 			elif option == "Chat":
 				st.text_input(
 					"Type your message here:",
