@@ -325,16 +325,15 @@ def audio_processing():
 			)
 		return transcription
 
-
-def generate_speech(text_input, output_path):
-	response = client_openai.audio.speech.create(
-		model = "tts-1",
-		voice = "alloy",
-		input = text_input
-	)
-	with open(output_path, wb) as file:
-		for chunk in response.iter_bytes():
-			file.write(chunk)
+# def generate_speech(text_input, output_path):
+# 	response = client_openai.audio.speech.create(
+# 		model = "tts-1",
+# 		voice = "alloy",
+# 		input = text_input
+# 	)
+# 	with open(output_path, wb) as file:
+# 		for chunk in response.iter_bytes():
+# 			file.write(chunk)
 
 # tts_audio_file_path = 'answer.mp3'
 
@@ -355,7 +354,7 @@ def main():
 	)
 	title = "ANCIENT GREEK Q&A CHATBOT"
 	st.title (f""":blue[{title}] """)
-	st.write(openai_api_key)
+	# st.write(openai_api_key)
 	# generate_speech(title, tts_audio_file_path)
 	# st.audio (tts_audio_file_path, format = "audio/mp3", autoplay = True)
 
