@@ -337,6 +337,20 @@ def tts(text_to_read, language):
 	st.audio(audio_bytes, format='audio/mp3',autoplay=True)
 
 
+if "chat_history" not in st.session_state:
+    st.session_state["chat_history"] = []
+
+def render_chat_history():
+    for chat in st.session_state["chat_history"]:
+        user_query, bot_response = chat
+        st.write(f"**User:** {user_query}")
+        st.write(f"**Bot:** {bot_response}")
+
+def add_to_history(user_query, bot_response):
+    st.session_state["chat_history"].append((user_query, bot_response))
+
+render_chat_history()
+
 def main():
 	st.sidebar.title("Select the Modality")
 	option = st.sidebar.selectbox(
@@ -361,6 +375,7 @@ def main():
 		if transcription:
 			query = transcription.text
 			answer = rag(query)
+			add_to_history(user_input, bot_response)
 			tts(answer,'en')
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
@@ -370,6 +385,7 @@ def main():
 			# query=st.text_input("Search the topic u want", placeholder="Enter your query here...")
 			if query:
 				answer= rag(query)
+				add_to_history(user_input, bot_response)
 	else:
 		st.write("Select your mode of interaction Chat/Audio")
 	
