@@ -1,6 +1,5 @@
 from streamlit_extras.stylable_container import stylable_container
 import streamlit as st
-st.sidebar.title("Select the Modality")
 
 def example():
     with stylable_container(
