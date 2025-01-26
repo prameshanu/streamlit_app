@@ -37,7 +37,7 @@ def example():
             """
             <style>
             .full-width-input .stTextInput > div > div {
-                width: 50%; /* Slightly smaller width */
+                width: 40%; /* Slightly smaller width */
                 margin: 0 auto; /* Center it with equal margins on both sides */
                 
             }
