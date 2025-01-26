@@ -212,9 +212,9 @@ values = example()
 if values is None:
 	write_function("Kindly select the mode of communication from above drop-down button")
 elif len(values) > 0 and values[1] == "":
-	st.write("Please write below your query")
+	write_function("Please write below your query")
 else:
-	st.write(values[1])
+	write_function(values[1])
 # st.write(len(values))
 # if len(values) == 0:
 # 	st.write("Enter modality")
