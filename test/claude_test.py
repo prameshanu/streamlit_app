@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Add custom CSS for a sticky footer input box that adjusts with sidebar
+# Add custom CSS for a sticky footer input box that adjusts with the sidebar
 st.markdown(
     """
     <style>
@@ -9,25 +9,28 @@ st.markdown(
         position: fixed;
         bottom: 0;
         left: 0;
-        width: calc(100% - var(--sidebar-width)); /* Adjusts for sidebar width */
-        background-color: white; /* Match the app's background */
+        width: 100%;
+        background-color: white;
         padding: 10px 20px;
-        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
-        z-index: 1000; /* Ensure it stays above other elements */
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
     }
     
-    /* Responsive input styling */
+    /* Center-aligned flexible input box */
     .footer-container input {
-        width: 100%;
+        width: 90%; /* Flexible width */
+        max-width: 800px; /* Optional: cap the max width */
         padding: 10px;
         border: 1px solid #ddd;
         border-radius: 5px;
         font-size: 16px;
     }
     
-    /* Sidebar-aware adjustments */
+    /* Adjust the app content for the footer */
     .stApp {
-        padding-bottom: 70px; /* Ensure space for the footer */
+        padding-bottom: 70px; /* Space for the footer */
     }
     </style>
     """,
