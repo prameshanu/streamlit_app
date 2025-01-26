@@ -189,14 +189,10 @@ values = example()
 st.write("Test")
 st.write("Test")
 st.write(values)
-if values[1]:	
-	query = values[1]
-	st.write("Test")
-	st.write(f"**User:** {query}")
-	st.write(values[0])
-elif values == None:
+if values == None:
 	st.write("test successful")
-
+elif values[0]:
+	st.write("test2 success")
 else:
 	st.write("non success")
 # st.write(len(values))
