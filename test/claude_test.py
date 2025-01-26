@@ -26,3 +26,6 @@ def example():
             """,
     ):
         st.markdown("This is a container with a border.")
+
+
+example()
