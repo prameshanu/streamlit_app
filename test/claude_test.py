@@ -48,17 +48,18 @@ def example():
 	            	""",
 	            	unsafe_allow_html=True,
 		)
+		
     
         # Wrap the text input in a class to target it
-	        with st.container():
-			st.write(f""":blue{title}""")
-			# st.title(f""":blue[{title}] """)
-			option = st.selectbox(
-				"How would you like to be interact?",
-				("Chat", "Audio"),
-	            		index=None,
-	                 	placeholder="Select mode of communication..."
-	            		)
+	  #       with st.container():
+			# st.write(f""":blue{title}""")
+			# # st.title(f""":blue[{title}] """)
+			# option = st.selectbox(
+			# 	"How would you like to be interact?",
+			# 	("Chat", "Audio"),
+	  #           		index=None,
+	  #                	placeholder="Select mode of communication..."
+	  #           		)
 
 ## Bottom input bar
 	with stylable_container(
