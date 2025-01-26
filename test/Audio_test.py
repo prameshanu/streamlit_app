@@ -332,7 +332,7 @@ filename = os.path.dirname(__file__) + "/sample_audio.m4a" # Replace with your a
 
 
 def tts(text_to_read, language):
-	aud_file = gTTS(text=text_to_read, lang=language, slow=False)
+	aud_file = gTTS(text=text_to_read, lang=language, slow=False,tld='co.in')
 	aud_file.save("lang.mp3")
 	audio_file_read = open('lang.mp3', 'rb')
 	audio_bytes = audio_file_read.read()
