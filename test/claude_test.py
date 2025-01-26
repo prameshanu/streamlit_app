@@ -201,12 +201,16 @@ def example():
 
 
 # st.button("")
+text = "this is beta testing"
+def write_function(text):
+	st.markdown(f"""<p style="text-align:left; margin: 20px;">{Text}</p>""", unsafe_allow_html=True)
+
 
 values = np.array([])
 values = example()
 # st.write("\n.........................................Dummy.........................................\n")
 if values is None:
-	st.write("Kindly select the mode of communication")
+	st.write("Kindly select the mode of communication from above drop-down button")
 elif len(values) > 0 and values[1] == "":
 	st.write("Please write below your query")
 else:
