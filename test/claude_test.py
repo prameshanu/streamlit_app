@@ -23,7 +23,7 @@ st.markdown(
     .footer-container input {
         width: 400%; /* Flexible width */
         /* max-width: 800px;  Optional: cap the max width */
-        width: calc(100% + var(--sidebar-width));
+        width: calc(500% + var(--sidebar-width));
         padding: 10px;
         border: 1px solid #ddd;
         border-radius: 5px;
