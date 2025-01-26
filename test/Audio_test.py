@@ -289,7 +289,9 @@ def rag(input_text):
 		)
 		answer = completion.choices[0].message.content
 		# st.write("**BOT :** ", answer)
-		create_text_card(input_text, "USER:",answer, "BOT:")
+		st.write(f"**User:** {input_text}")
+        	st.write(f"**Bot:** {answer}")
+		# create_text_card(input_text, "USER:",answer, "BOT:")
 		# create_text_card(source_info, "Source Citation:")
 		st.write("**Source citation :** ",source_info)
 		# create_text_card("test", "test2")
@@ -297,7 +299,9 @@ def rag(input_text):
 	
 	else:
 		answer = "I don't have enough information to answer this question."
-		create_text_card(input_text, "USER:",answer, "BOT:")
+		st.write(f"**User:** {input_text}")
+        	st.write(f"**Bot:** {answer}")
+		# create_text_card(input_text, "USER:",answer, "BOT:")
 	return answer
 
 	
