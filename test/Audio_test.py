@@ -40,58 +40,58 @@ pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
 langchain_api_key = st.secrets["LANGCHAIN_API_KEY"]
 openai_api_key = st.secrets["OPENAI_API_KEY"]
 
-# ## lazy loading
-try:
-    # Check if 'punkt' is available; download if not
-    find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
+# # ## lazy loading
+# try:
+#     # Check if 'punkt' is available; download if not
+#     find('tokenizers/punkt')
+# except LookupError:
+#     nltk.download('punkt')
 
-try:
-    # Check if 'stopwords' is available; download if not
-    find('corpora/stopwords.zip')
-except LookupError:
-    nltk.download('stopwords')
+# try:
+#     # Check if 'stopwords' is available; download if not
+#     find('corpora/stopwords.zip')
+# except LookupError:
+#     nltk.download('stopwords')
 
-try:
-    # Check if 'wordnet' is available; download if not
-    find('corpora/wordnet.zip')
-except LookupError:
-    nltk.download('wordnet')
+# try:
+#     # Check if 'wordnet' is available; download if not
+#     find('corpora/wordnet.zip')
+# except LookupError:
+#     nltk.download('wordnet')
 
-try:
-    # Check if 'punkt_tab' is available; download if not
-    find('corpora/punkt_tab.zip')
-except LookupError:
-    nltk.download('punkt_tab')
+# try:
+#     # Check if 'punkt_tab' is available; download if not
+#     find('corpora/punkt_tab.zip')
+# except LookupError:
+#     nltk.download('punkt_tab')
 
 
 
-### Preprocessing function for input text, for input data: preprocessing was done separately to avoid repeat code execution on every run.
+# ### Preprocessing function for input text, for input data: preprocessing was done separately to avoid repeat code execution on every run.
 
-def preprocess_text(text):
-    # Step 1: Lowercase the text
-    text = text.lower()
+# def preprocess_text(text):
+#     # Step 1: Lowercase the text
+#     text = text.lower()
     
-    # Step 2: Remove special characters, numbers, and extra whitespace
-    text = re.sub(r'[^a-z\s]', '', text)  # Keep only letters and spaces
-    text = re.sub(r'\s+', ' ', text).strip()  # Remove extra spaces
+#     # Step 2: Remove special characters, numbers, and extra whitespace
+#     text = re.sub(r'[^a-z\s]', '', text)  # Keep only letters and spaces
+#     text = re.sub(r'\s+', ' ', text).strip()  # Remove extra spaces
     
-    # Step 3: Tokenize the text
-    tokens = word_tokenize(text)
+#     # Step 3: Tokenize the text
+#     tokens = word_tokenize(text)
     
-    # Step 4: Remove stopwords
-    stop_words = set(stopwords.words('english'))
-    tokens = [word for word in tokens if word not in stop_words]
+#     # Step 4: Remove stopwords
+#     stop_words = set(stopwords.words('english'))
+#     tokens = [word for word in tokens if word not in stop_words]
     
-    # Step 5: Lemmatize tokens
-    lemmatizer = WordNetLemmatizer()
-    tokens = [lemmatizer.lemmatize(word) for word in tokens]
+#     # Step 5: Lemmatize tokens
+#     lemmatizer = WordNetLemmatizer()
+#     tokens = [lemmatizer.lemmatize(word) for word in tokens]
     
-    # Join tokens back into a single string (optional)
-    processed_text = ' '.join(tokens)
+#     # Join tokens back into a single string (optional)
+#     processed_text = ' '.join(tokens)
     
-    return processed_text
+#     return processed_text
 
 
 ### Input 60 processed files
