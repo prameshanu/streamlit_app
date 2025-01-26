@@ -166,6 +166,7 @@ def example():
 					query = transcription.text
 				else:
 					query = 'No recorded voice'
+				return query
 			elif option == "Chat":
 				query = st.text_input(
 					"Type your message here:",
