@@ -174,7 +174,7 @@ def create_text_card(text1, title1, text2, title2):
     </style>
     <div class="card">
         <div class="container">
-            <h4><b>{title1}</b></h4>
+	    <b><u>{title1}</b></u>
             <p>{text1}</p>
 	    <h4><b>{title2}</b></h4>
             <p>{text2}</p>
@@ -300,8 +300,12 @@ def rag(input_text):
 		st.write("**Source citation :** ",source_info)
 		# create_text_card("test", "test2")
 		# st.write("Prompt : ", prompt)
+	
 	else:
-	        st.write("I don't have enough information to answer this question.")
+		answer = "I don't have enough information to answer this question."
+	create_text_card(input_text, "USER:",answer, "BOT:")
+	return answer
+
 	
 
 # Initialize the Groq client
@@ -365,6 +369,13 @@ st.audio(audio_bytes, format='audio/mp3',autoplay=True)
 # output = translate(text_to_read,'ar')
 # st.text_area("TRANSLATED TEXT",output,height=200)
 
+def tts(text_to_ready, language):
+	aud_file = gTTS(text=text_to_read, lang=language, slow=False)
+	aud_file.save("lang.mp3")
+	audio_file_read = open('lang.mp3', 'rb')
+	audio_bytes = audio_file_read.read()
+	st.audio(audio_bytes, format='audio/mp3',
+
 def main():
 	st.sidebar.title("Select the Modality")
 	option = st.sidebar.selectbox(
@@ -380,19 +391,22 @@ def main():
 	# st.audio (tts_audio_file_path, format = "audio/mp3", autoplay = True)
 
 	if option == "Audio":
-		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
+		welcome_text = "Hi There, click on the voice recorder to interact with me, How can I assist you today?"
+		st.write (welcome_text)
+		tts(welcome_text,'en')
 		transcription = audio_processing()
 		# transcription= audio_to_text("audio.mp3")
 		# st.write("User:",query)
 		if transcription:
 			query = transcription.text
-			rag(query)
+			answer = rag(query)
+			tts(answer,'en')
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
 		query=st.text_input("Search the topic u want", placeholder="Enter your query here...")
 		# st.write("User:",query)
 		if query:
-			rag(query)
+			answer= rag(query)
 	else:
 		st.write("Select your mode of interaction Chat/Audio")
 	
