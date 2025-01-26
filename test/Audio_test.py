@@ -376,7 +376,7 @@ def main():
 		if transcription:
 			query = transcription.text
 			answer = rag(query)
-			tts(answer,'ar')
+			tts(answer,'en')
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
 		query=st.text_input("Search the topic u want", placeholder="Enter your query here...")
