@@ -1,8 +1,21 @@
 from streamlit_extras.stylable_container import stylable_container
 from audio_recorder_streamlit import audio_recorder
 import streamlit as st
+from gtts import gTTS
+
+
+def tts(text_to_read, language):
+	aud_file = gTTS(text=text_to_read, lang=language, slow=False,tld='co.in')
+	aud_file.save("lang.mp3")
+	audio_file_read = open('lang.mp3', 'rb')
+	audio_bytes = audio_file_read.read()
+	st.audio(audio_bytes, format='audio/mp3',autoplay=True)
+
+
 
 title = "ANCIENT GREEK Q&A CHATBOT"
+
+
 
 def example():
 	with stylable_container(
@@ -113,6 +126,7 @@ def example():
 			if option == "Audio": 
 				welcome_text = "Hi There, click on the voice recorder to interact with me, How can I assist you today?"
 				st.write (welcome_text)
+				tts(welcome_text,'en')
 				recorded_audio = audio_recorder()
 			elif option == "Chat":
 				query = st.text_input(
