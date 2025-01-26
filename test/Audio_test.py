@@ -290,11 +290,14 @@ def rag(input_text):
 		)
 		answer = completion.choices[0].message.content
 		# st.write("**BOT :** ", answer)
-		st.write(f"**User:** {input_text}")
-		st.write(f"**Bot:** {answer}")
+		write_function(f"<strong><u>User:</strong></u> {input_text}")
+		write_function(f"<strong><u>Bot:</strong></u> {answer}")
+		# st.write(f"**User:** {input_text}")
+		# st.write(f"**Bot:** {answer}")
 		# create_text_card(input_text, "USER:",answer, "BOT:")
 		# create_text_card(source_info, "Source Citation:")
-		st.write("**Source citation :** ",source_info)
+		write_function(f"<strong><u>*Source citation:</strong></u> {source_info}")
+		# st.write("**Source citation :** ",source_info)
 		# create_text_card("test", "test2")
 		# st.write("Prompt : ", prompt)
 	
