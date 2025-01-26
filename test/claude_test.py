@@ -121,7 +121,8 @@ def example():
 					label_visibility="collapsed",
 					placeholder="Type your message...",
 				)
-		return query
+				
+				return query
 
 
 query = example()
