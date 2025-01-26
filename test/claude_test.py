@@ -24,8 +24,8 @@ st.markdown(
 )
 
 # Fixed title
-st.markdown('<div class="fixed-title"><h1>Chatbot with Persistent History</h1></div>', unsafe_allow_html=True)
-st.markdown('<div class="fixed-title"><h3>Chat history</h3></div>', unsafe_allow_html=True)
+st.markdown('<div class="fixed-title"><h1>Chatbot with Persistent History</h1> <h3>Chat history</h3> </div>', unsafe_allow_html=True)
+
 # Main content area
 st.markdown('<div class="content">', unsafe_allow_html=True)
 
