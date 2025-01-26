@@ -2,6 +2,13 @@ from streamlit_extras.stylable_container import stylable_container
 from audio_recorder_streamlit import audio_recorder
 import streamlit as st
 from gtts import gTTS
+from audio_recorder_streamlit import audio_recorder
+import os
+from groq import Groq
+
+
+# Initialize the Groq client
+client = Groq(api_key=groq_api_key)
 
 
 def tts(text_to_read, language):
