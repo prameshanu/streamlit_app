@@ -24,7 +24,7 @@ def example():
         css_styles="""
             	{
                 position: fixed;
-                top: 20%; 
+                top: 10%; 
                 width: 80%;
                 left: 10%; 
                 right: 0;
@@ -54,7 +54,7 @@ def example():
         # Wrap the text input in a class to target it
 	
 		with st.container():
-			st.write("Audio testing")
+			st.write(f"""{title}""")
     
         # Wrap the text input in a class to target it
 		# w
