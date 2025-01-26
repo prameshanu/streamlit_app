@@ -61,7 +61,7 @@ def example():
             	""",
     	):
 		st.button("Green button")
-		st.button("Green button")
+
 
 ## Heading and option button
 	    
