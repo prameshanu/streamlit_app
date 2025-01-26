@@ -59,11 +59,11 @@ openai_api_key = st.secrets["OPENAI_API_KEY"]
 # except LookupError:
 #     nltk.download('wordnet')
 
-# try:
-#     # Check if 'punkt_tab' is available; download if not
-#     find('corpora/punkt_tab.zip')
-# except LookupError:
-#     nltk.download('punkt_tab')
+try:
+    # Check if 'punkt_tab' is available; download if not
+    find('corpora/punkt_tab.zip')
+except LookupError:
+    nltk.download('punkt_tab')
 
 
 
