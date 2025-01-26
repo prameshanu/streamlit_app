@@ -329,16 +329,24 @@ def audio_processing():
 
 
 
-
-
-
-
 def tts(text_to_read, language):
 	aud_file = gTTS(text=text_to_read, lang=language, slow=False,tld='co.in')
 	aud_file.save("lang.mp3")
 	audio_file_read = open('lang.mp3', 'rb')
 	audio_bytes = audio_file_read.read()
 	st.audio(audio_bytes, format='audio/mp3',autoplay=True)
+
+
+
+st.sidebar.title("Select the Modality")
+option = st.sidebar.selectbox(
+    "How would you like to be interact?",
+    ("Chat", "Audio"),
+	index=None,
+     placeholder="Select mode of communication..."
+)
+title = "ANCIENT GREEK Q&A CHATBOT"
+st.title (f""":blue[{title}] """)
 
 
 if "chat_history" not in st.session_state:
@@ -356,15 +364,6 @@ def add_to_history(user_query, bot_response):
 render_chat_history()
 
 def main():
-	st.sidebar.title("Select the Modality")
-	option = st.sidebar.selectbox(
-	    "How would you like to be interact?",
-	    ("Chat", "Audio"),
-		index=None,
-	     placeholder="Select mode of communication..."
-	)
-	title = "ANCIENT GREEK Q&A CHATBOT"
-	st.title (f""":blue[{title}] """)
 	# st.write(openai_api_key)
 	# generate_speech(title, tts_audio_file_path)
 	# st.audio (tts_audio_file_path, format = "audio/mp3", autoplay = True)
