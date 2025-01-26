@@ -8,6 +8,7 @@ st.markdown(
         position: fixed;
         top: 30px;
         width: 100%;
+        background-color: #ffffff;
         z-index: 100;
         padding: 10px 0;
         box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
