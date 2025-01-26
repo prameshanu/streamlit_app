@@ -6,7 +6,7 @@ st.markdown(
     <style>
     .fixed-title {
         position: fixed;
-        top: 0;
+        top: 20px;
         width: 100%;
         z-index: 100;
         padding: 10px 0;
@@ -14,7 +14,7 @@ st.markdown(
         text-align: center;
     }
     .content {
-        margin-top: 200px; /* Adjust this based on the title height */
+        margin-top: 80px; /* Adjust this based on the title height */
     }
     </style>
     """,
