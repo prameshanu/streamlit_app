@@ -34,18 +34,19 @@ def example():
             	}
         	""",
     	):
+		
         # Apply custom CSS for full-width input
-        st.markdown(
-		"""
-  		<style>
-    		.full-width-input .stTextInput > div > div {
-      			width: 100%; /* Slightly smaller width */
-	 		margin: 0 auto; /* Center it with equal margins on both sides */
-            		}
-            	</style>
-            	""",
-            	unsafe_allow_html=True,
-	)
+	        st.markdown(
+			"""
+	  		<style>
+	    		.full-width-input .stTextInput > div > div {
+	      			width: 100%; /* Slightly smaller width */
+		 		margin: 0 auto; /* Center it with equal margins on both sides */
+	            		}
+	            	</style>
+	            	""",
+	            	unsafe_allow_html=True,
+		)
     
         # Wrap the text input in a class to target it
         with st.container():
@@ -76,19 +77,20 @@ def example():
 		}
    		""",
     		):
+			
         # Apply custom CSS for full-width input
 	
-        	st.markdown(
-	            	"""
-	            	<style>
-	            	.full-width-input .stTextInput > div > div {
-	                width: 100%; /* Slightly smaller width */
-	                margin: 0 auto; /* Center it with equal margins on both sides */                
-            		}
-            		</style>
-            		""",
-			unsafe_allow_html=True,
-		)
+	        	st.markdown(
+		            	"""
+		            	<style>
+		            	.full-width-input .stTextInput > div > div {
+		                width: 100%; /* Slightly smaller width */
+		                margin: 0 auto; /* Center it with equal margins on both sides */                
+	            		}
+	            		</style>
+	            		""",
+				unsafe_allow_html=True,
+			)
     
         # Wrap the text input in a class to target it
 	
