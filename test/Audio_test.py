@@ -349,7 +349,7 @@ def tts(text_to_read, language):
 
 
 if "chat_history" not in st.session_state:
-    st.session_state["chat_history"] = []
+	st.session_state["chat_history"] = []
 
 def render_chat_history():
 	for chat in st.session_state["chat_history"]:
@@ -360,7 +360,7 @@ def render_chat_history():
 		# st.write(f"**Bot:** {bot_response}")
 
 def add_to_history(user_query, bot_response):
-    st.session_state["chat_history"].append((user_query, bot_response))
+	st.session_state["chat_history"].append((user_query, bot_response))
 
 render_chat_history()
 
@@ -507,7 +507,6 @@ def designing():
 
 values = np.array([])
 values = designing()
-# st.write("\n.........................................Dummy.........................................\n")
 if values is None:
 	write_function("Kindly select the mode of communication from above drop-down button")
 elif len(values) > 0 and values[1] == "":
