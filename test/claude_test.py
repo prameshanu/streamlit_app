@@ -161,6 +161,7 @@ def example():
 				transcription = audio_processing()
 				# transcription= audio_to_text("audio.mp3")
 				# st.write("User:",query)
+				query = ''
 				if transcription:
 					query = transcription.text
 			elif option == "Chat":
