@@ -58,6 +58,7 @@ with st.container():
         # Example bot response logic
         bot_response = f"Here is the answer to: {user_input}"  # Replace with actual response logic
         add_to_history(user_input, bot_response)
-        st.experimental_rerun()  # Refresh the app to show updated chat history
+        st.stop()
+        # st.experimental_rerun()  # Refresh the app to show updated chat history
 
 st.markdown('</div>', unsafe_allow_html=True)
