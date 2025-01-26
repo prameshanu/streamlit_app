@@ -367,7 +367,7 @@ def audio_processing():
 # output = translate(text_to_read,'ar')
 # st.text_area("TRANSLATED TEXT",output,height=200)
 
-def tts(text_to_ready, language):
+def tts(text_to_read, language):
 	aud_file = gTTS(text=text_to_read, lang=language, slow=False)
 	aud_file.save("lang.mp3")
 	audio_file_read = open('lang.mp3', 'rb')
