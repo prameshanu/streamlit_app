@@ -206,7 +206,7 @@ values = np.array([])
 values = example()
 # st.write("\n.........................................Dummy.........................................\n")
 if values is None:
-	st.write("test0 successful")
+	st.write("Kindly select the mode of communication")
 elif len(values) > 0 and values[1] == "":
 	st.write("Please write below your query")
 else:
