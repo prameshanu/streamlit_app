@@ -54,12 +54,13 @@ def example():
 		key="green_button",
 		css_styles="""
   		button {
-                background-color: green;
+                /* background-color: green; */
                 color: white;
                 border-radius: 20px;
             	}
             	""",
     	):
+		st.button("Green button")
 		st.button("Green button")
 
 ## Heading and option button
