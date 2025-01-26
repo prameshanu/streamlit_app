@@ -183,7 +183,7 @@ def example():
 
 # values = []
 values = example()
-if values[1].isnotnull():	
+if values[1]:	
 	query = values[1]
 	st.write("Test")
 	st.write(f"**User:** {query}")
