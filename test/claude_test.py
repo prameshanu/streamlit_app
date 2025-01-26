@@ -9,7 +9,8 @@ st.markdown(
         position: fixed;
         bottom: 0;
         left: 100px;
-        width: 100%;
+        width: calc(100% + var(--sidebar-width));
+        /* width: 100%; */
         /* background-color: white; */
         padding: 10px 20px;
         box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
