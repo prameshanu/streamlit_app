@@ -186,7 +186,7 @@ def example():
 # values = []
 values = np.array([])
 values = example()
-st.write("      ")
+st.write("                     .       ")
 if values is None:
 	st.write("test0 successful")
 elif len(values) > 0 and values[1] == "":
