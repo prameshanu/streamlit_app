@@ -194,6 +194,7 @@ if values is None:
 elif len(values) == 1:
 	st.write("test2 success")
 else:
+	st.write(len(values))
 	st.write("non success")
 # st.write(len(values))
 # if len(values) == 0:
