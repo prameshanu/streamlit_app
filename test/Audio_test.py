@@ -308,38 +308,38 @@ def rag(input_text):
 client = Groq(api_key=groq_api_key)
 client_openai = OpenAI(api_key = openai_api_key)
 	    
-# def audio_processing():
-# 	recorded_audio = audio_recorder()
-# 	if recorded_audio:
-# 		audio_file = "audio.mp3"
-# 		with open(audio_file , "wb") as f:
-# 			f.write(recorded_audio)
-# 		with open(audio_file, "rb") as file:
-# 		# Create a transcription of the audio file
-# 			transcription = client.audio.transcriptions.create(
-# 			file=(audio_file, file.read()), # Required audio file
-# 			model="whisper-large-v3-turbo", # Required model to use for transcription
-# 			prompt="Specify context or spelling",  # Optional
-# 			response_format="json",  # Optional
-# 			language="en",  # Optional
-# 			temperature=0.0  # Optional
-# 			)
-# 		return transcription
-
-
 def audio_processing():
 	recorded_audio = audio_recorder()
 	if recorded_audio:
 		audio_file = "audio.mp3"
-		transcription = client.audio.transcriptions.create(
-		file=(audio_file, file.read()), # Required audio file
-		model="whisper-large-v3-turbo", # Required model to use for transcription
-		prompt="Specify context or spelling",  # Optional
-		response_format="json",  # Optional
-		language="en",  # Optional
-		temperature=0.0  # Optional
-		)
-	return transcription
+		with open(audio_file , "wb") as f:
+			f.write(recorded_audio)
+		with open(audio_file, "rb") as file:
+		# Create a transcription of the audio file
+			transcription = client.audio.transcriptions.create(
+			file=(audio_file, file.read()), # Required audio file
+			model="whisper-large-v3-turbo", # Required model to use for transcription
+			prompt="Specify context or spelling",  # Optional
+			response_format="json",  # Optional
+			language="en",  # Optional
+			temperature=0.0  # Optional
+			)
+		return transcription
+
+
+# def audio_processing():
+# 	recorded_audio = audio_recorder()
+# 	if recorded_audio:
+# 		audio_file = "audio.mp3"
+# 		transcription = client.audio.transcriptions.create(
+# 		file=(audio_file, file.read()), # Required audio file
+# 		model="whisper-large-v3-turbo", # Required model to use for transcription
+# 		prompt="Specify context or spelling",  # Optional
+# 		response_format="json",  # Optional
+# 		language="en",  # Optional
+# 		temperature=0.0  # Optional
+# 		)
+# 	return transcription
 
 # def generate_speech(text_input, output_path):
 # 	response = client_openai.audio.speech.create(
