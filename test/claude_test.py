@@ -7,6 +7,7 @@ st.markdown(
     .fixed-title {
         position: fixed;
         top: 30px;
+        left = 50px;
         width: 100%;
         background-color: #ffffff;
         z-index: 100;
