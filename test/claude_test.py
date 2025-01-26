@@ -183,7 +183,7 @@ def example():
 
 # values = []
 values = example()
-st.write(values[0])
+st.write(values)
 # if len(values) == 0:
 # 	st.write("Enter modality")
 # elif values[1]:	
