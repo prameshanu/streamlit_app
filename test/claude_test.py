@@ -12,7 +12,7 @@ st.markdown(
         background-color: #ffffff;
         z-index: 100;
         padding: 10px 0;
-        box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
         text-align: left;
     }
     .content {
