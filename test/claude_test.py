@@ -9,7 +9,7 @@ st.markdown(
         top: 20px;
         width: 100%;
         z-index: 100;
-        padding: 5px 0;
+        padding: 10px 0;
         box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
         text-align: left;
     }
