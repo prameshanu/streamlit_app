@@ -10,7 +10,7 @@ st.markdown(
         bottom: 0;
         left: 0;
         width: 100%;
-        background-color: white;
+        /* background-color: white; */
         padding: 10px 20px;
         box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
         z-index: 1000;
