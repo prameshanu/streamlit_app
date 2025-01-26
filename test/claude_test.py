@@ -64,7 +64,7 @@ def example():
 		st.button("Green button")
 
 	with stylable_container(
-		key="green_button",
+		key="green_button2",
 		css_styles="""
   		button {
                 /* background-color: green; */
