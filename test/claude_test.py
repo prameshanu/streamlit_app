@@ -14,7 +14,7 @@ st.markdown(
         text-align: center;
     }
     .content {
-        margin-top: 70px; /* Adjust this based on the title height */
+        margin-top: 200px; /* Adjust this based on the title height */
     }
     </style>
     """,
