@@ -55,6 +55,7 @@ def example():
 	
 		with st.container():
 			st.write(f"""{title}""")
+			st.title(f"""{title}""")
     
         # Wrap the text input in a class to target it
 		# w
