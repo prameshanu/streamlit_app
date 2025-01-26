@@ -344,6 +344,9 @@ audio_file_read = open('lang.mp3', 'rb')
 audio_bytes = audio_file_read.read()
 st.audio(audio_bytes, format='audio/mp3')
 
+output = translate(text_to_read,'ar')
+st.text_area("TRANSLATED TEXT",output,height=200)
+
 def main():
 	st.sidebar.title("Select the Modality")
 	option = st.sidebar.selectbox(
