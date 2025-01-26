@@ -25,32 +25,35 @@ def example():
                 left: 0;
                 right: 0;
                 border: 1px solid rgba(49, 51, 63, 0.2);
-                border-radius: 0.5rem;
-                padding: calc(1em - 1px);
-                background-color: white; /* Optional: Set a background color to make it visible */
-                z-index: 100; /* Optional: Ensure it stays above other elements */
+                border-radius: 0.5rem 0.5rem 0 0;
+                padding: 1em;
+                background-color: white;
+                z-index: 100;
             }
-            """,
+        """,
     ):
-
-
-    # with stylable_container(
-    #     key="container_with_border",
-    #     css_styles="""
-    #         {
-    #             top: 100px;
-    #             border: 1px solid rgba(49, 51, 63, 0.2);
-    #             border-radius: 0.5rem;
-    #             padding: calc(1em - 1px)
-    #         }
-    #         """,
-    # ):
-        st.text_input(
-        "Type your message here:",  # Placeholder text for the input box
-        key="user_input",          # Unique key to reference the input
-        label_visibility="collapsed",  # Hides the label for a cleaner look
+        # Apply custom CSS for full-width input
+        st.markdown(
+            """
+            <style>
+            .full-width-input .stTextInput > div > div {
+                width: 100%; /* Ensure the input spans the full container */
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
         )
-        # st.markdown("This is a container with a border.")
+    
+        # Wrap the text input in a class to target it
+        with st.container():
+            st.text_input(
+                "Type your message here:",
+                key="user_input",
+                label_visibility="collapsed",
+                placeholder="Type your message...",
+            )
+
+
 
 
 example()
