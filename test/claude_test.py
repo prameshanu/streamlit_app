@@ -56,6 +56,7 @@ def example():
   		button {
                 /* background-color: green; */
                 color: white;
+		border: none;  
                 border-radius: 0;
             	}
             	""",
