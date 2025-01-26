@@ -1,5 +1,3 @@
-
-
 import streamlit as st
 
 # Add custom CSS to make the input field sticky
@@ -45,8 +43,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Read user input from the URL query parameter (if needed)
-# user_query = st.experimental_get_query_params().get("user_input", [""])[0]
+# Read user input from the URL query parameter (using st.query_params)
 user_query = st.query_params.get("user_input", "")
 
 # Display the query if submitted
