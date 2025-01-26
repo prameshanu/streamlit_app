@@ -182,7 +182,8 @@ def example():
 				# return query,option
 
 
-query,option = example()
+values = example()
+query = values[1]
 st.write("Test")
 st.write(f"**User:** {query}")
-st.write(option)
+st.write(values)
