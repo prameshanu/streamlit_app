@@ -203,7 +203,7 @@ def example():
 # st.button("")
 text = "this is beta testing"
 def write_function(text):
-	st.markdown(f"""<p style="text-align:left; margin: 20px;">{Text}</p>""", unsafe_allow_html=True)
+	st.markdown(f"""<p style="text-align:left; margin: 20px;">{text}</p>""", unsafe_allow_html=True)
 
 
 values = np.array([])
