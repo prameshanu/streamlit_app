@@ -1,27 +1,53 @@
 import streamlit as st
 
+# Inject custom CSS to make the title fixed
+st.markdown(
+    """
+    <style>
+    .fixed-title {
+        position: fixed;
+        top: 40px;
+        left = 50px;
+        width: 100%;
+        background-color: #ffffff;
+        z-index: 100;
+        padding: 10px 0;
+        box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
+        text-align: left;
+    }
+    .content {
+        margin-top: 60px; /* Adjust this based on the title height */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Fixed title
+st.markdown('<div class="fixed-title"><h1>Chatbot with Persistent History</h1></div>', unsafe_allow_html=True)
+
+# Main content area
+st.markdown('<div class="content">', unsafe_allow_html=True)
+
+st.sidebar.title("Select the Modality")
 # Initialize session state for chat history if not already present
 if "chat_history" not in st.session_state:
     st.session_state["chat_history"] = []
 
-# Function to render chat history in the sidebar
+# Function to render chat history
 def render_chat_history():
-    # Display chat history as selectable options in the sidebar
-    if st.session_state["chat_history"]:
-        chat_choices = [f"Conversation {i+1}" for i in range(len(st.session_state["chat_history"]))]
-        selected_chat_index = st.sidebar.selectbox("Select a conversation", chat_choices)
-
-        # Get the selected chat history based on the index
-        selected_chat = st.session_state["chat_history"][chat_choices.index(selected_chat_index)]
-        return selected_chat
-    return None
+    for chat in st.session_state["chat_history"]:
+        user_query, bot_response = chat
+        st.write(f"**User:** {user_query}")
+        st.write(f"**Bot:** {bot_response}")
 
 # Function to add a message to the chat history
 def add_to_history(user_query, bot_response):
     st.session_state["chat_history"].append((user_query, bot_response))
 
-# Render title in the main area
-st.title("Chatbot with Persistent History")
+# Render chat history
+st.subheader("Chat History")
+render_chat_history()
 
 # Place the input bar at the bottom
 with st.container():
@@ -33,12 +59,9 @@ with st.container():
         # Example bot response logic
         bot_response = f"Here is the answer to: {user_input}"  # Replace with actual response logic
         add_to_history(user_input, bot_response)
-
-# Render chat history in the sidebar and select the conversation
-selected_chat = render_chat_history()
-
-# Display selected chat in the main area
-if selected_chat:
-    for user_query, bot_response in selected_chat:
-        st.write(f"**User:** {user_query}")
+        st.write(f"**User:** {user_input}")
         st.write(f"**Bot:** {bot_response}")
+        st.stop()
+        # st.experimental_rerun()  # Refresh the app to show updated chat history
+
+st.markdown('</div>', unsafe_allow_html=True)
