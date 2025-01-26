@@ -61,10 +61,7 @@ def example():
             	}
             	""",
     	):
-		with st.container():
-			st.button("Green button")
-			st.button("Green button")
-
+		st.button("Green button")
 
 ## Heading and option button
 	    
