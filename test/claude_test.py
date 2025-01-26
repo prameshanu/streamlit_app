@@ -3,6 +3,7 @@ from audio_recorder_streamlit import audio_recorder
 import streamlit as st
 
 title = "ANCIENT GREEK Q&A CHATBOT"
+option = "Audio"
 def example():
 	with stylable_container(
 		key="green_button",
