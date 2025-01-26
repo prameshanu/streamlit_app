@@ -506,12 +506,12 @@ elif len(values) > 0 and values[1] == "":
 	write_function("Please write below your query")
 else:
 	if values[0]== "Audio":
-		query = value[1]
+		query = values[1]
 		answer = rag(query)
 		add_to_history(query, answer)
 		tts(answer,'en')
 	else:
-		query = value[1]
+		query = values[1]
 		answer= rag(query)
 		add_to_history(query, answer)
 	
