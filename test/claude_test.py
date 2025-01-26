@@ -51,7 +51,7 @@ def example():
     
         # Wrap the text input in a class to target it
 	        with st.container():
-			st.title (f""":blue[{title}] """)
+			st.title(f""":blue[{title}] """)
 			option = st.selectbox(
 				"How would you like to be interact?",
 				("Chat", "Audio"),
