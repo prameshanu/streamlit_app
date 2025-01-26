@@ -166,7 +166,7 @@ def example():
 					query = transcription.text
 				else:
 					query = 'No recorded voice'
-				values = np.array[option, query]
+				values = np.array([option, query])
 				return values
 			elif option == "Chat":
 				query = st.text_input(
@@ -175,12 +175,12 @@ def example():
 					label_visibility="collapsed",
 					placeholder="Type your message...",
 				)
-				values = np.array[option, query]
+				values = np.array([option, query])
 				return values
 				# return query,option
 
 
-values = []
+# values = []
 values = example()
 query = values[1]
 st.write("Test")
