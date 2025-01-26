@@ -345,7 +345,7 @@ aud_file = gTTS(text=text_to_read, lang="ar", slow=False)
 aud_file.save("lang.mp3")
 audio_file_read = open('lang.mp3', 'rb')
 audio_bytes = audio_file_read.read()
-st.audio(audio_bytes, format='audio/mp3',autoplay=False)
+st.audio(audio_bytes, format='audio/mp3',autoplay=True)
 
 # output = translate(text_to_read,'ar')
 # st.text_area("TRANSLATED TEXT",output,height=200)
