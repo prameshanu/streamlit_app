@@ -2,6 +2,7 @@ from streamlit_extras.stylable_container import stylable_container
 from audio_recorder_streamlit import audio_recorder
 import streamlit as st
 
+title = "ANCIENT GREEK Q&A CHATBOT"
 def example():
 	with stylable_container(
 		key="green_button",
@@ -50,7 +51,6 @@ def example():
     
         # Wrap the text input in a class to target it
 	        with st.container():
-			title = "ANCIENT GREEK Q&A CHATBOT"
 			st.title (f""":blue[{title}] """)
 			option = st.selectbox(
 				"How would you like to be interact?",
