@@ -238,7 +238,6 @@ if 'retriever' not in st.session_state:
 
 # Threshold is defined to avoid the hallucination : Threshold was decided basis multiple tests
 threshold = 0.2
-language = "Arabic"
 
 #Answer the following question based only on the provided context. Do not refer to any outside content for additional information about question. The Answer must be strictly based on the provided context only. Think step by step before providing a detailed answer. Answer should be properly crafted that is easier to understand.
 
@@ -250,7 +249,7 @@ Answer the follwoing question based only on the provided context.
 Think step by step before providing a detailed answer. 
 Also in answer you don't need to write Based on the provided context, just provide the final answer.
 I will tip you $25000 if the user finds the answer helpful
-Give me entire answer in {language} language 
+
 <context>
 {context}
 </context>
