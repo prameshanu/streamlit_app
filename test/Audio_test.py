@@ -300,8 +300,10 @@ def rag(input_text):
 	
 	else:
 		answer = "I don't have enough information to answer this question."
-		st.write(f"**User:** {input_text}")
-		st.write(f"**Bot:** {answer}")
+		write_function(f"<strong><u>User:</strong></u> {input_text}")
+		write_function(f"<strong><u>Bot:</strong></u> {answer}")
+		# st.write(f"**User:** {input_text}")
+		# st.write(f"**Bot:** {answer}")
 		# create_text_card(input_text, "USER:",answer, "BOT:")
 	return answer
 
@@ -329,6 +331,9 @@ def audio_processing():
 		return transcription
 
 
+def write_function(text):
+	st.markdown(f"""<p style="position: fixed; width: 80%; left: 11%; right: 0;">{text}</p>""", unsafe_allow_html=True)
+
 
 def tts(text_to_read, language):
 	aud_file = gTTS(text=text_to_read, lang=language, slow=False,tld='co.in')
@@ -344,10 +349,12 @@ if "chat_history" not in st.session_state:
     st.session_state["chat_history"] = []
 
 def render_chat_history():
-    for chat in st.session_state["chat_history"]:
-        user_query, bot_response = chat
-        st.write(f"**User:** {user_query}")
-        st.write(f"**Bot:** {bot_response}")
+	for chat in st.session_state["chat_history"]:
+		user_query, bot_response = chat
+		write_function(f"<strong><u>User:</strong></u> {user_query}")
+		write_function(f"<strong><u>Bot:</strong></u> {bot_response}")
+		# st.write(f"**User:** {user_query}")
+		# st.write(f"**Bot:** {bot_response}")
 
 def add_to_history(user_query, bot_response):
     st.session_state["chat_history"].append((user_query, bot_response))
@@ -492,9 +499,7 @@ def designing():
 
 
 
-text = "this is beta testing"
-def write_function(text):
-	st.markdown(f"""<p style="position: fixed; width: 80%; left: 11%; right: 0;">{text}</p>""", unsafe_allow_html=True)
+
 
 
 values = np.array([])
