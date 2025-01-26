@@ -196,6 +196,7 @@ elif len(values) == 1:
 else:
 	st.write(len(values))
 	st.write("non success")
+	st.write(values[1])
 # st.write(len(values))
 # if len(values) == 0:
 # 	st.write("Enter modality")
