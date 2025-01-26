@@ -5,6 +5,7 @@ from gtts import gTTS
 from audio_recorder_streamlit import audio_recorder
 import os
 from groq import Groq
+import numpy as np
 
 
 groq_api_key = st.secrets["GROC_API_KEY"]
