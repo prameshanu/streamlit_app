@@ -62,7 +62,7 @@ def example():
     	):
 		st.button("Green button")
 
-
+st.button("")
 ## Heading and option button
 	    
 	with stylable_container(
