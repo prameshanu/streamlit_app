@@ -61,7 +61,7 @@ def example():
             	}
             	""",
     	):
-		st.button("Green button")
+		st.button("Dummy button")
 
 	with stylable_container(
 		key="green_button2",
@@ -74,7 +74,7 @@ def example():
             	}
             	""",
     	):
-		st.button("Green button")
+		st.button("Dummy button")
 ## Heading and option button
 	    
 	with stylable_container(
@@ -200,7 +200,7 @@ def example():
 
 
 
-st.button("")
+# st.button("")
 
 values = np.array([])
 values = example()
