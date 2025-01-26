@@ -110,8 +110,9 @@ def example():
         # Wrap the text input in a class to target it
 	
 		with st.container():
-			if option == "Audio":
-				st.write("Audio testing") 
+			if option == "Audio": 
+				welcome_text = "Hi There, click on the voice recorder to interact with me, How can I assist you today?"
+				st.write (welcome_text)
 				recorded_audio = audio_recorder()
 			elif option == "Chat":
 				st.text_input(
