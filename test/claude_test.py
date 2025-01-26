@@ -1,5 +1,5 @@
 from streamlit_extras.stylable_container import stylable_container
-from streamlit as st
+import streamlit as st
 def example():
     with stylable_container(
         key="green_button",
