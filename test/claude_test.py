@@ -21,9 +21,9 @@ def example():
         css_styles="""
             {
                 position: fixed;
-                bottom: 0; 
+                bottom: 5%; 
                 width: 80%;
-                left: 0; 
+                left: 10%; 
                 right: 0;
                 border: 1px solid rgba(49, 51, 63, 0.2);
                 border-radius: 0.5rem 0.5rem 0 0;
