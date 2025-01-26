@@ -61,7 +61,9 @@ def example():
             	}
             	""",
     	):
-		st.button("Green button")
+		with st.container():
+			st.button("Green button")
+			st.button("Green button")
 
 
 ## Heading and option button
@@ -186,10 +188,10 @@ def example():
 
 
 # values = []
-st.button("")
+# st.button("")
 values = np.array([])
 values = example()
-st.write("\n.........................................Dummy.........................................\n")
+# st.write("\n.........................................Dummy.........................................\n")
 if values is None:
 	st.write("test0 successful")
 elif len(values) > 0 and values[1] == "":
