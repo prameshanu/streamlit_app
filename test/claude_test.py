@@ -214,7 +214,7 @@ if values is None:
 elif len(values) > 0 and values[1] == "":
 	write_function("Please write below your query")
 else:
-	write_function(f"<strong>User:</strong> {values[1]}")
+	write_function(f"<strong><u>User:</strong></u> {values[1]}")
 	# st.write(f"<b>User:</b> {values[1]}")
 # st.write(len(values))
 # if len(values) == 0:
