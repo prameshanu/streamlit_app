@@ -9,8 +9,8 @@ st.markdown(
         position: fixed;
         bottom: 0;
         left: 100px;
-        width: calc(100% + var(--sidebar-width));
-        /* width: 100%; */
+        
+        width: 100%; 
         /* background-color: white; */
         padding: 10px 20px;
         box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
@@ -22,7 +22,8 @@ st.markdown(
     /* Center-aligned flexible input box */
     .footer-container input {
         width: 400%; /* Flexible width */
-        max-width: 800px; /* Optional: cap the max width */
+        /* max-width: 800px;  Optional: cap the max width */
+        width: calc(100% + var(--sidebar-width));
         padding: 10px;
         border: 1px solid #ddd;
         border-radius: 5px;
