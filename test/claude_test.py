@@ -64,7 +64,7 @@ def example():
 		st.button("Dummy button")
 
 	with stylable_container(
-		key="green_button2",
+		key="green_button_a",
 		css_styles="""
   		button {
                 /* background-color: green; */
@@ -74,7 +74,7 @@ def example():
             	}
             	""",
     	):
-		st.button("Dummy button")
+		st.button("Dummy button2")
 ## Heading and option button
 	    
 	with stylable_container(
