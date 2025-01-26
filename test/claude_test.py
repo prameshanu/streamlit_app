@@ -183,7 +183,9 @@ def example():
 
 # values = []
 values = example()
-if values[1]:	
+if len(values) == 0:
+	st.write("Enter modality")
+elif values[1]:	
 	query = values[1]
 	st.write("Test")
 	st.write(f"**User:** {query}")
