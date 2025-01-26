@@ -24,7 +24,7 @@ def example():
         css_styles="""
             	{
                 position: fixed;
-                top: 10%; 
+                top: 5%; 
                 width: 80%;
                 left: 10%; 
                 right: 0;
