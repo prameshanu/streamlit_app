@@ -17,3 +17,4 @@ pandas
 anthropic
 huggingface_hub
 openai
+gtts
