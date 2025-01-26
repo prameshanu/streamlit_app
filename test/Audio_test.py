@@ -31,6 +31,8 @@ from nltk.stem import WordNetLemmatizer
 from nltk.data import find
 from pathlib import Path
 from openai import OpenAI
+from gtts import gTTS
+import base64
 
 groq_api_key = st.secrets["GROC_API_KEY"]
 pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
@@ -333,8 +335,16 @@ def generate_speech(text_input, output_path):
 	with open(output_path, wb) as file:
 		for chunk in response.iter_bytes():
 			file.write(chunk)
-	
-tts_audio_file_path = 'answer.mp3'
+
+# tts_audio_file_path = 'answer.mp3'
+
+text_to_read = "My name is Pramesh Anuragi and I am testing Text to speech"
+aud_file = gTTS(text=text_to_read, lang="en", slow=False)
+aud_file.save("lang.mp3")
+audio_file_read = open('lang.mp3', 'rb')
+audio_bytes = audio_file_read.read()
+st.audio(audio_bytes, format='audio/mp3')
+
 def main():
 	st.sidebar.title("Select the Modality")
 	option = st.sidebar.selectbox(
@@ -346,8 +356,8 @@ def main():
 	title = "ANCIENT GREEK Q&A CHATBOT"
 	st.title (f""":blue[{title}] """)
 	st.write(openai_api_key)
-	generate_speech(title, tts_audio_file_path)
-	st.audio (tts_audio_file_path, format = "audio/mp3", autoplay = True)
+	# generate_speech(title, tts_audio_file_path)
+	# st.audio (tts_audio_file_path, format = "audio/mp3", autoplay = True)
 
 	if option == "Audio":
 		st.write ("Hi There, click on the voice recorder to interact with me, How can I assist you today?")
