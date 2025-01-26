@@ -189,7 +189,7 @@ values = example()
 st.write("Test")
 st.write("Test")
 st.write(values)
-if len(values) == 0:
+if values is None:
 	st.write("test0 successful")
 elif len(values) == 1:
 	st.write("test2 success")
