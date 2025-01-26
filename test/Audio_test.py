@@ -375,7 +375,7 @@ def main():
 		if transcription:
 			query = transcription.text
 			answer = rag(query)
-			add_to_history(user_input, bot_response)
+			add_to_history(query, answer)
 			tts(answer,'en')
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
@@ -385,7 +385,7 @@ def main():
 			# query=st.text_input("Search the topic u want", placeholder="Enter your query here...")
 			if query:
 				answer= rag(query)
-				add_to_history(user_input, bot_response)
+				add_to_history(query, answer)
 	else:
 		st.write("Select your mode of interaction Chat/Audio")
 	
