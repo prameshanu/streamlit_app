@@ -187,7 +187,7 @@ def example():
 values = np.array([])
 values = example()
 st.write(values)
-# st.write(isnull(values))
+st.write(len(values))
 # if len(values) == 0:
 # 	st.write("Enter modality")
 # elif values[1]:	
