@@ -160,7 +160,7 @@ def example():
 				tts(welcome_text,'en')
 				transcription = audio_processing()
 				# transcription= audio_to_text("audio.mp3")
-				# st.write("User:",query)
+				st.write("User:",transcription.text)
 				
 				if transcription:
 					query = transcription.text
