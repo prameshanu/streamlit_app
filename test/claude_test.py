@@ -2,6 +2,7 @@ from streamlit_extras.stylable_container import stylable_container
 from audio_recorder_streamlit import audio_recorder
 import streamlit as st
 
+title = "ANCIENT GREEK Q&A CHATBOT"
 
 def example():
 	with stylable_container(
