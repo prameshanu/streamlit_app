@@ -16,3 +16,4 @@ python-dotenv
 pandas
 anthropic
 huggingface_hub
+openai
