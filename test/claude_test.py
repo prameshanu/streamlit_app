@@ -59,7 +59,7 @@ with st.container():
         # Example bot response logic
         bot_response = f"Here is the answer to: {user_input}"  # Replace with actual response logic
         add_to_history(user_input, bot_response)
-        st.write(f"**User:** {user_query}")
+        st.write(f"**User:** {user_input}")
         st.write(f"**Bot:** {bot_response}")
         st.stop()
         # st.experimental_rerun()  # Refresh the app to show updated chat history
