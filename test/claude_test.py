@@ -115,12 +115,14 @@ def example():
 				st.write (welcome_text)
 				recorded_audio = audio_recorder()
 			elif option == "Chat":
-				st.text_input(
+				query = st.text_input(
 					"Type your message here:",
 					key="user_input",
 					label_visibility="collapsed",
 					placeholder="Type your message...",
 				)
+		return query
 
 
-example()
+query = example()
+st.write(query)
