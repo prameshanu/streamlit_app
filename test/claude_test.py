@@ -29,6 +29,7 @@ st.markdown('<div class="fixed-title"><h1>Chatbot with Persistent History</h1></
 # Main content area
 st.markdown('<div class="content">', unsafe_allow_html=True)
 
+st.sidebar.title("Select the Modality")
 # Initialize session state for chat history if not already present
 if "chat_history" not in st.session_state:
     st.session_state["chat_history"] = []
