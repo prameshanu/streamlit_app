@@ -152,7 +152,7 @@ def example():
 		)
     
         # Wrap the text input in a class to target it
-		values = []
+		
 		with st.container():
 			if option == "Audio": 
 				welcome_text = "Hi There, click on the voice recorder to interact with me, How can I assist you today?"
@@ -166,8 +166,7 @@ def example():
 					query = transcription.text
 				else:
 					query = 'No recorded voice'
-				values = option
-				values.append = query
+				values = np.array[option, query]
 				return values
 			elif option == "Chat":
 				query = st.text_input(
@@ -176,8 +175,7 @@ def example():
 					label_visibility="collapsed",
 					placeholder="Type your message...",
 				)
-				values = option
-				values.append = query
+				values = np.array[option, query]
 				return values
 				# return query,option
 
