@@ -187,15 +187,11 @@ def example():
 values = np.array([])
 values = example()
 st.write("Test")
-st.write("Test")
-st.write(values)
 if values is None:
 	st.write("test0 successful")
 elif len(values) > 0 and values[1] == "":
-	st.write("test2 success")
+	st.write("Please write below your query")
 else:
-	st.write(len(values))
-	st.write("non success")
 	st.write(values[1])
 # st.write(len(values))
 # if len(values) == 0:
