@@ -366,7 +366,7 @@ def main():
 		st.write("Wecome to text chatbot")
 		with st.container():
 			st.subheader("Your Input")
-			query = = st.text_input("Ask me anything:", key="user_input", on_change=None)
+			query =st.text_input("Ask me anything:", key="user_input", on_change=None)
 			# query=st.text_input("Search the topic u want", placeholder="Enter your query here...")
 			if query:
 				answer= rag(query)
