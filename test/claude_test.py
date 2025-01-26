@@ -191,7 +191,7 @@ st.write("Test")
 st.write(values)
 if values is None:
 	st.write("test0 successful")
-elif len(values) > 0 and values[1] is None:
+elif len(values) > 0 and values[1] is null:
 	st.write("test2 success")
 else:
 	st.write(len(values))
