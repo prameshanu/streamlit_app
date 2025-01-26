@@ -185,12 +185,6 @@ def create_text_card(text1, title1, text2, title2):
     st.components.v1.html(card_html, height=300, scrolling=True)
 
 
-
-
-
-
-
-
 index_name = "hybrid-search-langchain-pinecone"
 
 
