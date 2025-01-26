@@ -175,8 +175,8 @@ def create_text_card(text1, title1, text2, title2):
     <div class="card">
         <div class="container">
 	    <b><u>{title1}</b></u>{text1}
-	    <h4><b>{title2}</b></h4>
-            <p>{text2}</p>
+     	    <b><u>{title2}</b></u>{text2}
+
         </div>
     </div>
     """
