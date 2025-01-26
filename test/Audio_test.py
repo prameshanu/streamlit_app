@@ -290,8 +290,8 @@ def rag(input_text):
 		)
 		answer = completion.choices[0].message.content
 		# st.write("**BOT :** ", answer)
-		write_function(f"<strong><u>User:</strong></u> {input_text}")
-		write_function(f"<strong><u>Bot:</strong></u> {answer}")
+		write_function(f"""<strong><u>User:</strong></u> {input_text} <\n> <strong><u>Bot:</strong></u> {answer}""")
+		# write_function(f"<strong><u>Bot:</strong></u> {answer}")
 		# st.write(f"**User:** {input_text}")
 		# st.write(f"**Bot:** {answer}")
 		# create_text_card(input_text, "USER:",answer, "BOT:")
