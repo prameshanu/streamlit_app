@@ -11,7 +11,7 @@ st.markdown(
         z-index: 100;
         padding: 10px 0;
         box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-        text-align: center;
+        text-align: left;
     }
     .content {
         margin-top: 80px; /* Adjust this based on the title height */
