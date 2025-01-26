@@ -8,8 +8,8 @@ st.markdown(
     .footer-container {
         position: fixed;
         bottom: 0;
-        left: 300px;
-        width: 100%; 
+        left: 350px;
+        width: 200%; 
         /* background-color: white; */
         padding: 10px 20px;
         box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
