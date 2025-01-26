@@ -183,7 +183,8 @@ def example():
 
 # values = []
 values = example()
-query = values[1]
-st.write("Test")
-st.write(f"**User:** {query}")
-st.write(values[0])
+if values:	
+	query = values[1]
+	st.write("Test")
+	st.write(f"**User:** {query}")
+	st.write(values[0])
