@@ -324,7 +324,6 @@ def audio_processing():
 		return transcription
 
 
-filename = os.path.dirname(__file__) + "/sample_audio.m4a" # Replace with your audio file!
 
 
 
@@ -365,10 +364,10 @@ def main():
 			tts(answer,'en')
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
-		query=st.text_input("Search the topic u want", placeholder="Enter your query here...")
-		# st.write("User:",query)
-		if query:
-			answer= rag(query)
+		with st.container():
+			query=st.text_input("Search the topic u want", placeholder="Enter your query here...")
+			if query:
+				answer= rag(query)
 	else:
 		st.write("Select your mode of interaction Chat/Audio")
 	
