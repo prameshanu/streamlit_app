@@ -54,16 +54,7 @@ def example():
         # Wrap the text input in a class to target it
 	
 		with st.container():
-			if option == "Audio":
-				st.write("Audio testing") 
-			elif option == "Chat":
-				st.text_input(
-					"Type your message here:",
-					key="user_input",
-					label_visibility="collapsed",
-					placeholder="Type your message...",
-				)
-		
+			st.write("Audio testing")
     
         # Wrap the text input in a class to target it
 		# w
