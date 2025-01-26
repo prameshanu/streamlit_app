@@ -255,6 +255,7 @@ Answer the follwoing question based only on the provided context.
 Think step by step before providing a detailed answer. 
 Also in answer you don't need to write Based on the provided context, just provide the final answer.
 I will tip you $25000 if the user finds the answer helpful
+Translate the answer in Arabic language
 <context>
 {context}
 </context>
@@ -310,8 +311,7 @@ def rag(input_text):
 
 # Initialize the Groq client
 client = Groq(api_key=groq_api_key)
-client_openai = OpenAI(api_key = openai_api_key)
-	    
+
 def audio_processing():
 	recorded_audio = audio_recorder()
 	if recorded_audio:
@@ -331,41 +331,11 @@ def audio_processing():
 		return transcription
 
 
-# def audio_processing():
-# 	recorded_audio = audio_recorder()
-# 	if recorded_audio:
-# 		audio_file = "audio.mp3"
-# 		transcription = client.audio.transcriptions.create(
-# 		file=(audio_file, file.read()), # Required audio file
-# 		model="whisper-large-v3-turbo", # Required model to use for transcription
-# 		prompt="Specify context or spelling",  # Optional
-# 		response_format="json",  # Optional
-# 		language="en",  # Optional
-# 		temperature=0.0  # Optional
-# 		)
-# 	return transcription
+filename = os.path.dirname(__file__) + "/sample_audio.m4a" # Replace with your audio file!
 
-# def generate_speech(text_input, output_path):
-# 	response = client_openai.audio.speech.create(
-# 		model = "tts-1",
-# 		voice = "alloy",
-# 		input = text_input
-# 	)
-# 	with open(output_path, wb) as file:
-# 		for chunk in response.iter_bytes():
-# 			file.write(chunk)
 
-# tts_audio_file_path = 'answer.mp3'
 
-# text_to_read = "المحطة التالية هي الحديقة"
-# aud_file = gTTS(text=text_to_read, lang="ar", slow=False)
-# aud_file.save("lang.mp3")
-# audio_file_read = open('lang.mp3', 'rb')
-# audio_bytes = audio_file_read.read()
-# st.audio(audio_bytes, format='audio/mp3',autoplay=True)
 
-# output = translate(text_to_read,'ar')
-# st.text_area("TRANSLATED TEXT",output,height=200)
 
 def tts(text_to_read, language):
 	aud_file = gTTS(text=text_to_read, lang=language, slow=False)
@@ -373,6 +343,20 @@ def tts(text_to_read, language):
 	audio_file_read = open('lang.mp3', 'rb')
 	audio_bytes = audio_file_read.read()
 	st.audio(audio_bytes, format='audio/mp3',autoplay=True)
+
+# filename = "lang.mp3"
+# # Open the audio file
+# with open(filename, "rb") as file:
+#     # Create a translation of the audio file
+#     translation = client.audio.translations.create(
+#       file=(filename, file.read()), # Required audio file
+#       model="whisper-large-v3", # Required model to use for translation
+#       prompt="Specify context or spelling",  # Optional
+#       response_format="json",  # Optional
+#       temperature=0.0  # Optional
+#     )
+#     # Print the translation text
+#     st.write(translation.text)
 
 def main():
 	st.sidebar.title("Select the Modality")
@@ -398,7 +382,7 @@ def main():
 		if transcription:
 			query = transcription.text
 			answer = rag(query)
-			tts(answer,'en')
+			tts(answer,'ar')
 	elif option == "Chat":
 		st.write("Wecome to text chatbot")
 		query=st.text_input("Search the topic u want", placeholder="Enter your query here...")
