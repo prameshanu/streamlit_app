@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_extras.stylable_container import stylable_container
 from audio_recorder_streamlit import audio_recorder
 import os
 from groq import Groq
@@ -338,16 +339,6 @@ def tts(text_to_read, language):
 
 
 
-st.sidebar.title("Select the Modality")
-option = st.sidebar.selectbox(
-    "How would you like to be interact?",
-    ("Chat", "Audio"),
-	index=None,
-     placeholder="Select mode of communication..."
-)
-title = "ANCIENT GREEK Q&A CHATBOT"
-st.title (f""":blue[{title}] """)
-
 
 if "chat_history" not in st.session_state:
     st.session_state["chat_history"] = []
@@ -363,36 +354,164 @@ def add_to_history(user_query, bot_response):
 
 render_chat_history()
 
-def main():
-	# st.write(openai_api_key)
-	# generate_speech(title, tts_audio_file_path)
-	# st.audio (tts_audio_file_path, format = "audio/mp3", autoplay = True)
 
-	if option == "Audio":
-		welcome_text = "Hi There, click on the voice recorder to interact with me, How can I assist you today?"
-		st.write (welcome_text)
-		tts(welcome_text,'en')
-		transcription = audio_processing()
-		# transcription= audio_to_text("audio.mp3")
-		# st.write("User:",query)
-		if transcription:
-			query = transcription.text
-			answer = rag(query)
-			add_to_history(query, answer)
-			tts(answer,'en')
-	elif option == "Chat":
-		st.write("Wecome to text chatbot")
-		with st.container():
-			st.subheader("Your Input")
-			query =st.text_input("Ask me anything:", key="user_input", on_change=None)
-			# query=st.text_input("Search the topic u want", placeholder="Enter your query here...")
-			if query:
-				answer= rag(query)
-				add_to_history(query, answer)
-	else:
-		st.write("Select your mode of interaction Chat/Audio")
+
+
+title = "ANCIENT GREEK Q&A CHATBOT"
+
+def designing():
+	with stylable_container(
+		key="green_button",
+		css_styles="""
+  		button {
+                /* background-color: green; */
+                color: white;
+		border: none;  
+                border-radius: 0;
+            	}
+            	""",
+    	):
+		st.button("Dummy button")
+
+	with stylable_container(
+		key="green_button_a",
+		css_styles="""
+  		button {
+                /* background-color: green; */
+                color: white;
+		border: none;  
+                border-radius: 0;
+            	}
+            	""",
+    	):
+		st.button("Dummy button2")
+## Heading and option button
+	    
+	with stylable_container(
+        key="heading",
+        css_styles="""
+            	{
+                position: fixed;
+                top: 2%; 
+                width: 80%;
+                left: 10%; 
+                right: 0;
+                border: 1px solid rgba(49, 51, 63, 0.2);
+                border-radius: 0.5rem 0.5rem 0 0;
+                padding: 1em;
+                background-color: white;
+                z-index: 100;
+            	}
+        	""",
+	):
+			
+        # Apply custom CSS for full-width input
 	
+		st.markdown(
+			"""
+			<style>
+			.full-width-input .stTextInput > div > div {
+			width: 100%; /* Slightly smaller width */
+			margin: 0 auto; /* Center it with equal margins on both sides */                
+			}
+			</style>
+			""",
+			unsafe_allow_html=True,
+		)
+    
+        # Wrap the text input in a class to target it
+	
+		with st.container():
+			st.title(f""":blue[{title}]""")
+			option = st.selectbox(
+				"How would you like to be interact?",
+				("Chat","Audio"),
+				index= None,
+				placeholder = "Select mode of communication.."
+			)
+    
+## Bottom input bar
+	with stylable_container(
+        	key="container_with_border",
+        	css_styles="""
+            	{
+                	position: fixed;
+	                bottom: 0; 
+	                width: 80%;
+	                left: 10%; 
+	                right: 0;
+	                border: 1px solid rgba(49, 51, 63, 0.2);
+	                border-radius: 0.5rem 0.5rem 0 0;
+	                padding: 1em;
+	                background-color: white;
+	                z-index: 100;
+		}
+   		""",
+    	):
+			
+        # Apply custom CSS for full-width input
+	
+		st.markdown(
+			"""
+			<style>
+			.full-width-input .stTextInput > div > div {
+			width: 100%; /* Slightly smaller width */
+			margin: 0 auto; /* Center it with equal margins on both sides */                
+			}
+			</style>
+			""",
+			unsafe_allow_html=True,
+		)
+    
+        # Wrap the text input in a class to target it
+		
+		with st.container():
+			if option == "Audio": 
+				welcome_text = "Hi There, click on the voice recorder to interact with me, How can I assist you today?"
+				st.write (welcome_text)
+				tts(welcome_text,'en')
+				transcription = audio_processing()
+				# transcription= audio_to_text("audio.mp3")
+				# st.write("User:",transcription.text)
+				
+				if transcription:
+					query = transcription.text
+				else:
+					query = 'No recorded voice'
+				values = np.array([option, query])
+				return values
+			elif option == "Chat":
+				query = st.text_input(
+					"Type your message here:",
+					key="user_input",
+					label_visibility="collapsed",
+					placeholder="Type your message...",
+				)
+				values = np.array([option, query])
+				return values
 
-#Function to transcribe audio to text 
-if __name__ == "__main__" :
-	main()
+
+
+text = "this is beta testing"
+def write_function(text):
+	st.markdown(f"""<p style="position: fixed; width: 80%; left: 11%; right: 0;">{text}</p>""", unsafe_allow_html=True)
+
+
+values = np.array([])
+values = designing()
+# st.write("\n.........................................Dummy.........................................\n")
+if values is None:
+	write_function("Kindly select the mode of communication from above drop-down button")
+elif len(values) > 0 and values[1] == "":
+	write_function("Please write below your query")
+else:
+	if values[0]== "Audio":
+		query = value[1]
+		answer = rag(query)
+		add_to_history(query, answer)
+		tts(answer,'en')
+	else:
+		answer= rag(query)
+		add_to_history(query, answer)
+	
+	
