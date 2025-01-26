@@ -345,6 +345,7 @@ def main():
 	)
 	title = "ANCIENT GREEK Q&A CHATBOT"
 	st.title (f""":blue[{title}] """)
+	st.write(openai_api_key)
 	generate_speech(title, tts_audio_file_path)
 	st.audio (tts_audio_file_path, format = "audio/mp3", autoplay = True)
 
