@@ -7,6 +7,12 @@ import os
 from groq import Groq
 
 
+groq_api_key = st.secrets["GROC_API_KEY"]
+pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
+langchain_api_key = st.secrets["LANGCHAIN_API_KEY"]
+openai_api_key = st.secrets["OPENAI_API_KEY"]
+
+
 # Initialize the Groq client
 client = Groq(api_key=groq_api_key)
 
