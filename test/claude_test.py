@@ -203,7 +203,7 @@ def example():
 # st.button("")
 text = "this is beta testing"
 def write_function(text):
-	st.markdown(f"""<p style="position: fixed; width: 80%; left: 10%; right: 0;">{text}</p>""", unsafe_allow_html=True)
+	st.markdown(f"""<p style="position: fixed; width: 80%; left: 11%; right: 0;">{text}</p>""", unsafe_allow_html=True)
 
 
 values = np.array([])
@@ -214,7 +214,7 @@ if values is None:
 elif len(values) > 0 and values[1] == "":
 	write_function("Please write below your query")
 else:
-	write_function(values[1])
+	write_function(f"**User:** {values[1]}")
 # st.write(len(values))
 # if len(values) == 0:
 # 	st.write("Enter modality")
