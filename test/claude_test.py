@@ -28,6 +28,7 @@ st.markdown(
 )
 
 # Main content
+st.sidebar.title("Select the Modality")
 st.title("Ask Me Anything")
 st.write("This is your interactive assistant. Type your query below!")
 
