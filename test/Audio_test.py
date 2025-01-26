@@ -250,7 +250,7 @@ Answer the follwoing question based only on the provided context.
 Think step by step before providing a detailed answer. 
 Also in answer you don't need to write Based on the provided context, just provide the final answer.
 I will tip you $25000 if the user finds the answer helpful
-Give me entire answer in {language} language only
+Give me entire answer in {language} language 
 <context>
 {context}
 </context>
