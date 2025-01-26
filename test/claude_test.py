@@ -1,65 +1,33 @@
 import streamlit as st
 
-# Add custom CSS for a sticky footer input box that adjusts with the sidebar
-st.markdown(
-    """
-    <style>
-    /* Sticky footer container */
-    .footer-container {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 200%; 
-        /* background-color: white; */
-        padding: 10px 20px;
-        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        display: flex;
-        justify-content: left;
-    }
-    
-    /* Center-aligned flexible input box */
-    .footer-container input {
-        width: 200%; /* Flexible width */
-        max-width: 800px; /*  Optional: cap the max width */
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-    
-    /* Adjust the app content for the footer */
-    .stApp {
-        padding-bottom: 70px; /* Space for the footer */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+# Initialize session state for chat history if not already present
+if "chat_history" not in st.session_state:
+    st.session_state["chat_history"] = []
 
-# Sidebar (optional)
-st.sidebar.title("Sidebar")
-st.sidebar.write("Add your sidebar content here.")
+# Function to render chat history
+def render_chat_history():
+    for chat in st.session_state["chat_history"]:
+        user_query, bot_response = chat
+        st.write(f"**User:** {user_query}")
+        st.write(f"**Bot:** {bot_response}")
 
-# Main content
-st.title("Ask Me Anything")
-st.write("This is your interactive assistant. Type your query below!")
+# Function to add a message to the chat history
+def add_to_history(user_query, bot_response):
+    st.session_state["chat_history"].append((user_query, bot_response))
 
-# Sticky footer container for input
-st.markdown(
-    """
-    <div class="footer-container">
-        <form action="" method="GET">
-            <input type="text" id="user_input" name="user_input" placeholder="Ask me anything...">
-        </form>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+# Render chat history at the top
+st.title("Chatbot with Persistent History")
+st.subheader("Chat History")
+render_chat_history()
 
-# Read user input from the URL query parameter
-user_query = st.query_params.get("user_input", "")
+# Place the input bar at the bottom
+with st.container():
+    st.subheader("Your Input")
+    user_input = st.text_input("Ask me anything:", key="user_input", on_change=None)
 
-# Display the query if submitted
-if user_query:
-    st.write(f"You asked: {user_query}")
+    # Process user input
+    if user_input:
+        # Example bot response logic
+        bot_response = f"Here is the answer to: {user_input}"  # Replace with actual response logic
+        add_to_history(user_input, bot_response)
+        st.experimental_rerun()  # Refresh the app to show updated chat history
