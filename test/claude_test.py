@@ -180,6 +180,7 @@ def example():
 				# return query,option
 
 
+values = []
 values = example()
 query = values[1]
 st.write("Test")
