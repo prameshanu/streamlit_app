@@ -183,12 +183,13 @@ def example():
 
 # values = []
 values = example()
-if len(values) == 0:
-	st.write("Enter modality")
-elif values[1]:	
-	query = values[1]
-	st.write("Test")
-	st.write(f"**User:** {query}")
-	st.write(values[0])
-else:
-	st.write("Test")
+st.write(values[0])
+# if len(values) == 0:
+# 	st.write("Enter modality")
+# elif values[1]:	
+# 	query = values[1]
+# 	st.write("Test")
+# 	st.write(f"**User:** {query}")
+# 	st.write(values[0])
+# else:
+# 	st.write("Test")
