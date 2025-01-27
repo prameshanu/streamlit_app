@@ -515,6 +515,7 @@ def designing_2(values):
 	                top: 30%; 
 	                width: 80%;
 	                left: 10%; 
+		 	bottom: 30%;
 	                right: 0;
 	                border: 1px solid rgba(49, 51, 63, 0.2);
 	                border-radius: 0.5rem 0.5rem 0 0;
