@@ -98,7 +98,7 @@ def example():
     
 
 
-def example2():
+def example2(option):
 ## Bottom input bar
 	with stylable_container(
         	key="container_with_border",
