@@ -351,8 +351,7 @@ if "chat_history" not in st.session_state:
 	st.session_state["chat_history"] = []
 	
 def render_chat_history():
-	st.write(f".......")
-	st.write(f".......")
+	
 	for chat in st.session_state["chat_history"]:
 		user_query, bot_response = chat
 		# write_function(f"""<strong><u>User:</strong></u> {user_query}"<br><strong><u>Bot:</strong></u> {bot_response}<br>""")
@@ -513,7 +512,7 @@ def designing_2(values):
             	{
 		     	position: fixed;
 	                top: 30%; 
-	         	bottom: 10%;       
+	         	bottom: 20%;       
 		 	width: 80%;
 	                left: 10%; 
 	                right: 10%;
