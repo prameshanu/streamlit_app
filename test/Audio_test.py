@@ -511,8 +511,8 @@ def designing_2(values):
         	key="container_with_border",
         	css_styles="""
             	{
-                	position: fixed;
-	                bottom: 40%; 
+		     	position: fixed;
+	                top: 30%; 
 	                width: 80%;
 	                left: 10%; 
 	                right: 0;
@@ -521,6 +521,7 @@ def designing_2(values):
 	                padding: 1em;
 	                background-color: white;
 	                z-index: 100;
+                
 		}
    		""",
     	):
