@@ -373,31 +373,31 @@ render_chat_history()
 title = "ANCIENT GREEK Q&A CHATBOT"
 
 def designing():
-	with stylable_container(
-		key="green_button",
-		css_styles="""
-  		button {
-                /* background-color: green; */
-                color: white;
-		border: none;  
-                border-radius: 0;
-            	}
-            	""",
-    	):
-		st.button("Dummy button")
+	# with stylable_container(
+	# 	key="green_button",
+	# 	css_styles="""
+ #  		button {
+ #                /* background-color: green; */
+ #                color: white;
+	# 	border: none;  
+ #                border-radius: 0;
+ #            	}
+ #            	""",
+ #    	):
+	# 	st.button("Dummy button")
 
-	with stylable_container(
-		key="green_button_a",
-		css_styles="""
-  		button {
-                /* background-color: green; */
-                color: white;
-		border: none;  
-                border-radius: 0;
-            	}
-            	""",
-    	):
-		st.button("Dummy button2")
+	# with stylable_container(
+	# 	key="green_button_a",
+	# 	css_styles="""
+ #  		button {
+ #                /* background-color: green; */
+ #                color: white;
+	# 	border: none;  
+ #                border-radius: 0;
+ #            	}
+ #            	""",
+ #    	):
+	# 	st.button("Dummy button2")
 ## Heading and option button
 	    
 	with stylable_container(
@@ -408,7 +408,8 @@ def designing():
                 top: 2%; 
                 width: 80%;
                 left: 10%; 
-                right: 0;
+                right: 10%;
+		margin :0 auto;
                 border: 1px solid rgba(49, 51, 63, 0.2);
                 border-radius: 0.5rem 0.5rem 0 0;
                 padding: 1em;
@@ -452,7 +453,8 @@ def designing():
 	                bottom: 0; 
 	                width: 80%;
 	                left: 10%; 
-	                right: 0;
+	                right: 10%;
+		 	margin :0 auto;
 	                border: 1px solid rgba(49, 51, 63, 0.2);
 	                border-radius: 0.5rem 0.5rem 0 0;
 	                padding: 1em;
