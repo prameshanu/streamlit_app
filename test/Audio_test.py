@@ -412,9 +412,6 @@ def designing():
                 padding: 1em;
                 background-color: white;
                 z-index: 100;
-		overflow-y: auto; /* Enables vertical scrolling */
-	        overflow-x: hidden; /* Disables horizontal scrolling */
-	        max-height: calc(50%); /* Ensure it doesn't overflow vertically */
             	}
         	""",
 	):
@@ -525,6 +522,9 @@ def designing_2(values):
 	                padding: 1em;
 	                background-color: white;
 	                z-index: 100;
+			overflow-y: auto; /* Enables vertical scrolling */
+		        overflow-x: hidden; /* Disables horizontal scrolling */
+		        max-height: calc(50%); /* Ensure it doesn't overflow vertically */
                 
 		}
    		""",
