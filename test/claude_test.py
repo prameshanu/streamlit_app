@@ -163,7 +163,7 @@ def example2(option):
 def example3():
 	## Bottom input bar
 	with stylable_container(
-        	key="container_with_border",
+        	key="middle_container_with_border",
         	css_styles="""
             	{
 		     	position: fixed;
