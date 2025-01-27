@@ -290,23 +290,24 @@ def rag(input_text):
 		)
 		answer = completion.choices[0].message.content
 		# st.write("**BOT :** ", answer)
-		write_function(f"""<strong><u>User:</strong></u> {input_text} <br> <strong><u>Bot:</strong></u> {answer} <br> <strong><u>*Source citation:</strong></u> {source_info}""")
+		# write_function(f"""<strong><u>User:</strong></u> {input_text} <br> <strong><u>Bot:</strong></u> {answer} <br> <strong><u>*Source citation:</strong></u> {source_info}""")
 		# write_function(f"<strong><u>Bot:</strong></u> {answer}")
-		# st.write(f"**User:** {input_text}")
-		# st.write(f"**Bot:** {answer}")
+		st.write(f"**User:** {input_text}")
+		st.write(f"**Bot:** {answer}")
 		# create_text_card(input_text, "USER:",answer, "BOT:")
 		# create_text_card(source_info, "Source Citation:")
 		# write_function(f"<strong><u>*Source citation:</strong></u> {source_info}")
-		# st.write("**Source citation :** ",source_info)
+		st.write("**Source citation :** ",source_info)
 		# create_text_card("test", "test2")
 		# st.write("Prompt : ", prompt)
 	
 	else:
 		answer = "I don't have enough information to answer this question."
-		write_function(f"<strong><u>User:</strong></u> {input_text}")
-		write_function(f"<strong><u>Bot:</strong></u> {answer}")
-		# st.write(f"**User:** {input_text}")
-		# st.write(f"**Bot:** {answer}")
+		st.write(f"**User:** {input_text}")
+		st.write(f"**Bot:** {answer}")
+		# write_function(f"<strong><u>User:</strong></u> {input_text}")
+		# write_function(f"<strong><u>Bot:</strong></u> {answer}")
+		
 		# create_text_card(input_text, "USER:",answer, "BOT:")
 	return answer
 
@@ -354,9 +355,9 @@ if "chat_history" not in st.session_state:
 def render_chat_history():
 	for chat in st.session_state["chat_history"]:
 		user_query, bot_response = chat
-		write_function(f"""<strong><u>User:</strong></u> {user_query}"<br><strong><u>Bot:</strong></u> {bot_response}<br>""")
-		# st.write(f"**User:** {user_query}")
-		# st.write(f"**Bot:** {bot_response}")
+		# write_function(f"""<strong><u>User:</strong></u> {user_query}"<br><strong><u>Bot:</strong></u> {bot_response}<br>""")
+		st.write(f"**User:** {user_query}")
+		st.write(f"**Bot:** {bot_response}")
 
 def add_to_history(user_query, bot_response):
 	st.session_state["chat_history"].append((user_query, bot_response))
