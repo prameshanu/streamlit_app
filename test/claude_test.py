@@ -50,31 +50,6 @@ title = "ANCIENT GREEK Q&A CHATBOT"
 
 
 def example():
-	with stylable_container(
-		key="green_button",
-		css_styles="""
-  		button {
-                /* background-color: green; */
-                color: white;
-		border: none;  
-                border-radius: 0;
-            	}
-            	""",
-    	):
-		st.button("Dummy button")
-
-	with stylable_container(
-		key="green_button_a",
-		css_styles="""
-  		button {
-                /* background-color: green; */
-                color: white;
-		border: none;  
-                border-radius: 0;
-            	}
-            	""",
-    	):
-		st.button("Dummy button2")
 ## Heading and option button
 	    
 	with stylable_container(
@@ -85,7 +60,7 @@ def example():
                 top: 2%; 
                 width: 80%;
                 left: 10%; 
-                right: 0;
+                right: 10%;
                 border: 1px solid rgba(49, 51, 63, 0.2);
                 border-radius: 0.5rem 0.5rem 0 0;
                 padding: 1em;
@@ -119,19 +94,11 @@ def example():
 				index= None,
 				placeholder = "Select mode of communication.."
 			)
+			return option
     
-        # Wrap the text input in a class to target it
-		# w
-	  #       with st.container():
-			# st.write(f""":blue{title}""")
-			# # st.title(f""":blue[{title}] """)
-			# option = st.selectbox(
-			# 	"How would you like to be interact?",
-			# 	("Chat", "Audio"),
-	  #           		index=None,
-	  #                	placeholder="Select mode of communication..."
-	  #           		)
 
+
+def example2():
 ## Bottom input bar
 	with stylable_container(
         	key="container_with_border",
@@ -141,7 +108,7 @@ def example():
 	                bottom: 0; 
 	                width: 80%;
 	                left: 10%; 
-	                right: 0;
+	                right: 10%;
 	                border: 1px solid rgba(49, 51, 63, 0.2);
 	                border-radius: 0.5rem 0.5rem 0 0;
 	                padding: 1em;
@@ -206,8 +173,10 @@ def write_function(text):
 	st.markdown(f"""<p style="position: fixed; width: 80%; left: 11%; right: 0;">{text}</p>""", unsafe_allow_html=True)
 
 
+option = example()
 values = np.array([])
-values = example()
+values = example2(option)
+
 # st.write("\n.........................................Dummy.........................................\n")
 if values is None:
 	write_function("Kindly select the mode of communication from above drop-down button")
