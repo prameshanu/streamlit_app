@@ -363,7 +363,7 @@ def render_chat_history():
 def add_to_history(user_query, bot_response):
 	st.session_state["chat_history"].append((user_query, bot_response))
 
-render_chat_history()
+
 
 
 
@@ -545,6 +545,7 @@ def designing_2(values):
         # Wrap the text input in a class to target it
 		
 		with st.container():
+			render_chat_history()
 			if values is None:
 				write_function("Kindly select the mode of communication from above drop-down button")
 			elif len(values) > 0 and values[1] == "":
