@@ -148,41 +148,39 @@ documents = preprocess_documents(documents)
 
 
 
+# from html import escape  # To prevent HTML injection
 
+# def create_text_card(text1, title1, text2, title2):
+#     # Escape user inputs
+#     text1 = escape(text1)
+#     title1 = escape(title1)
 
-from html import escape  # To prevent HTML injection
+#     card_html = f"""
+#     <style>
+#         .card {{
+#             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+#             transition: 0.3s;
+#             border-radius: 5px;
+#             padding: 15px;
+#             margin: 10px 0;
+#         }}
+#         .card:hover {{
+#             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+#         }}
+#         .container {{
+#             padding: 2px 16px;
+#         }}
+#     </style>
+#     <div class="card">
+#         <div class="container">
+# 	    <b><u>{title1}</b></u>{text1}
+#      	    <b><u>{title2}</b></u>{text2}
 
-def create_text_card(text1, title1, text2, title2):
-    # Escape user inputs
-    text1 = escape(text1)
-    title1 = escape(title1)
-
-    card_html = f"""
-    <style>
-        .card {{
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            transition: 0.3s;
-            border-radius: 5px;
-            padding: 15px;
-            margin: 10px 0;
-        }}
-        .card:hover {{
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-        }}
-        .container {{
-            padding: 2px 16px;
-        }}
-    </style>
-    <div class="card">
-        <div class="container">
-	    <b><u>{title1}</b></u>{text1}
-     	    <b><u>{title2}</b></u>{text2}
-
-        </div>
-    </div>
-    """
-    # Use st.components.v1.html to render HTML directly
-    st.components.v1.html(card_html, height=300, scrolling=True)
+#         </div>
+#     </div>
+#     """
+#     # Use st.components.v1.html to render HTML directly
+#     st.components.v1.html(card_html, height=300, scrolling=True)
 
 
 index_name = "hybrid-search-langchain-pinecone"
