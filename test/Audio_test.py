@@ -356,6 +356,8 @@ def render_chat_history():
 	for chat in st.session_state["chat_history"]:
 		user_query, bot_response = chat
 		# write_function(f"""<strong><u>User:</strong></u> {user_query}"<br><strong><u>Bot:</strong></u> {bot_response}<br>""")
+		st.write(f".......")
+		st.write(f".......")
 		st.write(f"**User:** {user_query}")
 		st.write(f"**Bot:** {bot_response}")
 
