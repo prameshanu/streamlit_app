@@ -505,24 +505,63 @@ def designing():
 
 
 
+def designing_2(values):
+	## Bottom input bar
+	with stylable_container(
+        	key="container_with_border",
+        	css_styles="""
+            	{
+                	position: fixed;
+	                bottom: 0; 
+	                width: 80%;
+	                left: 10%; 
+	                right: 0;
+	                border: 1px solid rgba(49, 51, 63, 0.2);
+	                border-radius: 0.5rem 0.5rem 0 0;
+	                padding: 1em;
+	                background-color: white;
+	                z-index: 100;
+		}
+   		""",
+    	):
+			
+        # Apply custom CSS for full-width input
+	
+		st.markdown(
+			"""
+			<style>
+			.full-width-input .stTextInput > div > div {
+			width: 100%; /* Slightly smaller width */
+			margin: 0 auto; /* Center it with equal margins on both sides */                
+			}
+			</style>
+			""",
+			unsafe_allow_html=True,
+		)
+    
+        # Wrap the text input in a class to target it
+		
+		with st.container():
+			if values is None:
+				write_function("Kindly select the mode of communication from above drop-down button")
+			elif len(values) > 0 and values[1] == "":
+				write_function("Please write/ask below your query")
+			else:
+				if values[0]== "Audio":
+					query = values[1]
+					answer = rag(query)
+					add_to_history(query, answer)
+					tts(answer,'en')
+				else:
+					query = values[1]
+					answer= rag(query)
+					add_to_history(query, answer)
+				
+	
+			
 
 
 
 values = np.array([])
 values = designing()
-if values is None:
-	write_function("Kindly select the mode of communication from above drop-down button")
-elif len(values) > 0 and values[1] == "":
-	write_function("Please write/ask below your query")
-else:
-	if values[0]== "Audio":
-		query = values[1]
-		answer = rag(query)
-		add_to_history(query, answer)
-		tts(answer,'en')
-	else:
-		query = values[1]
-		answer= rag(query)
-		add_to_history(query, answer)
-	
-	
+designing_2(values)
