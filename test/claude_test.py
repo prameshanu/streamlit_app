@@ -150,14 +150,35 @@ def example2(option):
 				values = np.array([option, query])
 				return values
 			elif option == "Chat":
-				query = st.text_input(
-					"Type your message here:",
-					key="user_input",
-					label_visibility="collapsed",
-					placeholder="Type your message...",
-				)
-				values = np.array([option, query])
-				return values
+				if "text_input" not in st.session_state:
+				    st.session_state.text_input = ""
+				
+				# Function to handle the form submission
+				def submit_text():
+					# Get the entered text
+					query = st.session_state.text_input
+					st.write(f"You entered: {entered_text}")
+					st.session_state.text_input = ""
+				
+					
+					# Display the text input
+					st.text_input(
+					    "Enter your text here:",
+					    key="text_input",
+					)
+					
+					# Submit button
+					if st.button("Submit"):
+						submit_text()
+
+				# query = st.text_input(
+				# 	"Type your message here:",
+				# 	key="user_input",
+				# 	label_visibility="collapsed",
+				# 	placeholder="Type your message...",
+				# )
+					values = np.array([option, query])
+					return values
 
 
 def example3():
