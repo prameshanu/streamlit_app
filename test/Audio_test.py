@@ -526,8 +526,8 @@ def designing_2(values):
             	{
 		     	position: fixed;
 	                top: 30%; 
-	         	bottom: 15%;      
-	   		length: 70%;
+	         	bottom: 10%;      
+	   		length: 90%;
 		 	width: 80%;
 	                left: 10%; 
 	                right: 10%;
