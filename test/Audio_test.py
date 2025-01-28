@@ -315,7 +315,11 @@ def rag(input_text):
 client = Groq(api_key=groq_api_key)
 
 def audio_processing():
-	recorded_audio = audio_recorder()
+	recorded_audio = audio_recorder(text="",
+			    recording_color="#e8b62c",
+			    neutral_color="#6aa36f",
+			    icon_name="microphone",
+			    icon_size="3x",)
 	if recorded_audio:
 		audio_file = "audio.mp3"
 		with open(audio_file , "wb") as f:
