@@ -170,7 +170,6 @@ def example2(option):
 				# Place the text input in the first column
 				with col1:
 					st.text_input(
-					"Enter your text here:",
 					key="text_input",
 					)
 
