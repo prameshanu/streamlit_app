@@ -351,7 +351,7 @@ if "chat_history" not in st.session_state:
 	st.session_state["chat_history"] = []
 	
 def render_chat_history():
-	
+	st.write(f"**Chat History**")
 	for chat in st.session_state["chat_history"]:
 		user_query, bot_response = chat
 		# write_function(f"""<strong><u>User:</strong></u> {user_query}"<br><strong><u>Bot:</strong></u> {bot_response}<br>""")
@@ -556,6 +556,7 @@ def designing_2(values):
 				st.write("Please write/ask below your query")
 				# write_function("Please write/ask below your query")
 			else:
+				st.write("Your recent query response")
 				if values[0]== "Audio":
 					query = values[1]
 					answer = rag(query)
