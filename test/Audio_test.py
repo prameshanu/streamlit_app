@@ -382,6 +382,7 @@ def add_to_history(user_query, bot_response):
 
 title = "ANCIENT GREEK Q&A CHATBOT"
 
+
 def designing():
 
 	## Heading and option button
@@ -390,18 +391,17 @@ def designing():
         key="heading",
         css_styles="""
             	{
-	     	position: fixed;
-		top: 2%; 
-		width: 90%; /* Adjusted for smaller screens */
-		left: 5%; 
-		right: 5%; 
-		margin: 0 auto;
-		border: 1px solid rgba(49, 51, 63, 0.2);
-		border-radius: 0.5rem;
-		padding: 1em;
-		z-index: 100;
-		box-sizing: border-box; /* Ensures padding is included in the width */
-	
+                position: fixed;
+                top: 1.5%; 
+                width: 80%;
+                left: 10%; 
+                right: 10%;
+		margin :0 auto;
+                border: 1px solid rgba(49, 51, 63, 0.2);
+                border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+                padding: 1em;
+                /* background-color: black; */
+                z-index: 100;
             	}
         	""",
 	):
@@ -436,18 +436,17 @@ def designing():
         	key="container_with_border",
         	css_styles="""
             	{
-	     		position: fixed;
-			bottom: 0; 
-			width: 90%; /* Adjusted for smaller screens */
-			left: 5%; 
-			right: 5%;
-			margin: 0 auto;
-			border: 1px solid rgba(49, 51, 63, 0.2);
-			border-radius: 0.5rem;
-			padding: 1em;
-			z-index: 100;
-			box-sizing: border-box; /* Ensures padding is included in the width */
-		
+                	position: fixed;
+	                bottom: 0; 
+	                width: 80%;
+	                left: 10%; 
+	                right: 10%;
+		 	margin :0 auto;
+	                border: 1px solid rgba(49, 51, 63, 0.2);
+	                border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+	                padding: 1em;
+	                /* background-color: black; */
+	                z-index: 100;
 		}
    		""",
     	):
@@ -502,20 +501,21 @@ def designing_2(values):
         	key="middle_container_with_border",
         	css_styles="""
             	{
-	     		position: fixed;
-			top: 20%; 
-			bottom: 10%; 
-			width: 90%; /* Adjusted for smaller screens */
-			left: 5%; 
-			right: 5%; 
-			margin: 0 auto;
-			border: 1px solid rgba(49, 51, 63, 0.2);
-			border-radius: 0.5rem;
-			padding: 1em;
-			z-index: 100;
+		     	position: fixed;
+	                top: 30%; 
+	         	bottom: 5%;      
+		 	width: 80%;
+	                left: 10%; 
+	                right: 10%;
+		 	margin :0 auto;
+	                border: 1px solid rgba(49, 51, 63, 0.2);
+	                border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+	                padding: 1em;
+	                /* background-color: black; */
+	                z-index: 100;
 			overflow-y: auto; /* Enables vertical scrolling */
-			overflow-x: hidden; /* Disables horizontal scrolling */
-			box-sizing: border-box; /* Ensures padding is included in the width */
+		        overflow-x: hidden; /* Disables horizontal scrolling */
+		        max-height: calc(50%); /* Ensure it doesn't overflow vertically */
                 
 		}
    		""",
@@ -556,6 +556,7 @@ def designing_2(values):
 					query = values[1]
 					answer= rag(query)
 					add_to_history(query, answer)
+				
 				
 	
 			
