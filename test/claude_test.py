@@ -159,6 +159,7 @@ def example2(option):
 					query = st.session_state.text_input
 					st.write(f"You entered: {entered_text}")
 					st.session_state.text_input = ""
+					return query
 				
 					
 					# Display the text input
@@ -169,7 +170,10 @@ def example2(option):
 					
 				# Submit button
 				if st.button("Submit"):
-					submit_text()
+					query = submit_text()
+					values = np.array([option, query])
+					return values
+				
 
 				# query = st.text_input(
 				# 	"Type your message here:",
@@ -177,8 +181,7 @@ def example2(option):
 				# 	label_visibility="collapsed",
 				# 	placeholder="Type your message...",
 				# )
-				values = np.array([option, query])
-				return values
+				
 
 
 def example3():
