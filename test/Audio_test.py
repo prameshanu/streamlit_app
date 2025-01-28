@@ -315,7 +315,7 @@ def rag(input_text):
 client = Groq(api_key=groq_api_key)
 
 def audio_processing():
-	recorded_audio = audio_recorder(text="",
+	recorded_audio = audio_recorder(text="Click on the microphone to record your querymicrophone",
 			    recording_color="#e8b62c",
 			    neutral_color="#6aa36f",
 			    icon_name="microphone",
@@ -346,6 +346,14 @@ def tts(text_to_read, language):
 	aud_file.save("lang.mp3")
 	audio_file_read = open('lang.mp3', 'rb')
 	audio_bytes = audio_file_read.read()
+	st.markdown(
+		"<style>" + 
+		audio::-webkit-media-controls-time-remaining-display,
+		audio::-webkit-media-controls-current-time-display {
+		max-width: 50%;
+		max-height: 20px;
+		} + "</style>", unsafe_allow_html=True
+	)
 	st.audio(audio_bytes, format='audio/mp3',autoplay=True)
 
 
