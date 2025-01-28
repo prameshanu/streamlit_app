@@ -550,9 +550,11 @@ def designing_2(values):
 		with st.container():
 			render_chat_history()
 			if values is None:
-				write_function("Kindly select the mode of communication from above drop-down button")
+				st.write("Kindly select the mode of communication from above drop-down button")
+				# write_function("Kindly select the mode of communication from above drop-down button")
 			elif len(values) > 0 and values[1] == "":
-				write_function("Please write/ask below your query")
+				st.write("Please write/ask below your query")
+				# write_function("Please write/ask below your query")
 			else:
 				if values[0]== "Audio":
 					query = values[1]
