@@ -347,12 +347,13 @@ def tts(text_to_read, language):
 	audio_file_read = open('lang.mp3', 'rb')
 	audio_bytes = audio_file_read.read()
 	st.markdown(
-		"<style>" + 
+		"""<style> 
 		audio::-webkit-media-controls-time-remaining-display,
-		audio::-webkit-media-controls-current-time-display {
+		audio::-webkit-media-controls-current-time-display 
+		{
 		max-width: 50%;
 		max-height: 20px;
-		} + "</style>", unsafe_allow_html=True
+		} + </style>""", unsafe_allow_html=True
 	)
 	st.audio(audio_bytes, format='audio/mp3',autoplay=True)
 
