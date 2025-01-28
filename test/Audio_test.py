@@ -488,10 +488,11 @@ def designing():
 				
 				if transcription:
 					query = transcription.text
-				else:
-					query = 'No recorded voice'
-				values = np.array([option, query])
-				return values
+					values = np.array([option, query])
+					return values
+				# else:
+				# 	query = 'No recorded voice'
+				
 			elif option == "Chat":
 				query = st.text_input(
 					"Type your message here:",
