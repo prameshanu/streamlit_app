@@ -315,11 +315,11 @@ def rag(input_text):
 client = Groq(api_key=groq_api_key)
 
 def audio_processing():
-	recorded_audio = audio_recorder(text="Click on the microphone to record your querymicrophone",
+	recorded_audio = audio_recorder(text="Click on the microphone to record your query",
 			    recording_color="#e8b62c",
 			    neutral_color="#6aa36f",
 			    icon_name="microphone",
-			    icon_size="3x",)
+			    icon_size="1x",)
 	if recorded_audio:
 		audio_file = "audio.mp3"
 		with open(audio_file , "wb") as f:
@@ -415,7 +415,7 @@ def designing():
         css_styles="""
             	{
                 position: fixed;
-                top: 2%; 
+                top: 1%; 
                 width: 80%;
                 left: 10%; 
                 right: 10%;
@@ -526,7 +526,8 @@ def designing_2(values):
             	{
 		     	position: fixed;
 	                top: 30%; 
-	         	bottom: 15%;       
+	         	bottom: 15%;      
+	   		length: 60%;
 		 	width: 80%;
 	                left: 10%; 
 	                right: 10%;
