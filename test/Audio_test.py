@@ -469,7 +469,7 @@ def designing():
 		with st.container():
 			if option == "Audio": 
 				welcome_text = "Hi There, click on the voice recorder to interact with me, How can I assist you today?"
-				st.write (welcome_text)
+				# st.write (welcome_text)
 				tts(welcome_text,'en')
 				transcription = audio_processing()
 				# transcription= audio_to_text("audio.mp3")
