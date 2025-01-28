@@ -75,19 +75,19 @@ def preprocess_text(text):
     text = text.lower()
     
     # Step 2: Remove special characters, numbers, and extra whitespace
-    text = re.sub(r'[^a-z\s]', '', text)  # Keep only letters and spaces
+    text = re.sub(r'[^a-z0-9\s]', '', text)  # Keep only letters and spaces
     text = re.sub(r'\s+', ' ', text).strip()  # Remove extra spaces
     
     # Step 3: Tokenize the text
     tokens = word_tokenize(text)
     
-    # Step 4: Remove stopwords
-    stop_words = set(stopwords.words('english'))
-    tokens = [word for word in tokens if word not in stop_words]
+    # # Step 4: Remove stopwords
+    # stop_words = set(stopwords.words('english'))
+    # tokens = [word for word in tokens if word not in stop_words]
     
-    # Step 5: Lemmatize tokens
-    lemmatizer = WordNetLemmatizer()
-    tokens = [lemmatizer.lemmatize(word) for word in tokens]
+    # # Step 5: Lemmatize tokens
+    # lemmatizer = WordNetLemmatizer()
+    # tokens = [lemmatizer.lemmatize(word) for word in tokens]
     
     # Join tokens back into a single string (optional)
     processed_text = ' '.join(tokens)
@@ -554,12 +554,12 @@ def designing_2(values):
 			else:
 				st.write("**Your recent query response**")
 				if values[0]== "Audio":
-					query = values[1]
+					query = preprocess_text(values[1])
 					answer = rag(query)
 					add_to_history(query, answer)
 					tts(answer,'en')
 				else:
-					query = values[1]
+					query = preprocess_text(values[1])
 					answer= rag(query)
 					add_to_history(query, answer)
 				
