@@ -399,7 +399,7 @@ def designing():
                 border: 1px solid rgba(49, 51, 63, 0.2);
                 border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
                 padding: 1em;
-                background-color: black;
+                /* background-color: black; */
                 z-index: 100;
             	}
         	""",
@@ -444,7 +444,7 @@ def designing():
 	                border: 1px solid rgba(49, 51, 63, 0.2);
 	                border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
 	                padding: 1em;
-	                background-color: black;
+	                /* background-color: black; */
 	                z-index: 100;
 		}
    		""",
@@ -510,7 +510,7 @@ def designing_2(values):
 	                border: 1px solid rgba(49, 51, 63, 0.2);
 	                border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
 	                padding: 1em;
-	                background-color: black;
+	                /* background-color: black; */
 	                z-index: 100;
 			overflow-y: auto; /* Enables vertical scrolling */
 		        overflow-x: hidden; /* Disables horizontal scrolling */
