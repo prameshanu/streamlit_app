@@ -383,32 +383,8 @@ def add_to_history(user_query, bot_response):
 title = "ANCIENT GREEK Q&A CHATBOT"
 
 def designing():
-	# with stylable_container(
-	# 	key="green_button",
-	# 	css_styles="""
- #  		button {
- #                /* background-color: green; */
- #                color: white;
-	# 	border: none;  
- #                border-radius: 0;
- #            	}
- #            	""",
- #    	):
-	# 	st.button("Dummy button")
 
-	# with stylable_container(
-	# 	key="green_button_a",
-	# 	css_styles="""
- #  		button {
- #                /* background-color: green; */
- #                color: white;
-	# 	border: none;  
- #                border-radius: 0;
- #            	}
- #            	""",
- #    	):
-	# 	st.button("Dummy button2")
-## Heading and option button
+	## Heading and option button
 	    
 	with stylable_container(
         key="heading",
@@ -526,7 +502,7 @@ def designing_2(values):
             	{
 		     	position: fixed;
 	                top: 30%; 
-	         	bottom: 0%;      
+	         	bottom: 5%;      
 		 	width: 80%;
 	                left: 10%; 
 	                right: 10%;
