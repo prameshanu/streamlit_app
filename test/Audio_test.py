@@ -70,35 +70,36 @@ except LookupError:
 
 # ### Preprocessing function for input text, for input data: preprocessing was done separately to avoid repeat code execution on every run.
 
-# def preprocess_text(text):
-#     # Step 1: Lowercase the text
-#     text = text.lower()
+def preprocess_text(text):
+    # Step 1: Lowercase the text
+    text = text.lower()
     
-#     # Step 2: Remove special characters, numbers, and extra whitespace
-#     text = re.sub(r'[^a-z\s]', '', text)  # Keep only letters and spaces
-#     text = re.sub(r'\s+', ' ', text).strip()  # Remove extra spaces
+    # Step 2: Remove special characters, numbers, and extra whitespace
+    text = re.sub(r'[^a-z\s]', '', text)  # Keep only letters and spaces
+    text = re.sub(r'\s+', ' ', text).strip()  # Remove extra spaces
     
-#     # Step 3: Tokenize the text
-#     tokens = word_tokenize(text)
+    # Step 3: Tokenize the text
+    tokens = word_tokenize(text)
     
-#     # Step 4: Remove stopwords
-#     stop_words = set(stopwords.words('english'))
-#     tokens = [word for word in tokens if word not in stop_words]
+    # Step 4: Remove stopwords
+    stop_words = set(stopwords.words('english'))
+    tokens = [word for word in tokens if word not in stop_words]
     
-#     # Step 5: Lemmatize tokens
-#     lemmatizer = WordNetLemmatizer()
-#     tokens = [lemmatizer.lemmatize(word) for word in tokens]
+    # Step 5: Lemmatize tokens
+    lemmatizer = WordNetLemmatizer()
+    tokens = [lemmatizer.lemmatize(word) for word in tokens]
     
-#     # Join tokens back into a single string (optional)
-#     processed_text = ' '.join(tokens)
+    # Join tokens back into a single string (optional)
+    processed_text = ' '.join(tokens)
     
-#     return processed_text
+    return processed_text
 
 
 ### Input 60 processed files
 
 # Base URL for the files
-raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/"
+# raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/"
+raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data_v1/"
 
 # List of file names
 file_path = [
