@@ -157,7 +157,7 @@ def example2(option):
 				def submit_text():
 					# Get the entered text
 					query = st.session_state.text_input
-					st.write(f"You entered: {entered_text}")
+					st.write(f"You entered: {query}")
 					st.session_state.text_input = ""
 					return query
 				
