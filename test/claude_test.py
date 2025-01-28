@@ -170,6 +170,7 @@ def example2(option):
 				# Place the text input in the first column
 				with col1:
 					st.text_input(
+						"",
 						key="text_input",
 						label_visibility="collapsed",
 						placeholder="Type your message...",
