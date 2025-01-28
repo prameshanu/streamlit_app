@@ -177,8 +177,8 @@ def example2(option):
 				# 	label_visibility="collapsed",
 				# 	placeholder="Type your message...",
 				# )
-					values = np.array([option, query])
-					return values
+				values = np.array([option, query])
+				return values
 
 
 def example3():
