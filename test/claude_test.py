@@ -162,14 +162,14 @@ def example2(option):
 				
 					
 					# Display the text input
-					st.text_input(
-					    "Enter your text here:",
-					    key="text_input",
-					)
+				st.text_input(
+					"Enter your text here:",
+					key="text_input",
+				)
 					
-					# Submit button
-					if st.button("Submit"):
-						submit_text()
+				# Submit button
+				if st.button("Submit"):
+					submit_text()
 
 				# query = st.text_input(
 				# 	"Type your message here:",
