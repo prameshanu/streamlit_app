@@ -96,14 +96,12 @@ def preprocess_text(text):
 
 
 # Input 60 processed files
-
 # Base URL for the files
 # preprocessed_files - retain characters only
-# raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/"
-
+# raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data_v1/"
 
 # preprocessed_files_v1 - retain numbers as well
-raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data_v1/"
+raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data/"
 
 # preprocessed_files_v2 - retain numbers retain numbers and do not remove stopwords
 # raw_url_base = "https://raw.githubusercontent.com/prameshanu/streamlit_app/main/processed_data_v2/"
@@ -269,7 +267,7 @@ def rag(input_text):
 	for doc in filtered_docs:
 		for doc1 in documents:
 			if doc.page_content == doc1.page_content :
-				source.add(doc1.metadata['source'].split('/')[-1][8:]) # Use add() for sets
+				source.add(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
 		
 
 	if source != set():
