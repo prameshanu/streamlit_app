@@ -153,14 +153,15 @@ def example2(option):
 				if "text_input" not in st.session_state:
 				    st.session_state.text_input = ""
 
-				st.text_input(
-					"Enter your text here:",
+				query = st.text_input(
+					"Type your message here:",
 					key="text_input",
+					label_visibility="collapsed",
+					placeholder="Type your message...",
 				)
 				# Function to handle the form submission
-				query = st.session_state.text_input
-				st.session_state.text_input = ""
 				values = np.array([option, query])
+				st.session_state.text_input = ""
 				return values
 				
 
