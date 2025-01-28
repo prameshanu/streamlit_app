@@ -415,13 +415,13 @@ def designing():
         css_styles="""
             	{
                 position: fixed;
-                top: 1%; 
+                top: 1.5%; 
                 width: 80%;
                 left: 10%; 
                 right: 10%;
 		margin :0 auto;
                 border: 1px solid rgba(49, 51, 63, 0.2);
-                border-radius: 0.5rem 0.5rem 0 0;
+                border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
                 padding: 1em;
                 background-color: white;
                 z-index: 100;
@@ -466,7 +466,7 @@ def designing():
 	                right: 10%;
 		 	margin :0 auto;
 	                border: 1px solid rgba(49, 51, 63, 0.2);
-	                border-radius: 0.5rem 0.5rem 0 0;
+	                border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
 	                padding: 1em;
 	                background-color: white;
 	                z-index: 100;
@@ -527,13 +527,13 @@ def designing_2(values):
 		     	position: fixed;
 	                top: 30%; 
 	         	bottom: 15%;      
-	   		length: 60%;
+	   		length: 70%;
 		 	width: 80%;
 	                left: 10%; 
 	                right: 10%;
 		 	margin :0 auto;
 	                border: 1px solid rgba(49, 51, 63, 0.2);
-	                border-radius: 0.5rem 0.5rem 0 0;
+	                border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
 	                padding: 1em;
 	                background-color: white;
 	                z-index: 100;
