@@ -260,7 +260,7 @@ I will tip you $25000 if the user finds the answer helpful
 Question: {input}
 """)
 
-def rag(input_text):
+def rag(input_text, query1):
 	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
 	filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
 	source = set()  # Initialize a set to store unique items
@@ -295,7 +295,7 @@ def rag(input_text):
 		# st.write("**BOT :** ", answer)
 		# write_function(f"""<strong><u>User:</strong></u> {input_text} <br> <strong><u>Bot:</strong></u> {answer} <br> <strong><u>*Source citation:</strong></u> {source_info}""")
 		# write_function(f"<strong><u>Bot:</strong></u> {answer}")
-		st.write(f"**User:** {input_text}")
+		st.write(f"**User:** {query1}")
 		st.write(f"**Bot:** {answer}")
 		# create_text_card(input_text, "USER:",answer, "BOT:")
 		# create_text_card(source_info, "Source Citation:")
@@ -306,7 +306,7 @@ def rag(input_text):
 	
 	else:
 		answer = "I don't have enough information to answer this question."
-		st.write(f"**User:** {input_text}")
+		st.write(f"**User:** {query1}")
 		st.write(f"**Bot:** {answer}")
 		# write_function(f"<strong><u>User:</strong></u> {input_text}")
 		# write_function(f"<strong><u>Bot:</strong></u> {answer}")
@@ -378,8 +378,8 @@ def render_chat_history():
 		st.write(f"**User:** {user_query}")
 		st.write(f"**Bot:** {bot_response}")
 
-def add_to_history(user_query, bot_response):
-	st.session_state["chat_history"].append((user_query, bot_response))
+def add_to_history(query1, bot_response):
+	st.session_state["chat_history"].append((query1, bot_response))
 
 
 
@@ -555,14 +555,15 @@ def designing_2(values):
 				st.write("**Your recent query response**")
 				if values[0]== "Audio":
 					query = preprocess_text(values[1])
-					answer = rag(query)
-					add_to_history(query, answer)
+					query1 = values[1]
+					answer = rag(query, query1)
+					add_to_history(query1, answer)
 					tts(answer,'en')
 				else:
 					query = preprocess_text(values[1])
-					answer= rag(query)
-					add_to_history(query, answer)
-				
+					query1 = values[1]
+					answer = rag(query, query1)
+					add_to_history(query1, answer)			
 				
 	
 			
