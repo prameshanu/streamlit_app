@@ -152,27 +152,16 @@ def example2(option):
 			elif option == "Chat":
 				if "text_input" not in st.session_state:
 				    st.session_state.text_input = ""
-				
-				# Function to handle the form submission
-				def submit_text():
-					# Get the entered text
-					query = st.session_state.text_input
-					st.write(f"You entered: {query}")
-					st.session_state.text_input = ""
-					return query
-				
-					
-					# Display the text input
+
 				st.text_input(
 					"Enter your text here:",
 					key="text_input",
 				)
-					
-				# Submit button
-				if st.button("Submit"):
-					query = submit_text()
-					values = np.array([option, query])
-					return values
+				# Function to handle the form submission
+				query = st.session_state.text_input
+				st.session_state.text_input = ""
+				values = np.array([option, query])
+				return values
 				
 
 				# query = st.text_input(
