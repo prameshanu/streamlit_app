@@ -269,7 +269,7 @@ def rag(input_text):
 	for doc in filtered_docs:
 		for doc1 in documents:
 			if doc.page_content == doc1.page_content :
-				source.add(doc1.metadata['source'].split('/')[-1][13:]) # Use add() for sets
+				source.add(doc1.metadata['source'].split('/')[-1][16:]) # Use add() for sets
 		
 
 	if source != set():
