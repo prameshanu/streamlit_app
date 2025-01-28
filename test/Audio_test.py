@@ -556,7 +556,7 @@ def designing_2(values):
 				st.write("Please write/ask below your query")
 				# write_function("Please write/ask below your query")
 			else:
-				st.write("Your recent query response")
+				st.write("**Your recent query response**")
 				if values[0]== "Audio":
 					query = values[1]
 					answer = rag(query)
