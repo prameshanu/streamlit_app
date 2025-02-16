@@ -5,3 +5,5 @@ pc = Pinecone(api_key=pine_cone_api_key)
 # List available indexes to verify connectivity
 st.write(pc.list_indexes().names())
 
+prompt = st.chat_input("Say something")
+
