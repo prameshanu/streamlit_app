@@ -26,8 +26,9 @@ if prompt := st.chat_input("What is up?"):
     with st.chat_message("assistant"):
         messages = [
             {
-                "role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
+                "role": "user", 
+                "content": "who are you?"
+            }
         ]
     
         completion = client.chat.completions.create(
