@@ -266,6 +266,8 @@ def rag(input_text):
 		)
 		answer = completion.choices[0].message.content
 		with st.chat_message("user"):
+			st.markdown(input_text)
+		with st.chat_message("assistant"):
 			st.markdown(answer)
 		# st.write("**BOT :** ", answer)
 		# st.write("**Source citation :** ",source_info)
