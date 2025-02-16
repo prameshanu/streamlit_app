@@ -27,9 +27,13 @@ if prompt := st.chat_input("What is up?"):
         stream = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=[
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
+               {
+				"role": "user",
+				"content": prompt
+			}
             ],
         )
-        response = st.write_stream(stream)
-    st.session_state.messages.append({"role": "assistant", "content": response})
+        st.write(stream)
+        # response = stream.choices[0].message.content
+        # response = st.write_stream(stream)
+    # st.session_state.messages.append({"role": "assistant", "content": response})
