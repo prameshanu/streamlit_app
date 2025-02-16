@@ -30,7 +30,6 @@ if prompt := st.chat_input("What is up?"):
                 {"role": m["role"], "content": m["content"]}
                 for m in st.session_state.messages
             ],
-            stream=True,
         )
         response = st.write_stream(stream)
     st.session_state.messages.append({"role": "assistant", "content": response})
