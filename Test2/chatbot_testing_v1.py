@@ -32,6 +32,7 @@ if prompt := st.chat_input("What is up?"):
 				"content": prompt
 			}
             ],
+		stream=True,
         )
         response = st.write_stream(stream.choices[0].message.content)
         # response = stream.choices[0].message.content
