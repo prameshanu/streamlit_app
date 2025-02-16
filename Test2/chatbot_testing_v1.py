@@ -33,7 +33,7 @@ if prompt := st.chat_input("What is up?"):
 			}
             ],
         )
-        st.write(stream.choices[0].message.content)
+        response = stream.choices[0].message.content)
         # response = stream.choices[0].message.content
-        # response = st.write_stream(stream)
-    # st.session_state.messages.append({"role": "assistant", "content": response})
+        response = st.write_stream(stream)
+    st.session_state.messages.append({"role": "assistant", "content": response})
