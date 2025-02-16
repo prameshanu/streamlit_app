@@ -15,3 +15,4 @@ anthropic
 huggingface_hub
 groq
 streamlit
+streamlit_extras
