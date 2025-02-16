@@ -203,6 +203,7 @@ If required create sub bullet points as well. Bullet points should be logical.
 Directly provide the answer, don't mention anything related to context.
 If there are multiple bullet points then make sure to start with next line. First line should be like i.e., the details of XX credit card is summarized below.
 If query is on the comparison on credit cards, then create a table to highlight key differences. 
+Also do not mention FAB, instead mention ABC Bank
 <context>
 {context}
 </context>
@@ -227,7 +228,7 @@ client = Groq(api_key=groq_api_key)
 
 # headers = {"Authorization": f"Bearer {hugging_face_api_key}"}
 
-st.title('FAB Credit Card Chatbot ')
+st.title('ABC Bank Credit Card Chatbot ')
 input_text = st.chat_input("What do you want to know about FAB CC")
 # input_text=st.text_input("Search the topic u want")
 def rag(input_text):
