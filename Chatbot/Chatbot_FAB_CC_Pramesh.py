@@ -265,7 +265,9 @@ def rag(input_text):
 			model="llama-3.3-70b-versatile",
 		)
 		answer = completion.choices[0].message.content
-		st.write("**BOT :** ", answer)
+		with st.chat_message("user"):
+			st.markdown(answer)
+		# st.write("**BOT :** ", answer)
 		# st.write("**Source citation :** ",source_info)
 		# st.write("Prompt : ", prompt)
 	else:
