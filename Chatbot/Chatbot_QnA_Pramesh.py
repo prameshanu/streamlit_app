@@ -31,7 +31,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.data import find
 from pathlib import Path
-from openai import OpenAI
+# from openai import OpenAI
 from gtts import gTTS
 import base64
 from mtranslate import translate
@@ -39,7 +39,7 @@ from mtranslate import translate
 groq_api_key = st.secrets["GROC_API_KEY"]
 pine_cone_api_key = st.secrets["PINE_CONE_API_KEY"]
 langchain_api_key = st.secrets["LANGCHAIN_API_KEY"]
-openai_api_key = st.secrets["OPENAI_API_KEY"]
+# openai_api_key = st.secrets["OPENAI_API_KEY"]
 
 # # ## lazy loading
 # try:
