@@ -16,3 +16,6 @@ huggingface_hub
 groq
 streamlit
 streamlit_extras
+audio_recorder_streamlit
+gtts
+mtranslate
