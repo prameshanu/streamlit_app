@@ -22,18 +22,4 @@ if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
-
-    with st.chat_message("assistant"):
-        messages = [
-            {
-                "role": "user", 
-                "content": "who are you?"
-            }
-        ]
-    
-        completion = client.chat.completions.create(
-            messages=messages,
-            model="llama-3.3-70b-versatile",
-        )
-        response = completion.choices[0].message.content
-    st.session_state.messages.append({"role": "assistant", "content": response})
+        st.write(prompt)
