@@ -229,7 +229,7 @@ client = Groq(api_key=groq_api_key)
 # headers = {"Authorization": f"Bearer {hugging_face_api_key}"}
 
 st.title('ABC Bank Credit Card Chatbot ')
-input_text = st.chat_input("What do you want to know about FAB CC")
+input_text = st.chat_input("What do you want to know about CC")
 # input_text=st.text_input("Search the topic u want")
 def rag(input_text):
 	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
