@@ -203,7 +203,7 @@ If required create sub bullet points as well. Bullet points should be logical.
 Directly provide the answer, don't mention anything related to context.
 If there are multiple bullet points then make sure to start with next line. First line should be like i.e., the details of XX credit card is summarized below.
 If query is on the comparison on credit cards, then create a table to highlight key differences. 
-Also do not mention FAB, instead mention ABC Bank
+Also do not mention FAB, instead mention ABC Bank. Even the name of credit card should be ABC ### credit card,not FAB credit card.
 <context>
 {context}
 </context>
